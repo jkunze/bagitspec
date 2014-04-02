@@ -18,5 +18,5 @@ To convert `bagit.xml` to HTML and text files you will need
 
 1. install [Python](http://python.org/downloads/)
 1. install [pip](http://www.pip-installer.org/en/latest/installing.html)
-1. pip install xml2rfc
+1. pip install -r requirements.txt
 1. make
