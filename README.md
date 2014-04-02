@@ -1,7 +1,7 @@
 bagitspec
 =========
 
-[![Build Status](https://travis-ci.org/edsu/bagitspec.svg)](http://travis-ci.org/edsu/bagitspec)
+[![Build Status](https://travis-ci.org/jkunze/bagitspec.svg)](http://travis-ci.org/jkunze/bagitspec)
 
 This repository is used for managing the development and maintenance of the
 BagIt File Packaging Format specification as an IETF draft. The spec itself 
