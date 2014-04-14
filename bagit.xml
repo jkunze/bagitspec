@@ -37,7 +37,7 @@ Change "algorithm" (crypto hash) to "function"? (Steffen Fritz email to jak)
 	<!ENTITY optional 'OPTIONAL' >
 	
 	<!-- The current bagit version, for convenience. -->
-	<!ENTITY current-bagit-version '0.97' >	
+	<!ENTITY current-bagit-version '0.98' >	
 ]>
 
 <?xml-stylesheet type="text/xsl" href="rfc2629xslt/rfc2629.xslt" ?>
@@ -399,7 +399,11 @@ or more linear whitespace characters (spaces or tabs) &must; separate
 CHECKSUM from FILENAME.  An asterisk ('*') &may; preceed FILENAME for
 interoperability on some platforms (see <xref target="sec-checksum-tools"
 />). There is no limitation on the length of a pathname. The payload
-manifest &must-not; reference files outside the payload directory.
+manifest &must-not; reference files outside the payload directory. If
+a FILENAME includes a newline (LF), a carriage return (CR), or carriage
+return plus newline (CRLF) it &must; be percent-encoded 
+<xref target="RFC3986"/>.
+
 </t>
 
 <t>
