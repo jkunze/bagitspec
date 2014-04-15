@@ -5,8 +5,8 @@ bagitspec
 
 This repository is used for managing the development and maintenance of the
 BagIt File Packaging Format specification as an 
-[IETF draft](http://purl.org/net/bagit). The spec itself 
-is formatted as specified in [RFC 2629](http://tools.ietf.org/html/rfc2629). 
+[IETF draft](http://tools.ietf.org/html/draft-kunze-bagit). The spec itself 
+is an XML file as specified in [RFC 2629](http://tools.ietf.org/html/rfc2629).
 
 Please feel free to use the issue tracker here to submit feature requests, bugs,
 etc. Discussion on the
