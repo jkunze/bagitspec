@@ -4,9 +4,9 @@ bagitspec
 [![Build Status](https://travis-ci.org/jkunze/bagitspec.svg)](http://travis-ci.org/jkunze/bagitspec)
 
 This repository is used for managing the development and maintenance of the
-BagIt File Packaging Format specification as an IETF draft. The spec itself 
-is formatted as XML format as specified in 
-in [RFC 2629](http://tools.ietf.org/html/rfc2629). 
+BagIt File Packaging Format specification as an 
+[IETF draft](http://tools.ietf.org/html/draft-kunze-bagit). The spec itself 
+is an XML file as specified in [RFC 2629](http://tools.ietf.org/html/rfc2629).
 
 Please feel free to use the issue tracker here to submit feature requests, bugs,
 etc. Discussion on the
