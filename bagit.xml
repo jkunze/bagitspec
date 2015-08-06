@@ -606,6 +606,16 @@ assembled from logically distributed sources (e.g., the object components
 for export are not stored locally under one filesystem tree).
 </t>
 
+<t>
+Files listed in "fetch.txt" are considered part of the 
+payload files if their FILENAME starts with "data/" (or "/data/"), 
+and otherwise considered tag files. Payload files from fetch.txt
+&should; be included in payload and tag manifests, and 
+&must; be taken into consideration  
+if the "bag-info.txt" specifies
+"Bag-Size" or "Paylog-Oxum".
+</t>
+
 </section> <!-- Fetch File -->
 
 <section title="Other Tag Files" anchor="sec-other-tag-files">
