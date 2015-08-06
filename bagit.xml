@@ -572,7 +572,8 @@ Here is an example "bag-info.txt" file.
 For reasons of efficiency, a bag &may; be sent with a list of files to be
 fetched and added to the payload before it can meaningfully be checked
 for completeness.  An &optional; tag file named "fetch.txt"
-contains such a list.  Each line of "fetch.txt" has the form
+contains such a list.  Each line of "fetch.txt" has the form:
+</t>
 
 <figure>
  <artwork>
@@ -580,6 +581,7 @@ URL LENGTH FILENAME
  </artwork>
 </figure>
 
+<t>
 where URL identifies the file to be fetched, LENGTH is the number of
 octets in the file (or "-", to leave it unspecified), and FILENAME
 identifies the corresponding payload file, relative to the base directory.
@@ -602,6 +604,16 @@ a subset of logically related components (e.g., the localized logical
 object could be much larger than what is intended for export) or
 assembled from logically distributed sources (e.g., the object components
 for export are not stored locally under one filesystem tree).
+</t>
+
+<t>
+Files listed in "fetch.txt" are considered part of the 
+payload files if their FILENAME starts with "data/" (or "/data/"), 
+and otherwise considered tag files. Payload files from fetch.txt
+&should; be included in payload and tag manifests, and 
+&must; be taken into consideration  
+if the "bag-info.txt" specifies
+"Bag-Size" or "Paylog-Oxum".
 </t>
 
 </section> <!-- Fetch File -->
