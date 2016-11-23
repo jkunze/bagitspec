@@ -37,7 +37,7 @@ Change "algorithm" (crypto hash) to "function"? (Steffen Fritz email to jak)
 	<!ENTITY optional 'OPTIONAL' >
 	
 	<!-- The current bagit version, for convenience. -->
-	<!ENTITY current-bagit-version '0.98' >	
+	<!ENTITY current-bagit-version '1.00' >	
 ]>
 
 <?xml-stylesheet type="text/xsl" href="rfc2629xslt/rfc2629.xslt" ?>
@@ -93,8 +93,9 @@ Change "algorithm" (crypto hash) to "function"? (Steffen Fritz email to jak)
   <author initials="J." surname="Littman" 
           fullname="Justin Littman"> 
    <organization>
-    Library of Congress
+    George Washington University Libraries
    </organization>
+  <!--TODO update! -->
    <address>
     <postal>
      <street>101 Independence Avenue SE</street>
@@ -103,6 +104,23 @@ Change "algorithm" (crypto hash) to "function"? (Steffen Fritz email to jak)
      <country>USA</country>
     </postal>
     <email>jlit@loc.gov</email>
+   </address>
+  </author>
+
+  <author initials="E." surname="Summers" 
+          fullname="Ed Summers"> 
+   <organization>
+    University of Maryland
+  </organization>
+  <!--TODO update! -->
+   <address>
+    <postal>
+     <street>101 Independence Avenue SE</street>
+     <city>Washington</city> <region>DC</region>
+     <code>20540</code>
+     <country>USA</country>
+    </postal>
+    <email>ehs@pobox.com</email>
    </address>
   </author>
 
@@ -122,8 +140,8 @@ Change "algorithm" (crypto hash) to "function"? (Steffen Fritz email to jak)
    </address>
   </author>
 
-  <author initials="E." surname="Summers" 
-          fullname="Ed Summers"> 
+  <author initials="J." surname="Scancella" 
+          fullname="John Scancella"> 
    <organization>
     Library of Congress
    </organization>
@@ -134,9 +152,25 @@ Change "algorithm" (crypto hash) to "function"? (Steffen Fritz email to jak)
      <code>20540</code>
      <country>USA</country>
     </postal>
-    <email>ehs@pobox.com</email>
+    <email>jsca@loc.gov</email>
    </address>
-  </author>
+ </author>
+
+  <author initials="C." surname="Adams" 
+          fullname="Chris Adams"> 
+   <organization>
+    Library of Congress
+   </organization>
+   <address>
+    <postal>
+     <street>101 Independence Avenue SE</street>
+     <city>Washington</city> <region>DC</region>
+     <code>20540</code>
+     <country>USA</country>
+    </postal>
+    <email>cadams@loc.gov</email>
+   </address>
+ </author>
 
   <author initials="B." surname="Vargas" 
           fullname="Brian Vargas"> 
@@ -202,11 +236,7 @@ document are to be interpreted as described in <xref target="RFC2119"/>.
 <t>
 An implementation is not compliant if it fails to satisfy one or
 more of the MUST or REQUIRED level requirements for the protocols
-it implements. An implementation that satisfies all the MUST or
-REQUIRED level and all the SHOULD level requirements for its protocols
-is said to be "unconditionally compliant"; one that satisfies all
-the MUST level requirements but not all the SHOULD level requirements 
-for its protocols is said to be "conditionally compliant."
+it implements. 
 </t>
 </section> <!-- /Requirements -->
 	
@@ -241,7 +271,7 @@ in this section are intended to clarify any ambiguity.
         <t hangText="complete">
         A bag which comprises all elements required by this specification,
         with all files listed in all payload and tag manifests present,
-        all payload files present listed in at least one manifest.  See
+        all payload files present listed in all manifests.  See
         <xref target="sec-complete-valid" />.
         </t>
 
@@ -364,7 +394,8 @@ specification, and is not otherwise prescribed.
 A payload manifest is a tag file that lists payload files and checksums for those
 payload files generated using a particular bag checksum algorithm.
 Every bag &must; contain one payload manifest file, and &may; contain
-more than one. A payload manifest file &must;
+more than one. If there is more than one, each payload manifest 
+file must list all payload files. A payload manifest file &must;
 have a name of the form manifest-<spanx style="emph">algorithm</spanx>.txt, where
 <spanx style="emph">algorithm</spanx> is a string specifying
 the bag checksum algorithm used in that manifest, such as:
@@ -390,16 +421,14 @@ CHECKSUM FILENAME
 </figure>
 
 <t>
-where FILENAME is the pathname of a file relative to the base directory
-and CHECKSUM is a hex-encoded checksum calculated according to <spanx
-style="emph">algorithm</spanx> over every octet in the file. The hex-encoded
-checksum &may; use uppercase and/or lowercase letters.  The slash
+where FILENAME is the pathname of a file relative to the base directory, 
+ and CHECKSUM is a hex-encoded checksum calculated according to <spanx
+  style="emph">algorithm</spanx> over every octet in the file.
+The hex-encoded checksum &may; use uppercase and/or lowercase letters.  The slash
 character ('/') &must; be used as a path separator in FILENAME. One
 or more linear whitespace characters (spaces or tabs) &must; separate
-CHECKSUM from FILENAME.  An asterisk ('*') &may; preceed FILENAME for
-interoperability on some platforms (see <xref target="sec-checksum-tools"
-/>). There is no limitation on the length of a pathname. The payload
-manifest &must-not; reference files outside the payload directory. If
+CHECKSUM from FILENAME. There is no limitation on the length of a pathname. 
+The payload manifest &must-not; reference files outside the payload directory. If
 a FILENAME includes a newline (LF), a carriage return (CR), or carriage
 return plus newline (CRLF) it &must; be percent-encoded 
 <xref target="RFC3986"/>.
@@ -454,7 +483,7 @@ The "bag-info.txt" file is a tag file that contains metadata elements
 describing the bag and the payload.  The metadata elements contained in
 the "bag-info.txt" file are intended primarily for human readability.
 All metadata elements are optional and &may; be repeated. Implementations
-&should; assume that the ordering is significant and provide access to the
+&must; assume that the ordering is significant and provide access to the
 metadata elements in the order they are given in the "bag-info.txt" file. 
 </t>
 <t>
@@ -466,41 +495,9 @@ or carriage return plus newline (CRLF) and indenting the next line with
 linear white space (spaces or tabs).
 </t>
 <t>
-Reserved metadata element names are case-insensitive and defined as follows.
-</t>
-
-<t>
-<list style="hanging">
-<t hangText="Source-Organization">
-    Organization transferring the content.
-</t>
-<t hangText="Organization-Address">
-    Mailing address of the organization.
-</t>
-<t hangText="Contact-Name">
-    Person at the source organization who is responsible for the content
-    transfer.
-</t>
-<t hangText="Contact-Phone">
-    International format telephone number of person or position responsible.
-</t>
-<t hangText="Contact-Email">
-    Fully qualified email address of person or position responsible.
-</t>
-<t hangText="External-Description">
-    A brief explanation of the contents and provenance.
-</t>
-<t hangText="Bagging-Date">
-    Date (YYYY-MM-DD) that the content was prepared for delivery.
-</t>
-<t hangText="External-Identifier">
-    A sender-supplied identifier for the bag.
-</t>
-<t hangText="Bag-Size">
-    Size or approximate size of the bag being transferred, followed
-    by an abbreviation such as MB (megabytes), GB, or TB; for example,
-    42600 MB, 42.6 GB, or .043 TB.  Compared to Payload-Oxum (described
-    next), Bag-Size is intended for human consumption.
+A implementation &may; assume the metadata element Payload-Oxum exists
+for the purpose of quickly verifying the bag. If it does exist it &must;
+be in the form as defined as follows:
 </t>
 <t hangText="Payload-Oxum">
     The "octetstream sum" of the payload, namely, a two-part number
@@ -510,33 +507,6 @@ Reserved metadata element names are case-insensitive and defined as follows.
     should be included in "bag-info.txt" if at all
     possible.  Compared to Bag-Size (above), Payload-Oxum is
     intended for machine consumption.
-</t>
-<t hangText="Bag-Group-Identifier">
-    A sender-supplied identifier for the set, if any, of bags
-    to which it logically belongs.
-    This identifier must be unique across the sender's content, and if
-    recognizable as belonging to a globally unique scheme, the receiver
-    should make an effort to honor reference to it.
-</t>
-<t hangText="Bag-Count">
-    Two numbers separated by "of", in particular, "N of T",
-    where T is the total number of bags in a group of bags and N is the
-    ordinal number within the group; if T is not known, specify it as "?"
-    (question mark).  Examples:  1 of 2, 4 of 4, 3 of ?, 89 of 145.
-</t>
-<t hangText="Internal-Sender-Identifier">
-    An alternate sender-specific identifier for the content
-    and/or bag.
-</t>
-<t hangText="Internal-Sender-Description">
-    A sender-local prose description of the contents of the
-    bag.
-</t>
-</list>
-</t>
-
-<t>
-In addition to these metadata elements, other arbitrary metadata elements may also be present.
 </t>
 
 <t>
@@ -565,46 +535,6 @@ Here is an example "bag-info.txt" file.
 </t>
 
 </section> <!-- /Bag Metadata -->
-
-<section title="Fetch File: fetch.txt" anchor="sec-fetch-file">
-
-<t>
-For reasons of efficiency, a bag &may; be sent with a list of files to be
-fetched and added to the payload before it can meaningfully be checked
-for completeness.  An &optional; tag file named "fetch.txt"
-contains such a list.  Each line of "fetch.txt" has the form
-
-<figure>
- <artwork>
-URL LENGTH FILENAME
- </artwork>
-</figure>
-
-where URL identifies the file to be fetched, LENGTH is the number of
-octets in the file (or "-", to leave it unspecified), and FILENAME
-identifies the corresponding payload file, relative to the base directory.
-The slash character ('/') &must; be used as a path separator in FILENAME.
-If FILENAME begins with a slash character, the destination &must; still be
-treated as relative to the bag base directory.
-One or more linear whitespace characters (spaces or tabs) &must; separate these
-three values, and any such characters in the URL &must; be percent-encoded
-<xref target="RFC3986"/>.  There is no limitation on the length of any
-of the fields in the "fetch.txt".
-</t>
-
-<t>
-The "fetch.txt" file allows a bag to be transmitted with
-"holes" in it, which can be practical for several reasons.  For example,
-it obviates the need for the sender to stage a large serialized copy of
-the content while the bag is transferred to the receiver.  Also, this
-method allows a sender to construct a bag from components that are either
-a subset of logically related components (e.g., the localized logical
-object could be much larger than what is intended for export) or
-assembled from logically distributed sources (e.g., the object components
-for export are not stored locally under one filesystem tree).
-</t>
-
-</section> <!-- Fetch File -->
 
 <section title="Other Tag Files" anchor="sec-other-tag-files">
 <t>
@@ -691,8 +621,7 @@ attributes:
 	<t>Every file in every payload manifest &must; be present.</t>
 	<t>Every file in every tag manifest &must; be present.
 	   Tag files not listed in a tag manifest &may; be present.</t>
-	<t>Every payload file &must; be listed in at least one manifest.
-	   Payload files &may; be listed in more than one payload manifest.</t>
+         <t>Every payload file &must; be listed in all manifests.</t>
         <t>Every element present &must; comply with this specification.</t>
 </list>
 </t>
@@ -706,9 +635,6 @@ the following exceptions to the attributes of a complete bag:
 <list style="numbers">
 	<t>One or more files in any payload manifest are absent.</t>
 	<t>One or more files in any tag manifest are absent.</t>
-	<t>A fetch.txt is present.  Any files listed in
-	   any payload manifest or any tag manifest which are
-	   absent &must; be listed in the fetch.txt.</t>
 </list>
 </t>
 
@@ -864,70 +790,6 @@ or '*' (matching any number of characters).  For example,
 </section>
 
 -->
-
-<section title="Another example bag">
-
-<t>
-The following example bag contains content from a web crawler.
-As before, lines of file content are shown in parentheses beneath the
-file name, with long lines continued indented on subsequent lines.
-This bag is not complete until every
-component listed in the "fetch.txt" file is retrieved.
-
-<figure>
- <artwork>
-mysecondbag/
-|
-|   manifest-md5.txt
-|    (93c53193ef96732c76e00b3fdd8f9dd3 data/Collection Overview.txt   )
-|    (e9c5753d65b1ef5aeb281c0bb880c6c8 data/Seed List.txt             )
-|    (61c96810788283dc7be157b340e4eff4 data/gov-20060601-050019.arc.gz)
-|    (55c7c80c6635d5a4c8fe76a940bf353e data/gov-20060601-100002.arc.gz)
-|
-|   fetch.txt
-|    (http://WB20.Stanford.Edu/gov-06-2006/gov-20060601-050019.arc.gz
-|        26583985 data/gov-20060601-050019.arc.gz                     )
-|    (http://WB20.Stanford.Edu/gov-06-2006/gov-20060601-100002.arc.gz
-|        99509720 data/gov-20060601-100002.arc.gz                     )
-|    ( ...............................................................)
-|
-|   bag-info.txt
-|    (Source-organization: California Digital Library                 )
-|    (Organization-address: 415 20th St, 4th Floor, Oakland, CA  94612)
-|    (Contact-name: A. E. Newman                                      )
-|    (Contact-phone: +1 510-555-1234                                  )
-|    (Contact-email: alfred@ucop.edu                                  )
-|    (External-Description: The collection "Local Davis Flood Control )
-|      Collection" includes captured California State and local       )
-|      websites containing information on flood control resources for )
-|      the Davis and Sacramento area.  Sites were captured by UC Davis)
-|      curator Wrigley Spyder using the Web Archiving Service in      )
-|      February 2007 and October 2007.                                )
-|    (Bag-date: 2008.04.15                                            )
-|    (External-identifier: ark:/13030/fk4jm2bcp                       )
-|    (Bag-size: about 22Gb                                            )
-|    (Payload-Oxum: 21836794142.831                                   )
-|    (Internal-sender-identifier: UCDL                                )
-|    (Internal-sender-description: UC Davis Libraries                 )
-|
-|   bagit.txt
-|    (BagIt-version: 0.96                                             )
-|    (Tag-File-Character-Encoding: UTF-8                              )
-|
-\--- data/
-     |
-     |   Collection Overview.txt
-     |    (... narrative description ...                              )
-     |
-     |   Seed List.txt
-     |    (... list of crawler starting point URLs ...                )
-     ....
- </artwork>
-</figure>
-
-</t>
-
-</section>
 </section> <!-- /Examples -->
 
 <section title="Security Considerations" anchor="sec-security">
@@ -935,8 +797,8 @@ mysecondbag/
 <section title="Special directory characters">
 <!-- Added by Brian Vargas, 2009-04-09 -->
 <t>
-The paths specified in the payload manifest, tag manifest, and
-"fetch.txt" file do not prohibit special directory characters which might be
+The paths specified in the payload manifest, and tag manifest
+file do not prohibit special directory characters which might be
 significant on implementing systems.  Implementors &should; take care that
 files outside the bag directory structure are not accessed when reading or
 writing files based on paths specified in a bag.
@@ -944,34 +806,10 @@ writing files based on paths specified in a bag.
 
 <t>
 For example, path characters such as ".." or "~"
-in a maliciously crafted "fetch.txt" file might cause a naive implementation to
+in a maliciously crafted "tagmanifest-md5.txt" file might cause a naive implementation to
 overwrite critical system files.
 </t>
 </section>
-
-<section title="Control of URLs in fetch.txt">
-<t>
-Implementors of tools that complete bags by retrieving URLs listed in a
-"fetch.txt" file need to be aware that some of those URLs may point to hosts,
-intentionally or unintentionally, that are not under control of the bag's
-sender. Checksums are intended as a reasonable guarantee against corruption
-during transit, not a strong cryptographic protection against intentional
-spoofing.
-</t>
-</section>
-
-<section title="File sizes in fetch.txt">
-<!-- Added by Brian Vargas, 2009-04-09 -->
-<t>
-The size of files, as optionally reported in the "fetch.txt" file, cannot be
-guaranteed to match the actual file size to be downloaded.  Implementors &should;
-take care to appropriately handle cases where the actual file size does not
-match the file size reported in the fetch.txt.  Implementors &should-not; use
-the file size in the "fetch.txt" file for critical resource allocation, such as
-buffer sizing or storage requisitioning.
-</t>
-</section>
-
 </section> <!-- End Section: Security considerations -->
 
 <section title="Practical Considerations (non-normative)">
@@ -997,11 +835,6 @@ large bag into several smaller bags.
 </t>
 
 <t>
-Transmitting a whole bag in serialized form as a single file will tend
-to be the most straightforward mode of transfer.  When throughput is a
-priority, use of "fetch.txt" lends itself to an easy, application-level
-parallelism in which the list of URL-addressed items to fetch is divided
-among multiple processes.
 The mechanics of sending and receiving bags over networks is otherwise
 out of scope of the present document and may be facilitated by protocols
 such as <xref target="GRABIT" /> and <xref target="SWORD" />.
@@ -1013,7 +846,7 @@ such as <xref target="GRABIT" /> and <xref target="SWORD" />.
 
 <t>
 This section is not part of the BagIt specification.  It describes some
-practical considerations for bag creators and receivers circa 2010.
+practical considerations for bag creators and receivers circa 2016.
 </t>
 
 <section title="Checksum tools" anchor="sec-checksum-tools">
@@ -1025,11 +858,8 @@ package (md5sum, sha1sum, etc.), collectively referred to here as
 "md5sum".  First, md5sum can be run in binary or text
 mode; text mode sometimes normalizes line-endings.  While these
 modes appear to produce the same checksums under Unix-like systems, they
-can produce different checksums under Windows.  When using md5sum, it 
-may be safest to run it in binary mode, with one caveat:  a side-effect
-of binary mode is that md5sum requires a space and an asterisk ('*'),
-compared to two spaces in text mode, between the CHECKSUM and FILENAME in
-its manifest format.
+can produce different checksums under Windows.  When using md5sum, you
+&should; always run it in binary mode.
 </t>
 
 <t>
@@ -1054,7 +884,7 @@ backslashes inside FILENAME may be doubled.
 
 <t>
 As specified above, only the Unix-based path separator ('/') may be
-used inside filenames listed in BagIt manifests and "fetch.txt" files.
+used inside filenames listed in BagIt manifests files.
 When bags are exchanged between Windows and Unix platforms, care should
 be taken to translate the path separator as needed.  Receivers of bags on
 physical media should be prepared for filesystems created under either
@@ -1157,322 +987,6 @@ This draft does not request any action from IANA.
 
   </references>
 
-<section title="Change history">
-
-<t>
-(This appendix to be removed in the final draft.)
-</t>
-
-<section title="Changes from draft-05, 2011.04.15">
-<t>
-Allowing tag directories.
-</t>
-
-<t>
-Fixed definition of valid.
-</t>
-
-<t>
-Clarified that tag files do not need to be text files.
-</t>
-
-<t>
-Clarified that repeatability and ordering of metadata elements in bag-info.txt.
-</t>
-
-<t>
-Clarified case of hex-encoding in manifests. 
-</t>
-
-</section>
-
-<section title="Changes from draft-04, 2009.12.20">
-<t>
-Re-replaced entity reference for current version number in artwork,
-where it doesn't appear to work (xml2rfc bug?).
-Updated to latest IETF Trust Legal Provisions 200902. (jak)
-</t>
-
-<t>
-Re-wording Tag File Format section.
-</t>
-
-<t>
-Adding new section for Other Tag Files.
-</t>
-
-<t>
-Minor clarification on the Fetch File description.
-</t>
-
-<t>
-Synchronized the language between the Payload Manifest and the Tag Manifest sections.
-</t>
-
-<t>
-Minor grammatical corrections and clarifications to the Payload Manifest section.
-</t>
-
-<t>
-Re-worded and re-ordered payload section and structure intro.  Except for the base directory naming, the structure intro is strictly explanatory.
-</t>
-
-<t>
-Replaced current version number with entity reference.
-</t>
-
-<t>
-Move checksum algorithm information into its own section.
-</t>
-
-<t>
-Major re-wording of section on validity and completeness to provide
-explicit, enumerated definitions for "valid", "complete", and "incomplete" bags.
-</t>
-
-<t>
-Added explicit wording about byte order marks (BOM) in UTF-8.
-</t>
-
-<t>
-Re-named section titles for better clarity.
-</t>
-
-<t>
-Re-wording security consideration on checksum purposes to more accurately
-reflect the real purposes of the checksums.
-</t>
-
-<t>
-Major restructuring of the document for brevity and
-precision.
-</t>
-
-<t>
-Added RFC 2119 language.
-</t>
-
-<t>
-Added terminology section.
-</t>
-
-<t>
-Cleaning up example artwork so that parenthesis are more consistently used.
-</t>
-
-<t>
-Explicitly stated version number required for comforming to the current
-version of the specification.
-</t>
-
-<t>
-Various minor tweaks to grammar and wording.
-</t>
-</section>
-
-<section title="Changes from draft-03, 2009.04.11">
-<t>
-Re-worded interoperability statement in the Introduction.  (Justin)
-</t>
-
-<t>
-Added statements regarding no limitations on various paths, URI, and other
-lengths.
-</t>
-
-<t>
-Clarified that the bag directory may not contain any other directories except
-for the "data" directory.
-</t>
-
-<t>
-A soel carriage return character is now explicitly allowed as a valid line
-separator.
-</t>
-
-<t>
-Tag file encoding requirements are now required to be as-stated in the
-"bagit.txt".  The "bagit.txt" file is explicitly required to be in UTF-8.
-</t>
-
-<t>
-Wording cleanup, clarifying payload file manifests and tag file manifests.
-</t>
-
-<t>
-Tags in "bag-info.txt" no longer have any ordering requirement.
-</t>
-
-<t>
-Tag formatting now explicitly states where significant whitespace begins
-in the tag.
-</t>
-
-<t>
-After some consideration, added some security considerations.
-</t>
-
-<t>
-Made it clear that a bag may contain other bags, re: serialization.
-</t>
-
-<t>
-Re-worded interoperabiilty to concerns to require creators to be
-spec-compliant, and readers to be tolerant of known potential issues.
-</t>
-
-<t>
-Specificity to the FILENAME element in "fetch.txt" is relative to the bag
-root, and to make sure to treat leading slashes as relative.
-</t>
-
-<t>
-Updated acknowledgements.
-</t>
-
-<t>
-Various other minor edits for clarity and readibility.
-</t>
-</section>
-
-<section title="Changes from draft-02, 2008.07.11">
-
-<t>
-Added language to require the slash ('/') as path separator,
-regardless of the platform where the bag was created.
-Added an extra co-author and an Acknowledgements section.
-</t>
-
-<t>
-Deleted the unnecessary "(optional)" from four of the metadata elements,
-since all metadata elements are optional.  Softened the equivalence of
-the serialization name and name of the contained bag base directory.
-Replaced the reference to RFC2822 with an inline description of the
-simpler bag-info.txt format.
-</t>
-
-<t>
-Changed to a variable linear whitespace separator in the description
-of manifest layout and in manifest examples.
-Added two paragraphs under a new "Checksum tools" subsection of the
-Interoperability section to describe some of the peculiarities of
-dealing with the widely used GNU Coreutils checksum tools.
-</t>
-
-<t>
-With the new version, 0.96, there is an important and incompatible change
-of file name (package-info.txt -&gt; bag-info.txt), metadata element names
-(Package-Size -&gt; Bag-Size, Packing-Date -&gt; Bagging-Date), and
-descriptive language to replace the noun "package" with "bag" throughout
-the spec.  This was to reduce unnecessary synonymy and free up the noun
-"package" to name the physical container (e.g., a mailing carton) used to
-transfer hard disks.
-</t>
-
-<t>
-In section 7, another important change is the introduction of the
-Payload-Oxum ("octetstream sum") metadata element to convey precise,
-machine-readable payload size information for capacity planning
-(especially useful when preparing to receive files listed in fetch.txt).
-The Bag-size definition was adjusted to steer it more towards human
-consumption.
-</t>
-
-<t>
-In section 2.2 the spec now requires exactly two spaces between checksum
-and filename in manifests.  This results from the experience that as of
-2008, not all widely available validation tools are flexible in the
-kind of separating whitespace recognized.  The examples have been
-updated to include use the two-space form as well.
-</t>
-
-<t>
-Comment added that while overall bag size is unlimited, practical
-limitations on the amount of data that a receiver can stage may
-warrant splitting a large bag into several smaller bags.
-</t>
-
-<t>
-Added a reference to the SWORD protocol.
-</t>
-
-<t>
-Minor edits for scanning and reformatting to cut down line length for
-some figures that exceeded 72 chars (limit for Internet-Drafts).
-</t>
-
-</section>
-
-<section title="Changes from draft-01, 2008.05.30">
-
-<t>
-Added mention of preserving empty directories.
-</t>
-
-<t>
-Simplified function of "tag checksum file" to "tag manifest", having same
-format as payload manifest.  The tag manifest is optional and need not
-include every tag file.
-</t>
-
-<t>
-Loosened interpretation of payload manifest to "union" concept:
-every payload file must be listed in at least one manifest but
-need not be listed in every manifest.
-</t>
-
-<t>
-Shortened the Introduction's first paragraph to be less duplicative
-of text in the Abstract.
-</t>
-
-<t>
-Changed Delivery-Date to Packing-Date.
-</t>
-
-<t>
-Correctly sorted the author list and clarification of
-deserialization wording.
-</t>
-
-</section>
-
-<section title="Changes from draft-00, 2008.03.24">
-
-<t>
-Author address corrections and miscellaneous stylistic edits.
-</t>
-
-<t>
-Added some mention of physical media-based transfers, preferred
-characteristics of transfer filesystems, and network transfer issues.
-</t>
-
-<t>
-Added basic bag example early and changed the narrative to more clearly
-delineate component files.
-</t>
-
-<t>
-Wording changes under fetch.txt, and note that fetch.txt will need to be
-modified before bag return.
-</t>
-
-<t>
-Fixed checksum encoding reference to base64 rather than hex.  (B. Vargas)
-</t>
-
-<t>
-Described simple normalization approach for checksum algorithm names. (B. Vargas)
-</t>
-
-<t>
-In the example bag, add the ARC files found in the fetch.txt to the manifest as well (A. Turoff) 
-</t>
-
-</section>
-
-</section>
  </back>
 
 </rfc>
