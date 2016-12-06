@@ -95,12 +95,11 @@ Change "algorithm" (crypto hash) to "function"? (Steffen Fritz email to jak)
    <organization>
     George Washington University Libraries
    </organization>
-  <!--TODO update! -->
    <address>
     <postal>
-     <street>101 Independence Avenue SE</street>
+     <street>2130 H St NW</street>
      <city>Washington</city> <region>DC</region>
-     <code>20540</code>
+     <code>20052</code>
      <country>USA</country>
     </postal>
     <email>jlit@loc.gov</email>
@@ -112,12 +111,11 @@ Change "algorithm" (crypto hash) to "function"? (Steffen Fritz email to jak)
    <organization>
     University of Maryland
   </organization>
-  <!--TODO update! -->
    <address>
     <postal>
-     <street>101 Independence Avenue SE</street>
-     <city>Washington</city> <region>DC</region>
-     <code>20540</code>
+     <street>4130 Campus Drive</street>
+     <city>College Park</city> <region>MD</region>
+     <code>20742</code>
      <country>USA</country>
     </postal>
     <email>ehs@pobox.com</email>
@@ -185,7 +183,7 @@ Change "algorithm" (crypto hash) to "function"? (Steffen Fritz email to jak)
    </address>
   </author>
 
-  <date day="20" month="March" year="2014" />
+  <date day="6" month="December" year="2016" />
 
   <abstract>
 
