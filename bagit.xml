@@ -19,6 +19,7 @@ Change "algorithm" (crypto hash) to "function"? (Steffen Fritz email to jak)
   <!ENTITY rfc3174 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.3174.xml'>
   <!ENTITY rfc3629 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.3629.xml'>
   <!ENTITY rfc3986 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml'>
+  <!ENTITY rfc6234 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.6234.xml'>
 
 	<!-- RFC 2119 entities - for convenience -->
 	<!ENTITY must 'MUST' >
@@ -595,9 +596,15 @@ removing all non-alphanumeric characters.
 </t>
 
 <t>
-Implementors of tools that create and validate bags &should; support at
-least two widely implemented checksum algorithms: "md5"
-<xref target="RFC1321"/> and "sha1" <xref target="RFC3174"/>.
+  Bag creation and validation tools &must; support the SHA-2 family of
+  algorithms <xref target="RFC6234"/> and &should; enable SHA-512 by default
+  when creating new bags.
+
+  For backwards-compatibility implementors should support &should; support
+  MD-5 <xref target="RFC1321"/> and SHA-1 <xref target="RFC3174"/>.
+
+  Implementors are encouraged to simplify the process of adding additional
+  manifests using new algorithms to streamline the process of in-place upgrades.
 </t>
 </section> <!-- /Bag Checksum Algorithms -->
 
@@ -929,9 +936,10 @@ This draft does not request any action from IANA.
       target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx" />
     </reference>
 
-    &rfc1321; <!-- MD5 -->
     &rfc2119; <!-- Requirements -->
+    &rfc1321; <!-- MD5 -->
     &rfc3174; <!-- SHA-1 -->
+    &rfc6234; <!-- SHA-2 -->
     &rfc3629; <!-- utf-8 -->
     &rfc3986; <!-- URLs -->
 
