@@ -820,8 +820,9 @@ such as <xref target="GRABIT" /> and <xref target="SWORD" />.
 <section title="Interoperability" anchor="sec-interoperability">
 
 <t>
-This section is not part of the BagIt specification.  It describes some
-practical considerations for bag creators and receivers circa 2016.
+This section lists practical considerations for implementors and users. None of
+the points below are required but they are recommended for general-purpose
+usage.
 </t>
 
 <section title="Checksum tools" anchor="sec-checksum-tools">
