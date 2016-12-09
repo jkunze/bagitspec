@@ -750,40 +750,6 @@ myfirstbag/
 </t>
 </section>
 
-
-<!--
-
-<section title="Optional file metadata">
-
-<t>
-The "bag-info.txt", if present, may contain optional file metadata
-elements.  It describes the bag contributions made my individual
-files in the files-<spanx style="emph">algorithm</spanx>.txt
-file.  File contribution elements have the form
-
-<figure>
- <artwork>
-    file: &lt;filepattern&gt; | &lt;prose description of contribution&gt;
- </artwork>
-</figure>
-
-where <spanx style="emph">filepattern</spanx> is either a literal
-filename exactly as it appears in the manifest or a string (a pattern)
-consisting of literal and wildcards '?' (matching any single character)
-or '*' (matching any number of characters).  For example,
-
-<figure>
- <artwork>
-    file: notes.txt | curatorial decision notes
-    file: *.lo_res.jpg | low resolution derivative images
-    file: *.tiff | high resolution master images
- </artwork>
-</figure>
-</t>
-
-</section>
-
--->
 </section> <!-- /Examples -->
 
 <section title="Security Considerations" anchor="sec-security">
