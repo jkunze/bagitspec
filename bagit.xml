@@ -765,19 +765,26 @@ myfirstbag/
 <section title="Special directory characters">
 <!-- Added by Brian Vargas, 2009-04-09 -->
 <t>
-The paths specified in the payload manifest, and tag manifest
-file do not prohibit special directory characters which might be
-significant on implementing systems.  Implementors &should; take care that
-files outside the bag directory structure are not accessed when reading or
-writing files based on paths specified in a bag.
+The paths specified in the payload manifest, and tag manifest file do not
+prohibit special directory characters which might be significant on
+implementing systems. Implementors &must; ensure that files outside the bag
+directory structure are not accessed when reading or writing files based on
+paths specified in a bag.
 </t>
 
 <t>
-For example, path characters such as ".." or "~"
-in a maliciously crafted "tagmanifest-md5.txt" file might cause a naive implementation to
-overwrite critical system files.
+For example, a maliciously crafted "tagmanifest-md5.txt" file might
+contain entries which begin with a path character such as "/", "..",
+or a "~username" home directory reference in an attempt to cause a
+naive implementation to leak or overwrite targeted files.
 </t>
-</section>
+
+<t>
+  Windows implementations &should; test their implementations to ensure
+  that safety-checks prevent use of drive letters and the less commonly used
+  namespace sequences (e.g. "\\?\C:\…") described in <xref target="MSFNAM" />.
+</t>
+</section> <!-- End Section: Special directory characters -->
 </section> <!-- End Section: Security considerations -->
 
 <section title="Practical Considerations (non-normative)">
@@ -858,22 +865,36 @@ be taken to translate the path separator as needed.  Receivers of bags on
 physical media should be prepared for filesystems created under either
 Windows or Unix.  Besides the fundamental difference between path
 separators ('\' and '/'), generally, Windows filesystems have more
-limitations than Unix filesystems.  Windows path names have a maximum of
-255 characters, and none of these characters may be used in a path
-component:
+limitations than Unix filesystems.
+</t>
 
 <figure>
+  <preamble>
+    Windows path names have a maximum of
+    255 characters, and none of these characters may be used in a path
+    component:
+
+  </preamble>
  <artwork>
     &lt; &gt; : " / | ? *
  </artwork>
 </figure>
 
-Windows also reserves the following names:  CON, PRN, AUX, NUL, COM1,
-COM2, COM3, COM4, COM5, COM6, COM7, COM8, COM9, LPT1, LPT2, LPT3, LPT4,
-LPT5, LPT6, LPT7, LPT8, and LPT9.  See <xref target="MSFNAM" /> for more
-information.
-</t>
+<figure>
+  <preamble>
+    Windows also reserves the following names, with or without a file extension:
+  </preamble>
 
+  <artwork>
+    CON, PRN, AUX, NUL
+    COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8, COM9
+    LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, LPT9
+  </artwork>
+</figure>
+
+<t>
+  See <xref target="MSFNAM" /> for more information and possible alternatives.
+</t>
 </section>
 
 </section> <!-- /Interoperability -->
