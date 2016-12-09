@@ -559,9 +559,10 @@ Text tag files &must; end in the extension ".txt".
 <t>
 In all text tag files except for the bag declaration file, text &must; be
 encoded in the character encoding specified in the "bagit.txt" bag declaration
-file.  Text tag files except for the bag declaration file &may; include a
+file. Text tag files except for the bag declaration file &may; include a
 byte-order mark (BOM) only if the specified encoding requires it for
-proper decoding.  (Note that UTF-8 does not.)
+proper decoding. In accordance with <xref target="RFC3629"/>, when "bagit.txt"
+specifies UTF-8 the tag files &must-not; begin with a byte-order mark (BOM).
 </t>
 
 <t>
