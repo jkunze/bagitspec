@@ -825,37 +825,6 @@ the points below are required but they are recommended for general-purpose
 usage.
 </t>
 
-<section title="Checksum tools" anchor="sec-checksum-tools">
-
-<t>
-Some cautions regarding bag interchange arise in regard to the
-commonly available checksum tools distributed with the GNU Coreutils
-package (md5sum, sha1sum, etc.), collectively referred to here as
-"md5sum".  First, md5sum can be run in binary or text
-mode; text mode sometimes normalizes line-endings.  While these
-modes appear to produce the same checksums under Unix-like systems, they
-can produce different checksums under Windows.  When using md5sum, you
-&should; always run it in binary mode.
-</t>
-
-<t>
-Due to the widespread use of md5sum (and its relatives), it is not
-unexpected for bag receivers to see manifests in which CHECKSUM and
-FILENAME are separated by a space followed by an asterisk.  Implementors
-creating or processing bags with md5sum should be aware of these subtle
-differences, and ensure compliance with the manifest specification in this
-document.  Implementors creating and processing bags with other tools may wish
-to be tolerant of asterisks found in the manifests.
-</t>
-
-<t>A final note about md5sum-generated manifests is that for a
-FILENAME containing a backslash ('\'), the manifest line will have a
-backslash inserted in front of the CHECKSUM and, under Windows, the
-backslashes inside FILENAME may be doubled.
-</t>
-
-</section>
-
 <section title="Windows and Unix file naming">
 
 <t>
@@ -895,6 +864,41 @@ limitations than Unix filesystems.
 
 <t>
   See <xref target="MSFNAM" /> for more information and possible alternatives.
+</t>
+</section>
+
+<section title="Legacy checksum tools" anchor="sec-legacy-checksum-tools">
+
+<t>
+Some bags have been manually assembled using checksum utilities such as those
+contained in the GNU Coreutils package (md5sum, sha1sum, etc.), collectively
+referred to here as "md5sum". Implementors who desire wide support of legacy
+content should be aware of some known quirks of these tools:
+</t>
+
+<t>
+md5sum can be run in “text mode” which causes it to normalize line-endings
+on some operating systems. On Unix-like systems both modes will usually produce
+the same results but on systems like Windows they may produce different results
+based on the file contents.
+
+The md5sum output format has two characters between the checksum and the
+filename: the first is always a space and the second is an asterisk ("*") for
+binary mode and a space for text mode.
+</t>
+
+<t>
+A final note about md5sum-generated manifests is that for a FILENAME containing
+a backslash ('\'), the manifest line will have a backslash inserted in front of
+the CHECKSUM and, under Windows, the backslashes inside FILENAME may be doubled.
+</t>
+
+<t>
+Implementers &may; wish to accept this format by ignoring a leading asterisk or
+handling differences in line termination gracefully but, if so, implementations
+&must; warn the user that the bag in question will fail strict validation. In
+such cases it is strongly encouraged that tools provide an easy option to
+update the bag with valid manifests.
 </t>
 </section>
 
