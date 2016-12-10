@@ -825,7 +825,141 @@ the points below are required but they are recommended for general-purpose
 usage.
 </t>
 
-<section title="Windows and Unix file naming">
+<section title="Filename normalization" anchor="filename-normalization">
+
+<t>
+  This section provides background information on various challenges caused by
+  differences in how operating systems, filesystems, and common tools handle
+  filenames followed by a list of recommendations for implementors in
+  <xref target="filename-normalization-recommendations" />.
+</t>
+
+<section title="Case sensitivity">
+  <t>
+    There are two challenges for interoperability related to filename case:
+    <list style="symbols">
+      <t>
+        Filesystems such as FAT or EXFAT always convert filenames to uppercase:
+        "example.txt" will be stored as "EXAMPLE.TXT"
+      </t>
+      <t>
+        Many Unix filesystems save filenames exactly as provided, allowing
+        multiple files which differ only in case: "example.txt" and
+        "Example.txt" are separate files
+      </t>
+      <t>
+        NTFS and HFS+ usually preserve case when storing files but are
+        case-insensitive when retrieving them. A file saved as "Example.txt"
+        will be retrieved by that name but will also be retrieved as
+        "EXAMPLE.TXT", "example.txt", etc.
+      </t>
+    </list>
+  </t>
+</section>
+
+<section title="Unicode normalization">
+
+<t>
+The Unicode specification has common cases where different character sequences
+produce the same human-meaningful text. These are referred to as “canonically
+equivalent” and the Unicode specification defines different normalization
+forms — see <xref target="UNICODE-TR15" /> for the full details and a brief
+example below:
+</t>
+
+<figure>
+  <preamble>
+    The common surname "Núñez" normalized in different forms
+  </preamble>
+
+  <artwork><![CDATA[
+NFD (Decomposition):
+
+Char      UTF8 Hex  Name
+----------------------------------------------
+N               4e  LATIN CAPITAL LETTER N
+u               75  LATIN SMALL LETTER U
+\u0301        cc81  COMBINING ACUTE ACCENT
+n               6e  LATIN SMALL LETTER N
+\u0303        cc83  COMBINING TILDE
+e               65  LATIN SMALL LETTER E
+z               7a  LATIN SMALL LETTER Z
+
+NFC (Canonical Composition):
+
+Char      UTF8 Hex  Name
+----------------------------------------------
+N               4e  LATIN CAPITAL LETTER N
+ú             c3ba  LATIN SMALL LETTER U WITH ACUTE
+ñ             c3b1  LATIN SMALL LETTER N WITH TILDE
+e               65  LATIN SMALL LETTER E
+z               7a  LATIN SMALL LETTER Z
+  ]]></artwork>
+</figure>
+
+<t>
+  Unicode normalization is relevant to BagIt implementors because different
+  systems have different standards for normalization:
+
+  <list style="symbols">
+    <t>
+      Apple's HFS Plus filesystem always normalizes filenames to a
+      fully-decomposed form based on the Unicode 2.0 specification (see <xref
+      target="TN1150" />).
+    </t>
+    <t>
+      Windows treats filenames as opaque character sequences (see <xref
+      target="MSFNAM" />) and will store and return the encoded bytes exactly
+      as provided.
+    </t>
+    <t>
+      Linux and other common Unix systems are generally similar to Windows in
+      storing and returning opaque byte streams but this behaviour is
+      technically filesystem-dependent.
+    </t>
+    <t>
+      Utilities used for file management, transfer, and archival may ignore this
+      issue, apply an arbitrary normalization form, or allow the user to control
+      how normalization is applied.
+    </t>
+  </list>
+</t>
+
+<t>
+  In practice, this means that the encoded filename stored in a manifest may
+  fail a simple file existence check because the filename's normalization was
+  changed at some point after the manifest was written. This situation is very
+  confusing for users because the filenames are visually indistinguishable and
+  the “missing” file is obviously present in the payload directory.
+</t>
+</section>
+
+<section title="Recommendations" anchor="filename-normalization-recommendations">
+  <t>
+    <list style="symbols">
+      <t>
+        Implementations &should; discourage the creation of bags containing
+        files which differ only in case.
+      </t>
+      <t>
+        Implementations &must; prevent the creation of bags containing files
+        which differ only in normalization form.
+      </t>
+      <t>
+        BagIt implementations &should; tolerate differences in normalization
+        form by comparing both the list of filesystem and manifest names after
+        applying the same normalization form to both.
+      </t>
+      <t>
+        Implementations &should; issue a warning when multiple manifests are
+        present which differ only in case or normalization form.
+      </t>
+    </list>
+  </t>
+</section>
+</section>
+
+<section title="Windows and Unix file naming" anchor="windows-and-unix-file-naming">
 
 <t>
 As specified above, only the Unix-based path separator ('/') may be
@@ -980,6 +1114,23 @@ This draft does not request any action from IANA.
       target="http://www.ukoln.ac.uk/repositories/digirep/index/SWORD" />
     </reference>
 
+    <reference anchor="UNICODE-TR15"
+      target="http://www.unicode.org/reports/tr15/">
+      <front>
+        <title>Unicode® Standard Annex #15: Unicode Normalization Forms</title>
+        <author fullname="Unicode Consortium" />
+        <date year="2016" month="2" day="24" />
+      </front>
+      <format type="HTML" target="http://www.unicode.org/reports/tr15/" />
+    </reference>
+
+    <reference anchor="TN1150" target="https://developer.apple.com/legacy/library/technotes/tn/tn1150.html">
+      <front>
+        <title>Technical Note TN1150: HFS Plus Volume Format</title>
+        <author fullname="Apple Inc." />
+        <date year="2004" month="3" day="5" />
+      </front>
+    </reference>
   </references>
 
  </back>
