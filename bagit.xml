@@ -490,17 +490,18 @@ or carriage return plus newline (CRLF) and indenting the next line with
 linear white space (spaces or tabs).
 </t>
 <t>
-A implementation &may; assume the metadata element Payload-Oxum exists
-for the purpose of quickly verifying the bag. If it does exist it &must;
-be in the form as defined as follows:
+An implementation &should; add the optional "Payload-Oxum" element for the
+purpose of quickly detecting incomplete bags before performing checksum
+validation. This is strictly an optimization and implementations &must; perform
+the standard checksum validation process before proclaiming a bag to be valid.
+This element &must-not; be present more than once and, if present, &must;
+conform to this format:
 </t>
 <t hangText="Payload-Oxum">
-    The "octetstream sum" of the payload, namely, a two-part number
-    of the form "OctetCount.StreamCount", where OctetCount is the
-    total number of octets (8-bit bytes) across all payload file content
-    and StreamCount is the total number of payload files.  Payload-Oxum
-    should be included in "bag-info.txt" if at all
-    possible.  Compared to Bag-Size (above), Payload-Oxum is
+    The "octet-stream sum" of the payload, namely, a two-part number of the
+    form "OctetCount.StreamCount", where OctetCount is the total number of
+    octets (8-bit bytes) across all payload file content and StreamCount is the
+    total number of payload files. Compared to "Bag-Size", "Payload-Oxum" is
     intended for machine consumption.
 </t>
 
