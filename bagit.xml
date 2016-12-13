@@ -389,11 +389,11 @@ specification, and is not otherwise prescribed.
 A payload manifest is a tag file that lists payload files and checksums for those
 payload files generated using a particular bag checksum algorithm.
 Every bag &must; contain one payload manifest file, and &may; contain
-more than one. If there is more than one, each payload manifest
-file must list all payload files. A payload manifest file &must;
-have a name of the form manifest-<spanx style="emph">algorithm</spanx>.txt, where
-<spanx style="emph">algorithm</spanx> is a string specifying
-the bag checksum algorithm used in that manifest, such as:
+more than one. Every payload manifest &must; list every payload file. A payload
+manifest file &must; have a name of the form manifest-<spanx
+style="emph">algorithm</spanx>.txt, where <spanx style="emph">algorithm</spanx>
+is a string specifying the bag checksum algorithm used in that manifest, such
+as:
 </t>
 
 <figure>
