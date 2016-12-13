@@ -186,9 +186,9 @@ Change "algorithm" (crypto hash) to "function"? (Steffen Fritz email to jak)
 
 <t>
 This document specifies BagIt, a hierarchical file packaging format for
-storage and transfer of arbitrary digital content.  A "bag" has just enough
+storage and transfer of arbitrary digital content. A "bag" has just enough
 structure to enclose descriptive "tags" and a "payload" but
-does not require knowledge of the payload's internal semantics.  This
+does not require knowledge of the payload's internal semantics. This
 BagIt format should be suitable for disk-based or network-based storage and
 transfer.
 </t>
@@ -203,10 +203,10 @@ transfer.
 <t>
 BagIt is a hierarchical file packaging format designed to support
 disk-based or network-based storage and transfer of arbitrary digital
-content.  A bag consists of a "payload" and "tags".  The content of the payload
+content. A bag consists of a "payload" and "tags". The content of the payload
 is the custodial focus of the bag and is treated as semantically opaque.
 The "tags" are metadata files intended to facilitate and document the storage
-and transfer of the bag.  The name, BagIt, is inspired by the "enclose and deposit" method
+and transfer of the bag. The name, BagIt, is inspired by the "enclose and deposit" method
 <xref target="ENCDEP" />, sometimes referred to as "bag it and tag it".
 </t>
 
@@ -216,7 +216,7 @@ Implementors of BagIt tools should consider interoperability
 between different platforms, operating systems, toolsets, and languages.
 Differences in path separators, newline characters, reserved
 file names, and maximum path lengths are all possible barriers to
-moving bags between different systems.  Discussion of these issues may be
+moving bags between different systems. Discussion of these issues may be
 found in the Interoperability section of this document.
 </t>
 </section> <!-- /Purpose -->
@@ -240,7 +240,7 @@ it implements.
 This specification uses a number of terms to describe BagIt, some
 of which are in common use, some of which are newly defined by this
 specification, and others which may have meanings obvious only
-to those in the community from which this spec arose.  Terms defined
+to those in the community from which this spec arose. Terms defined
 in this section are intended to clarify any ambiguity.
 </t>
 
@@ -253,31 +253,31 @@ in this section are intended to clarify any ambiguity.
 
 	<t hangText="bag declaration">
 	The tag file required to be in all bags conforming to this
-	specification.  Contains tags necessary for bootstrapping the
-	reading and processing of the rest of a bag.  See <xref target="sec-bag-decl"/>.
+	specification. Contains tags necessary for bootstrapping the
+	reading and processing of the rest of a bag. See <xref target="sec-bag-decl"/>.
 	</t>
 
 	<t hangText="bag checksum algorithm">
 	A reference to a cryptographic checksum algorithm, such as MD5 or
         SHA-1, with its name normalized for use in a manifest or tag
-        manifest file name.  See <xref target="bag-checksum-algorithms" />.
+        manifest file name. See <xref target="bag-checksum-algorithms" />.
 	</t>
 
         <t hangText="complete">
         A bag which comprises all elements required by this specification,
         with all files listed in all payload and tag manifests present,
-        all payload files present listed in all manifests.  See
+        all payload files present listed in all manifests. See
         <xref target="sec-complete-valid" />.
         </t>
 
 	<t hangText="payload">
-	The data encapsulated by the bag.  The contents of the payload
+	The data encapsulated by the bag. The contents of the payload
         are opaque to this specification, and are always considered as a
-        set of octet streams.  See <xref target="sec-payload-dir" />.
+        set of octet streams. See <xref target="sec-payload-dir" />.
 	</t>
 
 	<t hangText="serialized bag">
-	A bag that has been serialized into a single, monolithic file.  See
+	A bag that has been serialized into a single, monolithic file. See
 	<xref target="sec-serialization"/>.
 	</t>
 
@@ -293,7 +293,7 @@ in this section are intended to clarify any ambiguity.
     <t hangText="valid">
     A complete bag wherein every checksum in every payload manifest and
     tag manifest can be successfully verified against the corresponding
-    payload file.  See <xref target="sec-payload-dir" />.
+    payload file. See <xref target="sec-payload-dir" />.
     </t>
 </list>
 </t>
@@ -354,7 +354,7 @@ Tag-File-Character-Encoding: UTF-8
 </figure>
 
 where M.N identifies the BagIt major (M) and minor (N) version numbers,
-and UTF-8 identifies the character set encoding of tag files.  The bag
+and UTF-8 identifies the character set encoding of tag files. The bag
 declaration &must; be encoded in UTF-8, and &must-not; contain a byte-order
 mark (BOM).
 <xref target="RFC3629"/>
@@ -431,8 +431,8 @@ return plus newline (CRLF) it &must; be percent-encoded
 </t>
 
 <t>
-Payload manifests only include the pathnames of files.  Because of this,
-a payload manifest cannot reference empty directories.  To account for
+Payload manifests only include the pathnames of files. Because of this,
+a payload manifest cannot reference empty directories. To account for
 an empty directory, a bag creator may wish to include at least one file
 in that directory; it suffices, for example, to include a zero-length
 file named ".keep".
@@ -475,7 +475,7 @@ As a result, no FILENAME listed in a tag manifest begins "data/".
 
 <t>
 The "bag-info.txt" file is a tag file that contains metadata elements
-describing the bag and the payload.  The metadata elements contained in
+describing the bag and the payload. The metadata elements contained in
 the "bag-info.txt" file are intended primarily for human readability.
 All metadata elements are optional and &may; be repeated. Implementations
 &must; assume that the ordering is significant and provide access to the
@@ -483,7 +483,7 @@ metadata elements in the order they are given in the "bag-info.txt" file.
 </t>
 <t>
 A metadata element &must; consist of a label, a colon, and a value,
-each separated by optional whitespace.  It is &recommended; that
+each separated by optional whitespace. It is &recommended; that
 lines not exceed 79 characters in length. Long values may be continued
 onto the next line by inserting a newline (LF), a carriage return (CR),
 or carriage return plus newline (CRLF) and indenting the next line with
@@ -583,7 +583,7 @@ The backslash character ('\', U+005C) escapes from special processing any
 <section title="Bag Checksum Algorithms" anchor="bag-checksum-algorithms">
 <t>
 The payload manifest and tag manifests assert integrity of the payload
-and tags in a bag using checksum algorithms.  The operation
+and tags in a bag using checksum algorithms. The operation
 of those algorithms, and the formatting of their output within a manifest
 file, are generally beyond the scope of this specification, except that the
 output format &must; be able to fit in the manifest format specified in
@@ -657,7 +657,7 @@ attributes:
 
 <t>
 If a bag is neither valid, complete, nor incomplete, it is
-<spanx style="emph">invalid</spanx>.  Definitions for the various
+<spanx style="emph">invalid</spanx>. Definitions for the various
 ways a bag may be invalid are not covered by this specification.
 </t>
 
@@ -687,15 +687,15 @@ The top-level directory of a serialization &must; contain only one bag.
 </t>
 <t>
 The serialization &should; have the same name as the bag's base directory,
-but &must; have an extension added to identify the format.  For example, the
+but &must; have an extension added to identify the format. For example, the
 receiver of "mybag.tar.gz" expects the corresponding base directory
 to be created as "mybag".
 </t>
 <t>
 A bag &must-not; be serialized from within its base directory, but from the
 parent of the base directory (where the base directory appears as an
-entry).  Thus, after a bag is deserialized in an empty directory,
-a listing of that directory shows exactly one entry.  For example,
+entry). Thus, after a bag is deserialized in an empty directory,
+a listing of that directory shows exactly one entry. For example,
 deserializing "mybag.zip" in an empty directory causes the creation
 of the base directory "mybag" and, beneath "mybag", the creation of
 all payload and tag files.
@@ -703,9 +703,9 @@ all payload and tag files.
 <t>
 The deserialization of a bag &must; produce a single base directory
 bag with the top-level structure as described in this specification without
-requiring any additional un-archiving step.  For example, after one
+requiring any additional un-archiving step. For example, after one
 un-archiving step it would be an error for the "data/" directory to
-appear as "data.tar.gz".  TAR and ZIP files may appear inside the payload
+appear as "data.tar.gz". TAR and ZIP files may appear inside the payload
 beneath the "data/" directory, where they would be treated
 as any other payload file.
 </t>
@@ -713,10 +713,10 @@ as any other payload file.
 </t>
 
 <t>
-When serializing a bag, care must be taken to
-ensure that the archive format's restrictions on file naming, such as allowable
-characters, length, or character encoding, will support the
-requirements of the systems on which it will be used.  See
+When serializing a bag, care must be taken to ensure that the archive format's
+restrictions on file naming, such as allowable characters, length, or character
+encoding, will support the requirements of the systems on which it will be
+used. See
 <xref target="sec-interoperability" />.
 </t>
 
@@ -727,7 +727,7 @@ requirements of the systems on which it will be used.  See
 
 <t>
 This is the layout of a basic bag containing an image and a companion
-OCR file.  Lines of file content are shown in parentheses beneath the
+OCR file. Lines of file content are shown in parentheses beneath the
 file name.
 
 <!-- Note that the artwork looks funky on the version line, to account
@@ -796,9 +796,9 @@ When creating a bag on physical media (such as hard disk, CD-ROM, or
 DVD) for transfer to another organization, the sender should select
 and format the media in a manner compatible with both the content
 requirements (e.g., file names and sizes) and the receiver's technical
-infrastructure.  If the receiver's infrastructure is not known or the
+infrastructure. If the receiver's infrastructure is not known or the
 media needs to be compatible with a range of potential receivers,
-consideration should be given to portability and common usage.  For
+consideration should be given to portability and common usage. For
 example, a "lowest common denominator" for some potential receivers
 could be USB disk drives formatted with the FAT32 filesystem.
 </t>
@@ -806,7 +806,7 @@ could be USB disk drives formatted with the FAT32 filesystem.
 <t>
 Although overall bag size is unlimited in principle, network-based
 transfers may involve constraints on the amount of bag data that a
-receiver can receive at one time.  It may be practical to split a
+receiver can receive at one time. It may be practical to split a
 large bag into several smaller bags.
 </t>
 
@@ -966,9 +966,9 @@ z               7a  LATIN SMALL LETTER Z
 As specified above, only the Unix-based path separator ('/') may be
 used inside filenames listed in BagIt manifests files.
 When bags are exchanged between Windows and Unix platforms, care should
-be taken to translate the path separator as needed.  Receivers of bags on
+be taken to translate the path separator as needed. Receivers of bags on
 physical media should be prepared for filesystems created under either
-Windows or Unix.  Besides the fundamental difference between path
+Windows or Unix. Besides the fundamental difference between path
 separators ('\' and '/'), generally, Windows filesystems have more
 limitations than Unix filesystems.
 </t>
