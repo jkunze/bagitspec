@@ -1069,7 +1069,7 @@ This draft does not request any action from IANA.
        <title>A Collaboration Model between Archival Systems to Enhance
        the Reliability of Preservation by an Enclose-and-Deposit Method</title>
        <author initials="K." surname="Tabata" fullname="Koichi Tabata" />
-       <date month="" year="2005" />
+       <date year="2005" />
      </front>
      <format type="PDF"
        target="http://www.iwaw.net/05/papers/iwaw05-tabata.pdf" />
@@ -1090,7 +1090,7 @@ This draft does not request any action from IANA.
       target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx">
      <front>
        <title>Naming a File</title>
-       <author surname="Microsoft" fullname="Microsoft Developer Network" />
+       <author><organization>Microsoft, Inc.</organization></author>
        <date month="" year="2008" />
      </front>
      <format type="HTML"
@@ -1108,8 +1108,8 @@ This draft does not request any action from IANA.
       target="http://www.ukoln.ac.uk/repositories/digirep/index/SWORD">
      <front>
        <title>Simple Web-service Offering Repository Deposit (SWORD)</title>
-       <author surname="UKOLN/JISC CETIS" fullname="UKOLN/JISC CETIS" />
-       <date month="" year="2008" />
+       <author><organization>UKOLN/JISC CETIS</organization></author>
+       <date year="2008" />
      </front>
      <format type="HTML"
       target="http://www.ukoln.ac.uk/repositories/digirep/index/SWORD" />
@@ -1119,7 +1119,7 @@ This draft does not request any action from IANA.
       target="http://www.unicode.org/reports/tr15/">
       <front>
         <title>Unicode® Standard Annex #15: Unicode Normalization Forms</title>
-        <author fullname="Unicode Consortium" />
+        <author><organization>Unicode Consortium</organization></author>
         <date year="2016" month="2" day="24" />
       </front>
       <format type="HTML" target="http://www.unicode.org/reports/tr15/" />
@@ -1128,7 +1128,7 @@ This draft does not request any action from IANA.
     <reference anchor="TN1150" target="https://developer.apple.com/legacy/library/technotes/tn/tn1150.html">
       <front>
         <title>Technical Note TN1150: HFS Plus Volume Format</title>
-        <author fullname="Apple Inc." />
+        <author><organization>Apple Inc.</organization></author>
         <date year="2004" month="3" day="5" />
       </front>
     </reference>
