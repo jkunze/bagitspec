@@ -569,7 +569,7 @@ specifies UTF-8 the tag files &must-not; begin with a byte-order mark (BOM).
 
 <t>
 As specified in <xref target="sec-bag-decl"/>, the bag declaration
-file must be encoded in UTF-8 and must not include a byte-order mark.
+file &must; be encoded in UTF-8 and &must-not; include a byte-order mark.
 </t>
 
 <!-- TODO: Character escaping -->
@@ -642,7 +642,7 @@ the following exceptions to the attributes of a complete bag:
 </t>
 
 <t>
-A <spanx style="emph">valid</spanx> bag must have the following
+A <spanx style="emph">valid</spanx> bag &must; have the following
 attributes:
 </t>
 
