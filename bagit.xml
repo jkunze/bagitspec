@@ -813,7 +813,7 @@ large bag into several smaller bags.
 <t>
 The mechanics of sending and receiving bags over networks is otherwise
 out of scope of the present document and may be facilitated by protocols
-such as <xref target="GRABIT" /> and <xref target="SWORD" />.
+such as <xref target="SWORD" /> or <xref target="METALINK" />.
 </t>
 
 </section> <!-- /Network and Disk Transfers -->
@@ -1075,17 +1075,6 @@ This draft does not request any action from IANA.
        target="http://www.iwaw.net/05/papers/iwaw05-tabata.pdf" />
     </reference>
 
-    <reference anchor="GRABIT"
-      target="http://dot.ucop.edu/home/jak/grabitspec.html">
-     <front>
-       <title>The GrabIt File Exchange Protocol</title>
-       <author surname="NDIIPP/CDL" fullname="NDIIPP/CDL" />
-       <date month="" year="2008" />
-     </front>
-     <format type="HTML"
-      target="http://dot.ucop.edu/home/jak/grabitspec.html" />
-    </reference>
-
     <reference anchor="MSFNAM"
       target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx">
      <front>
@@ -1113,6 +1102,70 @@ This draft does not request any action from IANA.
      </front>
      <format type="HTML"
       target="http://www.ukoln.ac.uk/repositories/digirep/index/SWORD" />
+    </reference>
+
+    <reference anchor="METALINK"
+      target="https://tools.ietf.org/html/rfc5854">
+     <front>
+       <title>The Metalink Download Description Format</title>
+       <author initials="A." surname="Bryan" fullname="Anthony Bryan">
+         <organization></organization>
+         <address>
+           <postal>
+             <street></street>
+             <city>Pompano Beach</city>
+             <region>FL</region>
+             <country>USA</country>
+           </postal>
+           <email>anthonybryan@gmail.com</email>
+           <uri>http://www.METALINK.org</uri>
+         </address>
+       </author>
+       <author initials="N." surname="McNab" fullname="Neil McNab">
+         <organization></organization>
+         <address>
+           <email>neil@nabber.org</email>
+           <uri>http://www.nabber.org</uri>
+         </address>
+       </author>
+       <author initials="T." surname="Tsujikawa" fullname="Tatsuhiro Tsujikawa">
+         <organization></organization>
+         <address>
+           <postal>
+             <street></street>
+             <city></city>
+             <region>Shiga</region>
+             <country>Japan</country>
+           </postal>
+           <email>tatsuhiro.t@gmail.com</email>
+           <uri>http://aria2.sourceforge.net</uri>
+         </address>
+       </author>
+       <author initials="P." surname="Poeml" fullname="Dr. med. Peter Poeml">
+         <organization>MirrorBrain</organization>
+         <address>
+           <postal>
+             <street>Venloer Str. 317</street>
+             <city>Koeln</city>
+             <code>50823</code>
+             <country>DE</country>
+           </postal>
+           <phone>+49 221 6778 333 8</phone>
+           <email>peter@poeml.de</email>
+           <uri>http://mirrorbrain.org/~poeml/</uri>
+         </address>
+       </author>
+       <author initials="H." surname="Nordstrom" fullname="Henrik Nordstrom">
+         <organization></organization>
+         <address>
+           <email>henrik@henriknordstrom.net</email>
+           <uri>http://www.henriknordstrom.net/</uri>
+         </address>
+       </author>
+       <date year="2010" month="6" />
+     </front>
+     <format type="HTML"
+      target="https://tools.ietf.org/html/rfc5854" />
     </reference>
 
     <reference anchor="UNICODE-TR15"
