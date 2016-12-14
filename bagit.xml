@@ -315,13 +315,16 @@ and optional tag files; (2) a sub-directory named "data", called the payload
 directory; and (3) a set of optional tag directories. The payload files in the
 payload directory are an arbitrary file hierarchy
 (see <xref target="sec-payload-dir" />).
+
 The tag files in the base directory consist of one or more files named
 "manifest-<spanx style="emph">algorithm</spanx>.txt"
-(see <xref target="sec-payload-manifest" />), a file named "bagit.txt"
-(see <xref target="sec-bag-decl" />), and zero or more additional tag
-files (see <xref target="sec-optional-elements" />). The tag files in the
-optional tag directories are arbitrary file hierarchies and the tag directories
-&may; have any name that is not reserved for a file or directory in this specification.
+(see <xref target="sec-payload-manifest" /> and
+<xref target="bag-checksum-algorithms" />),
+a file named "bagit.txt" (see <xref target="sec-bag-decl" />),
+and zero or more additional tag files (see
+<xref target="sec-optional-elements" />). The tag files in the optional tag
+directories are arbitrary file hierarchies and the tag directories &may; have
+any name that is not reserved for a file or directory in this specification.
 </t>
 
 <t>
@@ -449,17 +452,20 @@ file named ".keep".
 A tag manifest is a tag file that lists other tag files and checksums for
 those tag files generated using a particular bag checksum algorithm.
 A bag &may; contain one or more tag manifests.
-A tag manifest file &must; have a name of the form
-"tagmanifest-<spanx style="emph">algorithm</spanx>.txt", where
-<spanx style="emph">algorithm</spanx> is a string specifying
-the bag checksum algorithm used in that manifest, such as:
+
+A tag manifest file &must; have a name of the form "tagmanifest-<spanx
+style="emph">algorithm</spanx>.txt", where <spanx style="emph">algorithm</spanx>
+is a string following the format described in
+<xref target="bag-checksum-algorithms" /> specifying the bag checksum algorithm
+used in that manifest.
 </t>
 
 <figure>
- <artwork>
+  <preamble>Example tag manifest filenames:</preamble>
+  <artwork>
 tagmanifest-md5.txt
 tagmanifest-sha1.txt
- </artwork>
+  </artwork>
 </figure>
 
 <t>
