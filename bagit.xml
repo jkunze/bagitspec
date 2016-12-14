@@ -258,22 +258,22 @@ in this section are intended to clarify any ambiguity.
 	</t>
 
 	<t hangText="bag checksum algorithm">
-	A reference to a cryptographic checksum algorithm, such as MD5 or
-        SHA-1, with its name normalized for use in a manifest or tag
-        manifest file name. See <xref target="bag-checksum-algorithms" />.
+    A reference to a cryptographic checksum algorithm, such as MD5 or
+    SHA-1, with its name normalized for use in a manifest or tag
+    manifest file name. See <xref target="bag-checksum-algorithms" />.
 	</t>
 
-        <t hangText="complete">
-        A bag which comprises all elements required by this specification,
-        with all files listed in all payload and tag manifests present,
-        all payload files present listed in all manifests. See
-        <xref target="sec-complete-valid" />.
-        </t>
+    <t hangText="complete">
+    A bag which comprises all elements required by this specification,
+    with all files listed in all payload and tag manifests present,
+    all payload files present listed in all manifests. See
+    <xref target="sec-complete-valid" />.
+    </t>
 
 	<t hangText="payload">
-	The data encapsulated by the bag. The contents of the payload
-        are opaque to this specification, and are always considered as a
-        set of octet streams. See <xref target="sec-payload-dir" />.
+    The data encapsulated by the bag. The contents of the payload
+    are opaque to this specification, and are always considered as a
+    set of octet streams. See <xref target="sec-payload-dir" />.
 	</t>
 
 	<t hangText="serialized bag">
@@ -286,8 +286,8 @@ in this section are intended to clarify any ambiguity.
 	</t>
 
 	<t hangText="tag file">
-	A file that contains metadata intended to facilitate and document
-        the storage and transfer of the bag.
+    A file that contains metadata intended to facilitate and document
+    the storage and transfer of the bag.
 	</t>
 
     <t hangText="valid">
