@@ -209,16 +209,6 @@ The "tags" are metadata files intended to facilitate and document the storage
 and transfer of the bag. The name, BagIt, is inspired by the "enclose and deposit" method
 <xref target="ENCDEP" />, sometimes referred to as "bag it and tag it".
 </t>
-
-<!-- TODO: Move this section into the Interoperabiliyt section. -->
-<t>
-Implementors of BagIt tools should consider interoperability
-between different platforms, operating systems, toolsets, and languages.
-Differences in path separators, newline characters, reserved
-file names, and maximum path lengths are all possible barriers to
-moving bags between different systems. Discussion of these issues may be
-found in the Interoperability section of this document.
-</t>
 </section> <!-- /Purpose -->
 
 <section title="Requirements">
@@ -232,6 +222,11 @@ document are to be interpreted as described in <xref target="RFC2119"/>.
 An implementation is not compliant if it fails to satisfy one or
 more of the MUST or REQUIRED level requirements for the protocols
 it implements.
+</t>
+
+<t>
+  Implementors are strongly encouraged to review the interoperability
+  considerations described in <xref target="sec-interoperability" />.
 </t>
 </section> <!-- /Requirements -->
 
