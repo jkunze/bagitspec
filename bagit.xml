@@ -281,8 +281,7 @@ in this section are intended to clarify any ambiguity.
 	</t>
 
 	<t hangText="tag file">
-    A file that contains metadata intended to facilitate and document
-    the storage and transfer of the bag.
+    A file which contains the metadata required to validate the bag.
 	</t>
 
   <t hangText="valid">
