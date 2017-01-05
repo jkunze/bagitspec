@@ -21,20 +21,20 @@ Change "algorithm" (crypto hash) to "function"? (Steffen Fritz email to jak)
   <!ENTITY rfc3986 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml'>
   <!ENTITY rfc6234 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.6234.xml'>
 
-	<!-- RFC 2119 entities - for convenience -->
-	<!ENTITY must 'MUST' >
-	<!ENTITY must-not 'MUST NOT' >
-	<!ENTITY required 'REQUIRED' >
-	<!ENTITY shall 'SHALL' >
-	<!ENTITY shall-not 'SHALL NOT' >
-	<!ENTITY should 'SHOULD' >
-	<!ENTITY should-not 'SHOULD NOT' >
-	<!ENTITY recommended 'RECOMMENDED' >
-	<!ENTITY may 'MAY' >
-	<!ENTITY optional 'OPTIONAL' >
+  <!-- RFC 2119 entities - for convenience -->
+  <!ENTITY must 'MUST' >
+  <!ENTITY must-not 'MUST NOT' >
+  <!ENTITY required 'REQUIRED' >
+  <!ENTITY shall 'SHALL' >
+  <!ENTITY shall-not 'SHALL NOT' >
+  <!ENTITY should 'SHOULD' >
+  <!ENTITY should-not 'SHOULD NOT' >
+  <!ENTITY recommended 'RECOMMENDED' >
+  <!ENTITY may 'MAY' >
+  <!ENTITY optional 'OPTIONAL' >
 
-	<!-- The current bagit version, for convenience. -->
-	<!ENTITY current-bagit-version '1.00' >
+  <!-- The current bagit version, for convenience. -->
+  <!ENTITY current-bagit-version '1.00' >
 ]>
 
 <?xml-stylesheet type="text/xsl" href="rfc2629xslt/rfc2629.xslt" ?>
@@ -237,22 +237,22 @@ any ambiguity.
 
 <t>
 <list style="hanging">
-	<t hangText="bag">
-  	A order independent set of opaque files contained within the structure
-  	defined by this specification.
-	</t>
+  <t hangText="bag">
+    A order independent set of opaque files contained within the structure
+    defined by this specification.
+  </t>
 
-	<t hangText="bag declaration">
-  	The file required to be in all bags conforming to this specification.
-  	Contains values necessary for bootstrapping the reading and processing of
-  	the rest of a bag. See <xref target="sec-bag-decl"/>.
-	</t>
+  <t hangText="bag declaration">
+    The file required to be in all bags conforming to this specification.
+    Contains values necessary for bootstrapping the reading and processing of
+    the rest of a bag. See <xref target="sec-bag-decl"/>.
+  </t>
 
-	<t hangText="bag checksum algorithm">
+  <t hangText="bag checksum algorithm">
     The name of a cryptographic checksum algorithm which has been normalized
     for use in a manifest or tag manifest file name (e.g. “sha1”) in the
     format described in <xref target="bag-checksum-algorithms" />.
-	</t>
+  </t>
 
   <t hangText="complete">
     A bag which comprises all elements required by this specification,
@@ -260,19 +260,19 @@ any ambiguity.
     specified. See <xref target="sec-complete-valid" />.
   </t>
 
-	<t hangText="payload">
+  <t hangText="payload">
     The data encapsulated by the bag. The contents of the payload
     are opaque to this specification, and, with respect to BagIt processing,
     are always considered as a set of uninterpreted octets. See <xref target="sec-payload-dir" />.
-	</t>
+  </t>
 
-	<t hangText="tag directory">
-  	A directory that contains one or more tag files.
-	</t>
+  <t hangText="tag directory">
+    A directory that contains one or more tag files.
+  </t>
 
-	<t hangText="tag file">
+  <t hangText="tag file">
     A file which contains the metadata required to validate the bag.
-	</t>
+  </t>
 
   <t hangText="valid">
     A complete bag where every checksum in every manifest has been
@@ -361,7 +361,7 @@ mark (BOM).
 <t>
 The number for this version of the specification is "&current-bagit-version;".
 </t>
-</section>	<!-- /Bag Declaration -->
+</section>  <!-- /Bag Declaration -->
 
 <section title="Payload Directory: data/" anchor="sec-payload-dir">
 <t>
@@ -657,11 +657,11 @@ attributes:
 
 <t>
 <list style="numbers">
-	<t>Every required element &must; be present
-	   (<xref target="sec-required-elements" />).</t>
-	<t>Every file in every payload manifest &must; be present on the filesystem.</t>
-	<t>Every file in every tag manifest &must; be present on the filesystem.
-	   Tag files not listed in a tag manifest &may; be present.</t>
+  <t>Every required element &must; be present
+     (<xref target="sec-required-elements" />).</t>
+  <t>Every file in every payload manifest &must; be present on the filesystem.</t>
+  <t>Every file in every tag manifest &must; be present on the filesystem.
+     Tag files not listed in a tag manifest &may; be present.</t>
          <t>Every payload file &must; be listed in all manifests.</t>
 </list>
 </t>
@@ -673,9 +673,9 @@ attributes:
 
 <t>
 <list style="numbers">
-	<t>The bag &must; be complete.</t>
-	<t>Every CHECKSUM in every payload manifest and tag manifest
-	   can be sucessfully verified against the contents of its
+  <t>The bag &must; be complete.</t>
+  <t>Every CHECKSUM in every payload manifest and tag manifest
+     can be sucessfully verified against the contents of its
            corresponding FILENAME.</t>
         <t>Every element present &must; comply with this specification.</t>
 </list>
@@ -694,8 +694,8 @@ OCR file. Lines of file content are shown in parentheses beneath the
 file name.
 
 <!-- Note that the artwork looks funky on the version line, to account
-	 for the fact that the entity value is much shorter than the entity
-	 name. -->
+   for the fact that the entity value is much shorter than the entity
+   name. -->
 <figure>
  <artwork>
 myfirstbag/
