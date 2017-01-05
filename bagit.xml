@@ -242,14 +242,14 @@ in this section are intended to clarify any ambiguity.
 <t>
 <list style="hanging">
 	<t hangText="bag">
-	A set of opaque data contained within the structure defined
-	by this specification.
+  	A set of opaque data contained within the structure defined
+  	by this specification.
 	</t>
 
 	<t hangText="bag declaration">
-	The tag file required to be in all bags conforming to this
-	specification. Contains tags necessary for bootstrapping the
-	reading and processing of the rest of a bag. See <xref target="sec-bag-decl"/>.
+  	The tag file required to be in all bags conforming to this
+  	specification. Contains tags necessary for bootstrapping the
+  	reading and processing of the rest of a bag. See <xref target="sec-bag-decl"/>.
 	</t>
 
 	<t hangText="bag checksum algorithm">
@@ -258,12 +258,12 @@ in this section are intended to clarify any ambiguity.
     format described in <xref target="bag-checksum-algorithms" />.
 	</t>
 
-    <t hangText="complete">
+  <t hangText="complete">
     A bag which comprises all elements required by this specification,
     with all files listed in all payload and tag manifests present,
     all payload files present listed in all manifests. See
     <xref target="sec-complete-valid" />.
-    </t>
+  </t>
 
 	<t hangText="payload">
     The data encapsulated by the bag. The contents of the payload
@@ -272,12 +272,12 @@ in this section are intended to clarify any ambiguity.
 	</t>
 
 	<t hangText="serialized bag">
-	A bag that has been serialized into a single, monolithic file. See
-	<xref target="sec-serialization"/>.
+  	A bag that has been serialized into a single, monolithic file. See
+  	<xref target="sec-serialization"/>.
 	</t>
 
 	<t hangText="tag directory">
-	A directory that contains one or more tag files.
+  	A directory that contains one or more tag files.
 	</t>
 
 	<t hangText="tag file">
@@ -285,11 +285,11 @@ in this section are intended to clarify any ambiguity.
     the storage and transfer of the bag.
 	</t>
 
-    <t hangText="valid">
+  <t hangText="valid">
     A complete bag wherein every checksum in every payload manifest and
     tag manifest can be successfully verified against the corresponding
     payload file. See <xref target="sec-payload-dir" />.
-    </t>
+  </t>
 </list>
 </t>
 </section> <!-- /Terminology -->
