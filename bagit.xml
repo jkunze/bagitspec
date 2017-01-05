@@ -285,9 +285,8 @@ in this section are intended to clarify any ambiguity.
 	</t>
 
   <t hangText="valid">
-    A complete bag wherein every checksum in every payload manifest and
-    tag manifest can be successfully verified against the corresponding
-    payload file. See <xref target="sec-payload-dir" />.
+    A complete bag where every checksum in every manifest has been
+    successfully verified against the corresponding file.
   </t>
 </list>
 </t>
