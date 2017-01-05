@@ -321,23 +321,23 @@ The base directory &may; have any name.
 </t>
 
 <figure>
- <artwork>
-        &lt;base directory&gt;/
-        |
-        +-- bagit.txt
-        |
-        +-- manifest-&lt;algorithm&gt;.txt
-        |
-        +-- [additional tag files]
-        |
-        +-- data/
-        |     |
-        |     +-- [payload files]
-        |
-        +-- [optional tag directories]/
-              |
-              +-- [optional tag files]
- </artwork>
+  <artwork>
+      &lt;base directory&gt;/
+      |
+      +-- bagit.txt
+      |
+      +-- manifest-&lt;algorithm&gt;.txt
+      |
+      +-- [additional tag files]
+      |
+      +-- data/
+      |     |
+      |     +-- [payload files]
+      |
+      +-- [optional tag directories]/
+            |
+            +-- [optional tag files]
+  </artwork>
 </figure>
 
 <section title="Required Elements" anchor="sec-required-elements">
@@ -550,7 +550,8 @@ conform to this format:
 </figure>
 
 <figure>
- <artwork>
+  <preamble>An example "bag-info.txt" file</preamble>
+  <artwork>
     Source-Organization: FOO University
     Organization-Address: 1 Main St., Cupertino, California, 11111
     Contact-Name: Jane Doe
@@ -567,7 +568,7 @@ conform to this format:
     Internal-Sender-Identifier: /storage/images/foo
     Internal-Sender-Description: Uncompressed greyscale TIFFs created
          from microfilm and are...
- </artwork>
+  </artwork>
 </figure>
 </section> <!-- /Bag Metadata -->
 
@@ -836,7 +837,6 @@ example below:
   <preamble>
     The common surname "Núñez" normalized in different forms
   </preamble>
-
   <artwork><![CDATA[
 NFD (Decomposition):
 
@@ -953,7 +953,6 @@ limitations than Unix filesystems.
   <preamble>
     Windows also reserves the following names, with or without a file extension:
   </preamble>
-
   <artwork>
     CON, PRN, AUX, NUL
     COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8, COM9
