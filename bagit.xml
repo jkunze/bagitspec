@@ -303,21 +303,28 @@ in this section are intended to clarify any ambiguity.
 
 <section title="Structure">
 <t>
-A bag consists of a base directory containing (1) a set of required
-and optional tag files; (2) a sub-directory named "data", called the payload
-directory; and (3) a set of optional tag directories. The payload files in the
-payload directory are an arbitrary file hierarchy
-(see <xref target="sec-payload-dir" />).
+  A bag consists of a base directory containing:
 
-The tag files in the base directory consist of one or more files named
-"manifest-<spanx style="emph">algorithm</spanx>.txt"
-(see <xref target="sec-payload-manifest" /> and
-<xref target="bag-checksum-algorithms" />),
-a file named "bagit.txt" (see <xref target="sec-bag-decl" />),
-and zero or more additional tag files (see
-<xref target="sec-optional-elements" />). The tag files in the optional tag
-directories are arbitrary file hierarchies and the tag directories &may; have
-any name that is not reserved for a file or directory in this specification.
+  <list style="numbers">
+    <t>a set of required and optional tag files</t>
+    <t>a sub-directory named "data", called the payload directory</t>
+    <t>a set of optional tag directories</t>
+  </list>
+
+  The payload files in the payload directory are an arbitrary file hierarchy
+  (see <xref target="sec-payload-dir" />).
+
+  The tag files in the base directory consist of one or more files named
+  "manifest-<spanx style="emph">algorithm</spanx>.txt"
+  (see <xref target="sec-payload-manifest" /> and
+  <xref target="bag-checksum-algorithms" />),
+  a file named "bagit.txt" (see <xref target="sec-bag-decl" />),
+  and zero or more additional tag files (see
+  <xref target="sec-optional-elements" />).
+
+  The tag files in the optional tag directories are arbitrary file hierarchies
+  and the tag directories &may; have any name that is not reserved for a file
+  or directory in this specification.
 </t>
 
 <t>
