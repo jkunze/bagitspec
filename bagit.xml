@@ -255,9 +255,9 @@ any ambiguity.
   </t>
 
   <t hangText="complete">
-    A bag which comprises all elements required by this specification,
-    and all payload files are present. It also includes any optional files
-    specified. See <xref target="sec-complete-valid" />.
+    A bag which contains every elements required by this specification,
+    every payload file listed in a manifest, and any optional files which are
+    listed in a tag manifest. See <xref target="sec-complete-valid" />.
   </t>
 
   <t hangText="payload">
