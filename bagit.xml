@@ -432,22 +432,28 @@ return plus newline (CRLF) it &must; be percent-encoded
 <xref target="RFC3986"/>.
 </t>
 
-<t>The ABNF form of this is:</t>
-
-<t>
-  payload-manifest      = checksum 1*WSP filename ending
-  checksum              = 1*hex-val
-  hex-val               =  "x" 1*case-hexdig
-                        [ 1*("." 1*case-hexdig) / ("-" 1*case-hexdig) ]
-  case-hexdig           = DIGIT / "A" / "a" / "B" / "b" / "C" / "c" / "D" / "d" / "F" / "f"
-  case-hexdig           = DIGIT / "A" / "B" / "C" / "D" / "F"
-  filename              = ("data" "/" *( unreserved / pct-encoded / sub-delims ))
-  unreserved            = ALPHA / DIGIT / "-" / "." / "_" / "~"
-  sub-delims            = "!" / "$" / "&#38;" / "'" / "(" / ")"
-                        / "*" / "+" / "," / ";" / "="
-  pct-encoded           = "%" case-hexdig case-hexdig
-  ending                = CR / LF / CRLF
-</t>
+<figure>
+  <preamble>Payload Manifest ABNF</preamble>
+  <artwork type="abnf" xml:space="preserve"><![CDATA[
+payload-manifest = checksum 1*WSP filename ending
+checksum         = 1*hex-val
+hex-val          = "x" 1*case-hexdig
+                   [ 1*("." 1*case-hexdig) / ("-" 1*case-hexdig) ]
+case-hexdig      = DIGIT / "A" / "a" / "B" / "b" / "C" / "c" / "D" /
+                   "d" / "F" / "f"
+case-hexdig      = DIGIT / "A" / "B" / "C" / "D" / "F"
+filename         = (
+                    "data"
+                    "/"
+                    *( unreserved / pct-encoded / sub-delims )
+                   )
+unreserved       = ALPHA / DIGIT / "-" / "." / "_" / "~"
+sub-delims       = "!" / "$" / "&#38;" / "'" / "(" / ")" / "*"
+                   / "+" / "," / ";" / "="
+pct-encoded      = "%" case-hexdig case-hexdig
+ending           = CR / LF / CRLF
+]]></artwork>
+</figure>
 
 <t>
 A payload manifest &must-not; reference empty directories. To account for
@@ -509,13 +515,17 @@ onto the next line by inserting a newline (LF), a carriage return (CR),
 or carriage return plus newline (CRLF) and indenting the next line with
 linear white space (spaces or tabs).
 </t>
-<t>the ABNF form for this is:</t>
-<t>
-  metadata = key ":" value ending
-  key      = ALPHA / DIGIT
-  value    = ([1*WSP] 1*[ALPHA / DIGIT])
-  ending   = CR / LF / CRLF
-</t>
+
+<figure>
+  <preamble>"bag-info.txt" ABNF</preamble>
+  <artwork type="abnf" xml:space="preserve"><![CDATA[
+metadata = key ":" value ending
+key      = ALPHA / DIGIT
+value    = ([1*WSP] 1*[ALPHA / DIGIT])
+ending   = CR / LF / CRLF
+]]></artwork>
+</figure>
+
 <t>
 An implementation &should; add the optional "Payload-Oxum" element for the
 purpose of quickly detecting incomplete bags before performing checksum
@@ -531,13 +541,14 @@ conform to this format:
     total number of payload files. Compared to "Bag-Size", "Payload-Oxum" is
     intended for machine consumption.
 </t>
-<t>The ABNF form for this is:</t>
-<t>
+
+<figure>
+  <preamble>Payload-Oxum ABNF</preamble>
+  <artwork type="abnf" xml:space="preserve"><![CDATA[
   payload-oxum = (1*DIGIT "." 1*DIGIT)
-</t>
-<t>
-Here is an example "bag-info.txt" file.
-</t>
+]]></artwork>
+</figure>
+
 <figure>
  <artwork>
     Source-Organization: FOO University
