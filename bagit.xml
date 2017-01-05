@@ -202,12 +202,15 @@ transfer.
 <section title="Purpose">
 <t>
 BagIt is a hierarchical file packaging format designed to support
-disk-based or network-based storage and transfer of arbitrary digital
-content. A bag consists of a "payload" and "tags". The content of the payload
-is the custodial focus of the bag and is treated as semantically opaque.
-The "tags" are metadata files intended to facilitate and document the storage
-and transfer of the bag. The name, BagIt, is inspired by the "enclose and deposit" method
-<xref target="ENCDEP" />, sometimes referred to as "bag it and tag it".
+storage and transfer of arbitrary digital content (i.e. files). 
+A bag consists of a directory containing the payload files and other accompanying
+files known as "tag" files. The "tags" are metadata files intended to facilitate 
+and document the storage and transfer of the bag. 
+BagIt does not require the processing of the entire structure to understand to
+involve understanding the payload. The name, BagIt, is inspired by the "enclose 
+and deposit" method <xref target="ENCDEP" />, sometimes referred to as "bag it and tag it".
+This differs from other specifications (like ZIP) that only ensure the integrity
+of the files in that BagIt also ensures the complete set of files are included.
 </t>
 
 <!-- TODO: Move this section into the Interoperabiliyt section. -->
@@ -228,66 +231,60 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 document are to be interpreted as described in <xref target="RFC2119"/>.
 </t>
 
-<t>
-An implementation is not compliant if it fails to satisfy one or
-more of the MUST or REQUIRED level requirements for the protocols
-it implements.
-</t>
 </section> <!-- /Requirements -->
 
 <section title="Terminology">
 <t>
 This specification uses a number of terms to describe BagIt, some
 of which are in common use, some of which are newly defined by this
-specification, and others which may have meanings obvious only
-to those in the community from which this spec arose. Terms defined
-in this section are intended to clarify any ambiguity.
+specification. Terms defined in this section are intended to clarify 
+any ambiguity.
 </t>
 
 <t>
 <list style="hanging">
 	<t hangText="bag">
-	A set of opaque data contained within the structure defined
+	A order independent set of opaque files contained within the structure defined
 	by this specification.
 	</t>
 
 	<t hangText="bag declaration">
-	The tag file required to be in all bags conforming to this
-	specification. Contains tags necessary for bootstrapping the
+	The file required to be in all bags conforming to this
+	specification. Contains values necessary for bootstrapping the
 	reading and processing of the rest of a bag. See <xref target="sec-bag-decl"/>.
 	</t>
 
 	<t hangText="bag checksum algorithm">
-    A reference to a cryptographic checksum algorithm, such as MD5 or
-    SHA-1, with its name normalized for use in a manifest or tag
-    manifest file name. See <xref target="bag-checksum-algorithms" />.
+        A reference to a cryptographic checksum algorithm, such as MD5 or
+        SHA-1, with its name normalized for use in a manifest
+        file name. See <xref target="bag-checksum-algorithms" />.
 	</t>
 
     <t hangText="complete">
     A bag which comprises all elements required by this specification,
-    with all files listed in all payload and tag manifests present,
-    all payload files present listed in all manifests. See
+    and all payload files are present. It also includes any optional files
+    specified. See
     <xref target="sec-complete-valid" />.
     </t>
 
 	<t hangText="payload">
-    The data encapsulated by the bag. The contents of the payload
-    are opaque to this specification, and are always considered as a
-    set of octet streams. See <xref target="sec-payload-dir" />.
+        The data encapsulated by the bag. The contents of the payload
+        are opaque to this specification, and, with respect to BagIt processing,
+        are always considered as a set of uninterpreted octets. See <xref target="sec-payload-dir" />.
 	</t>
 
 	<t hangText="serialized bag">
-	A bag that has been serialized into a single, monolithic file. See
+	A bag that has been combined into a single, monolithic file. See
 	<xref target="sec-serialization"/>.
 	</t>
 
 	<t hangText="tag directory">
-	A directory that contains one or more tag files.
+	A filesystem folder that contains one or more tag files.
 	</t>
 
 	<t hangText="tag file">
-    A file that contains metadata intended to facilitate and document
-    the storage and transfer of the bag.
+        A filesystem file that contains metadata intended to facilitate and document
+        the storage and transfer of the bag.
 	</t>
 
     <t hangText="valid">
@@ -310,10 +307,11 @@ in this section are intended to clarify any ambiguity.
 
 <section title="Structure">
 <t>
-A bag consists of a base directory containing (1) a set of required
-and optional tag files; (2) a sub-directory named "data", called the payload
-directory; and (3) a set of optional tag directories. The payload files in the
-payload directory are an arbitrary file hierarchy
+A bag consists of a base directory containing 
+  (1) a set of required and optional tag files
+  (2) a sub-directory named "data", called the payload directory
+  (3) a set of optional tag directories. 
+  The files in the payload directory are in an arbitrary file hierarchy
 (see <xref target="sec-payload-dir" />).
 
 The tag files in the base directory consist of one or more files named
@@ -322,8 +320,8 @@ The tag files in the base directory consist of one or more files named
 <xref target="bag-checksum-algorithms" />),
 a file named "bagit.txt" (see <xref target="sec-bag-decl" />),
 and zero or more additional tag files (see
-<xref target="sec-optional-elements" />). The tag files in the optional tag
-directories are arbitrary file hierarchies and the tag directories &may; have
+<xref target="sec-optional-elements" />). The tag files and directories are 
+arbitrary file hierarchies and &may; have
 any name that is not reserved for a file or directory in this specification.
 </t>
 
@@ -334,13 +332,19 @@ The base directory &may; have any name.
 <figure>
  <artwork>
         &lt;base directory&gt;/
-        |   bagit.txt
-        |   manifest-&lt;algorithm&gt;.txt
-        |   [optional additional tag files]
-        \--- data/
-              |   [payload files]
-        \--- [optional tag directories]/
-              |   [optional tag files]
+        |
+        +-- bagit.txt
+        |   
+        +-- manifest-&lt;algorithm&gt;.txt
+        |
+        +-- [additional tag files]
+        |
+        +-- data/
+        |     |
+        |     +-- [payload files]
+        +-- [optional tag directories]/
+              |   
+              +-- [optional tag files]
  </artwork>
 </figure>
 
@@ -364,23 +368,22 @@ mark (BOM).
 </t>
 
 <t>
-The appropriate version for a bag that conforms to
-this version of the specification is "&current-bagit-version;".
+The number for this version of the specification is "&current-bagit-version;".
 </t>
 </section>	<!-- /Bag Declaration -->
 
 <section title="Payload Directory: data/" anchor="sec-payload-dir">
 <t>
-The base directory &must; contain a sub-directory named "data", called the
-payload directory.
+The base directory &must; contain a sub-directory named "data". 
 </t>
 
 <t>
-The payload directory contains the custodial content within the bag.
+The payload directory contains the arbitrary digital content within the bag.
 The files under the payload directory are called payload files, or
 the payload.
-The payload is treated as octet streams for all purposes relating to this
-specification, and is not otherwise prescribed.
+Each payload file is treated as an opaque octet stream for all verifing file correctness.
+The payload directory structure may contain meaning and thus should be preserved, 
+but is otherwise ignored for purposes relating to this specification.
 </t>
 </section> <!-- /Payload Directory -->
 
@@ -389,8 +392,12 @@ specification, and is not otherwise prescribed.
               section on Tag Manifests.
 -->
 <t>
-A payload manifest is a tag file that lists payload files and checksums for those
-payload files generated using a particular bag checksum algorithm.
+A payload manifest file provides a complete listing of the files contained in the payload, 
+and a checksum for each payload file, to permit data integrity checking.
+
+A payload manifest is a tag file that lists payload file names and their checksums
+generated using a checksum algorithm.
+
 Every bag &must; contain one payload manifest file, and &may; contain
 more than one. Every payload manifest &must; list every payload file. A payload
 manifest file &must; have a name of the form manifest-<spanx
@@ -431,13 +438,28 @@ a FILENAME includes a newline (LF), a carriage return (CR), or carriage
 return plus newline (CRLF) it &must; be percent-encoded
 <xref target="RFC3986"/>.
 
+The ABNF form of this is:
+<t>
+  payload-manifest      = checksum 1*WSP filename ending
+  checksum              = 1*hex-val
+  hex-val               =  "x" 1*case-hexdig
+                        [ 1*("." 1*case-hexdig) / ("-" 1*case-hexdig) ]
+  case-hexdig           = DIGIT / "A" / "a" / "B" / "b" / "C" / "c" / "D" / "d" / "F" / "f"
+  case-hexdig           = DIGIT / "A" / "B" / "C" / "D" / "F"
+  filename              = ("data" "/" *( unreserved / pct-encoded / sub-delims ))
+  unreserved            = ALPHA / DIGIT / "-" / "." / "_" / "~"
+  sub-delims            = "!" / "$" / "&" / "'" / "(" / ")"
+                        / "*" / "+" / "," / ";" / "="
+  pct-encoded           = "%" case-hexdig case-hexdig
+  ending                = CR / LF / CRLF
+</t>
+
 </t>
 
 <t>
-Payload manifests only include the pathnames of files. Because of this,
-a payload manifest cannot reference empty directories. To account for
+A payload manifest &must-not; reference empty directories. To account for
 an empty directory, a bag creator may wish to include at least one file
-in that directory; it suffices, for example, to include a zero-length
+in that directory; a bag creator might wish for example, to include a zero-length
 file named ".keep".
 </t>
 </section> <!-- /Payload Manifest -->
@@ -482,7 +504,7 @@ As a result, no FILENAME listed in a tag manifest begins "data/".
 <t>
 The "bag-info.txt" file is a tag file that contains metadata elements
 describing the bag and the payload. The metadata elements contained in
-the "bag-info.txt" file are intended primarily for human readability.
+the "bag-info.txt" file are intended primarily for human use.
 All metadata elements are optional and &may; be repeated. Implementations
 &must; assume that the ordering is significant and provide access to the
 metadata elements in the order they are given in the "bag-info.txt" file.
@@ -494,6 +516,13 @@ lines not exceed 79 characters in length. Long values may be continued
 onto the next line by inserting a newline (LF), a carriage return (CR),
 or carriage return plus newline (CRLF) and indenting the next line with
 linear white space (spaces or tabs).
+</t>
+  the ABNF form for this is:
+<t>
+  metadata = key ":" value ending
+  key      = ALPHA / DIGIT
+  value    = ([1*WSP] 1*[ALPHA / DIGIT]) 
+  ending   = CR / LF / CRLF
 </t>
 <t>
 An implementation &should; add the optional "Payload-Oxum" element for the
@@ -511,25 +540,30 @@ conform to this format:
     intended for machine consumption.
 </t>
 
+The ABNF form for this is:
+<t>
+  payload-oxum = (1*DIGIT "." 1*DIGIT)
+</t>
+
 <t>
 Here is an example "bag-info.txt" file.
 
 <figure>
  <artwork>
-    Source-Organization: Spengler University
-    Organization-Address: 1400 Elm St., Cupertino, California, 95014
-    Contact-Name: Edna Janssen
-    Contact-Phone: +1 408-555-1212
-    Contact-Email: ej@spengler.edu
+    Source-Organization: FOO University
+    Organization-Address: 1 Main St., Cupertino, California, 11111
+    Contact-Name: Jane Doe
+    Contact-Phone: +1 111-111-1111
+    Contact-Email: example@example.com
     External-Description: Uncompressed greyscale TIFF images from the
-         Yoshimuri papers colle...
+         FOO papers colle...
     Bagging-Date: 2008-01-15
-    External-Identifier: spengler_yoshimuri_001
+    External-Identifier: university_foo_001
     Bag-Size: 260 GB
     Payload-Oxum: 279164409832.1198
-    Bag-Group-Identifier: spengler_yoshimuri
+    Bag-Group-Identifier: univerisity_foo
     Bag-Count: 1 of 15
-    Internal-Sender-Identifier: /storage/images/yoshimuri
+    Internal-Sender-Identifier: /storage/images/foo
     Internal-Sender-Description: Uncompressed greyscale TIFFs created
          from microfilm and are...
  </artwork>
@@ -542,9 +576,9 @@ Here is an example "bag-info.txt" file.
 <t>
 A bag &may; contain other tag files that are not defined by this
 specification.
-Implementations &should; ignore the content of any unexpected tag files,
-except when they are listed in a tag manifest.
-When unexpected tag files are listed in a tag manifest, implementations
+Implementations &should; ignore the content of any tag files not 
+defined in this specification, except when they are listed in a tag manifest.
+When tag files are listed in a tag manifest, implementations
 &must; only treat the content of those tag files as octet streams for the
 purpose of checksum verification.
 </t>
@@ -561,7 +595,7 @@ the text tag file format described below.
 Text tag files are line-oriented, and each line &must; be
 terminated by a newline (LF), a carriage return (CR), or carriage return
 plus newline (CRLF).
-Text tag files &must; end in the extension ".txt".
+Text tag file names &must; end in the extension ".txt".
 </t>
 
 <t>
@@ -588,12 +622,11 @@ The backslash character ('\', U+005C) escapes from special processing any
 
 <section title="Bag Checksum Algorithms" anchor="bag-checksum-algorithms">
 <t>
-The payload manifest and tag manifests assert integrity of the payload
-and tags in a bag using checksum algorithms. The operation
-of those algorithms, and the formatting of their output within a manifest
-file, are generally beyond the scope of this specification, except that the
-output format &must; be able to fit in the manifest format specified in
-<xref target="sec-payload-manifest"/>.
+The payload manifest and tag manifests permit validating the integrity of the payload
+and tag files in a bag produced by the checksum algorithms. 
+Checksum values &must; be encoded so as to conform to the manifest format
+specified in <xref target="sec-payload-manifest"/>. However, the internal details
+of a checksum are outside the scope of this document.
 </t>
 
 <t>
@@ -627,23 +660,10 @@ attributes:
 <list style="numbers">
 	<t>Every required element &must; be present
 	   (<xref target="sec-required-elements" />).</t>
-	<t>Every file in every payload manifest &must; be present.</t>
-	<t>Every file in every tag manifest &must; be present.
+	<t>Every file in every payload manifest &must; be present on the filesystem.</t>
+	<t>Every file in every tag manifest &must; be present on the filesystem.
 	   Tag files not listed in a tag manifest &may; be present.</t>
          <t>Every payload file &must; be listed in all manifests.</t>
-        <t>Every element present &must; comply with this specification.</t>
-</list>
-</t>
-
-<t>
-A bag is <spanx style="emph">incomplete</spanx> when it exhibits any of
-the following exceptions to the attributes of a complete bag:
-</t>
-
-<t>
-<list style="numbers">
-	<t>One or more files in any payload manifest are absent.</t>
-	<t>One or more files in any tag manifest are absent.</t>
 </list>
 </t>
 
@@ -658,19 +678,8 @@ attributes:
 	<t>Every CHECKSUM in every payload manifest and tag manifest
 	   can be sucessfully verified against the contents of its
            corresponding FILENAME.</t>
+        <t>Every element present &must; comply with this specification.</t>
 </list>
-</t>
-
-<t>
-If a bag is neither valid, complete, nor incomplete, it is
-<spanx style="emph">invalid</spanx>. Definitions for the various
-ways a bag may be invalid are not covered by this specification.
-</t>
-
-<t>
-Tag files that do not appear in a tag manifest can be modified, added
-to, or removed from a bag without impacting the completeness or validity
-of the bag.
 </t>
 
 </section> <!-- Completeness and validity -->
@@ -680,8 +689,7 @@ of the bag.
 <t>
 In some scenarios, it may be convenient to serialize the
 bag's filesystem hierarchy (i.e., the base directory) into a
-single-file archive format such as TAR or ZIP (the serialization) and then
-later deserialize the serialization to recreate the filesystem  hierarchy.
+single-file archive format such as TAR or ZIP.
 Several rules govern the serialization of a bag and apply equally
 to all types of archive files:
 </t>
@@ -783,7 +791,8 @@ paths specified in a bag.
 For example, a maliciously crafted "tagmanifest-md5.txt" file might
 contain entries which begin with a path character such as "/", "..",
 or a "~username" home directory reference in an attempt to cause a
-naive implementation to leak or overwrite targeted files.
+naive implementation to leak or overwrite targeted files. 
+All implementations &should; have a test suite to guard against these cases.
 </t>
 
 <t>
