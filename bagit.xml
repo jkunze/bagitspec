@@ -238,14 +238,14 @@ any ambiguity.
 <t>
 <list style="hanging">
 	<t hangText="bag">
-	A order independent set of opaque files contained within the structure defined
-	by this specification.
+  	A order independent set of opaque files contained within the structure
+  	defined by this specification.
 	</t>
 
 	<t hangText="bag declaration">
-	The file required to be in all bags conforming to this
-	specification. Contains values necessary for bootstrapping the
-	reading and processing of the rest of a bag. See <xref target="sec-bag-decl"/>.
+  	The file required to be in all bags conforming to this specification.
+  	Contains values necessary for bootstrapping the reading and processing of
+  	the rest of a bag. See <xref target="sec-bag-decl"/>.
 	</t>
 
 	<t hangText="bag checksum algorithm">
@@ -254,17 +254,16 @@ any ambiguity.
     format described in <xref target="bag-checksum-algorithms" />.
 	</t>
 
-    <t hangText="complete">
+  <t hangText="complete">
     A bag which comprises all elements required by this specification,
     and all payload files are present. It also includes any optional files
-    specified. See
-    <xref target="sec-complete-valid" />.
-    </t>
+    specified. See <xref target="sec-complete-valid" />.
+  </t>
 
 	<t hangText="payload">
-        The data encapsulated by the bag. The contents of the payload
-        are opaque to this specification, and, with respect to BagIt processing,
-        are always considered as a set of uninterpreted octets. See <xref target="sec-payload-dir" />.
+    The data encapsulated by the bag. The contents of the payload
+    are opaque to this specification, and, with respect to BagIt processing,
+    are always considered as a set of uninterpreted octets. See <xref target="sec-payload-dir" />.
 	</t>
 
 	<t hangText="tag directory">
