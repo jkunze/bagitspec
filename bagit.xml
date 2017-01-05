@@ -271,11 +271,6 @@ in this section are intended to clarify any ambiguity.
     set of octet streams. See <xref target="sec-payload-dir" />.
 	</t>
 
-	<t hangText="serialized bag">
-  	A bag that has been serialized into a single, monolithic file. See
-  	<xref target="sec-serialization"/>.
-	</t>
-
 	<t hangText="tag directory">
   	A directory that contains one or more tag files.
 	</t>
@@ -674,59 +669,6 @@ of the bag.
 </t>
 
 </section> <!-- Completeness and validity -->
-
-<section title="Serialization" anchor="sec-serialization">
-
-<t>
-In some scenarios, it may be convenient to serialize the
-bag's filesystem hierarchy (i.e., the base directory) into a
-single-file archive format such as TAR or ZIP (the serialization) and then
-later deserialize the serialization to recreate the filesystem  hierarchy.
-Several rules govern the serialization of a bag and apply equally
-to all types of archive files:
-</t>
-
-<t>
-<list style="numbers">
-<t>
-The top-level directory of a serialization &must; contain only one bag.
-</t>
-<t>
-The serialization &should; have the same name as the bag's base directory,
-but &must; have an extension added to identify the format. For example, the
-receiver of "mybag.tar.gz" expects the corresponding base directory
-to be created as "mybag".
-</t>
-<t>
-A bag &must-not; be serialized from within its base directory, but from the
-parent of the base directory (where the base directory appears as an
-entry). Thus, after a bag is deserialized in an empty directory,
-a listing of that directory shows exactly one entry. For example,
-deserializing "mybag.zip" in an empty directory causes the creation
-of the base directory "mybag" and, beneath "mybag", the creation of
-all payload and tag files.
-</t>
-<t>
-The deserialization of a bag &must; produce a single base directory
-bag with the top-level structure as described in this specification without
-requiring any additional un-archiving step. For example, after one
-un-archiving step it would be an error for the "data/" directory to
-appear as "data.tar.gz". TAR and ZIP files may appear inside the payload
-beneath the "data/" directory, where they would be treated
-as any other payload file.
-</t>
-</list>
-</t>
-
-<t>
-When serializing a bag, care must be taken to ensure that the archive format's
-restrictions on file naming, such as allowable characters, length, or character
-encoding, will support the requirements of the systems on which it will be
-used. See
-<xref target="sec-interoperability" />.
-</t>
-
-</section> <!-- /Serialization -->
 
 <section title="Examples">
 <section title="Example of a basic bag">
