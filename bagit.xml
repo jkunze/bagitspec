@@ -1,11 +1,4 @@
 <?xml version='1.0' ?>
-<!--
-==== TO DO:  ====
-Rules for encoding newlines and whitespace in filenames?
-
-Change "algorithm" (crypto hash) to "function"? (Steffen Fritz email to jak)
-
--->
 
 <!--See http://xml.resource.org/ for formatting tools that can deal with
     this RFC2629 (and beyond) XML format.
