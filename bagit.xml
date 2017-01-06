@@ -594,11 +594,9 @@ conform to this format:
 <t>
 A bag &may; contain other tag files that are not defined by this
 specification.
-Implementations &should; ignore the content of any tag files not
-defined in this specification, except when they are listed in a tag manifest.
-When tag files are listed in a tag manifest, implementations
-&must; only treat the content of those tag files as octet streams for the
-purpose of checksum verification.
+
+Implementations &must; perform standard checksum validation on any tag file
+which is listed in a tag manifest but &must; otherwise ignore their contents.
 </t>
 </section> <!-- /Other Tag Files -->
 </section> <!-- /Optional Elements -->
