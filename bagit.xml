@@ -305,16 +305,17 @@ document are to be interpreted as described in <xref target="RFC2119"/>.
 <section title="Structure">
 <t>
   A bag consists of a base directory containing:
+</t>
 
+<t>
   <list style="numbers">
-    <t>a set of required and optional tag files</t>
-    <t>a sub-directory named "data", called the payload directory</t>
+    <t>a set of required and optional tag files <xref target="sec-optional-elements" /></t>
+    <t>a sub-directory named "data", called the payload directory. <xref target="sec-payload-dir" /></t>
     <t>a set of optional tag directories</t>
   </list>
+</t>
 
-  The payload files in the payload directory are an arbitrary file hierarchy
-  (see <xref target="sec-payload-dir" />).
-
+<t>
 The tag files in the base directory consist of one or more files named
 "manifest-<spanx style="emph">algorithm</spanx>.txt"
 (see <xref target="sec-payload-manifest" /> and
