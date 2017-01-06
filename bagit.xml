@@ -384,11 +384,11 @@ The base directory &must; contain a sub-directory named "data".
 
 <t>
 The payload directory contains the arbitrary digital content within the bag.
-The files under the payload directory are called payload files, or
-the payload.
-Each payload file is treated as an opaque octet stream for all verifing file correctness.
-The payload directory structure may contain meaning and thus should be preserved,
-but is otherwise ignored for purposes relating to this specification.
+The files under the payload directory are called payload files, or the payload.
+Each payload file is treated as an opaque octet stream when verifying file
+correctness.
+Any sub-directory structure within the payload &must; be preserved but is
+otherwise ignored for purposes relating to this specification.
 </t>
 </section> <!-- /Payload Directory -->
 
