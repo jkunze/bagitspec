@@ -176,10 +176,9 @@
 <t>
 This document specifies BagIt, a hierarchical file packaging format for
 storage and transfer of arbitrary digital content. A "bag" has just enough
-structure to enclose descriptive "tags" and a "payload" but
+structure to enclose descriptive metadata "tags" and a file "payload" but
 does not require knowledge of the payload's internal semantics. This
-BagIt format should be suitable for disk-based or network-based storage and
-transfer.
+BagIt format should be suitable for reliable storage and transfer.
 </t>
 
   </abstract>
@@ -191,17 +190,34 @@ transfer.
 <section title="Purpose">
 <t>
 BagIt is a hierarchical file packaging format designed to support
-storage and transfer of arbitrary digital content (i.e. files).
+storage and transfer of arbitrary digital content.
 A bag consists of a directory containing the payload files and other accompanying
-files known as "tag" files. The "tags" are metadata files intended to facilitate
-and document the storage and transfer of the bag.
-BagIt does not require the processing of the entire structure to understand
-the payload. The name, BagIt, is inspired by the "enclose and deposit" method
+metadata files known as "tag" files. The "tags" are metadata files intended to
+facilitate and document the storage and transfer of the bag. Processing a bag
+does not require any understanding of the payload file contents and the payload
+can be accessed without processing the BagIt metadata.
+</t>
+
+<t>
+The name, BagIt, is inspired by the "enclose and deposit" method
 <xref target="ENCDEP" />, sometimes referred to as "bag it and tag it".
-BagIt differs from other specifications (like ZIP) by allowing for stronger
-checks then CRC-32, the ability to upgrade to stronger hash algorithms without
-breaking backwards compatibility, the ability to verify each file without
-having to read the entire archive, and no file size limitation
+BagIt differs from traditional archive formats such as TAR or ZIP in two general
+areas:
+
+<list style="numbers">
+  <t>
+    Strong integrity assurances: the format supports only cryptographic-quality
+    hash algorithms (see <xref target="bag-checksum-algorithms" />) and allows
+    for in-place upgrades to add additional manifests using stronger algorithms
+    without breaking backwards compatibility
+  </t>
+  <t>
+    Direct file access: files may be accessed using standard operating system
+    utilities, implementations do not need to process a potentially large
+    archive file to extract a subset of data, and the format imposes no size
+    limits for either individual files or a bag.
+  </t>
+</list>
 </t>
 </section> <!-- /Purpose -->
 
@@ -220,10 +236,7 @@ document are to be interpreted as described in <xref target="RFC2119"/>.
 
 <section title="Terminology">
 <t>
-This specification uses a number of terms to describe BagIt, some
-of which are in common use, some of which are newly defined by this
-specification. Terms defined in this section are intended to clarify
-any ambiguity.
+  The following terms have precise definitions as used in this specification:
 </t>
 
 <t>
@@ -235,26 +248,21 @@ any ambiguity.
 
   <t hangText="bag declaration">
     The file required to be in all bags conforming to this specification.
-    Contains values necessary for the reading and processing of
-    the rest of a bag. See <xref target="sec-bag-decl"/>.
+    Contains values necessary to process the rest of a bag.
+    See <xref target="sec-bag-decl"/>.
   </t>
 
   <t hangText="bag checksum algorithm">
     The name of a cryptographic checksum algorithm which has been normalized
-    for use in a manifest or tag manifest file name (e.g. “sha1”) in the
-    format described in <xref target="bag-checksum-algorithms" />.
-  </t>
-
-  <t hangText="complete">
-    A bag which contains every elements required by this specification,
-    every payload file listed in a manifest, and any optional files which are
-    listed in a tag manifest. See <xref target="sec-complete-valid" />.
+    for use in a manifest or tag manifest file name (e.g. "SHA-1" becomes
+    "sha1") as described in <xref target="bag-checksum-algorithms" />.
   </t>
 
   <t hangText="payload">
     The data encapsulated by the bag. The contents of the payload
     are opaque to this specification, and, with respect to BagIt processing,
-    are always considered as a set of uninterpreted octets. See <xref target="sec-payload-dir" />.
+    are always considered as an opaque octet stream.
+    See <xref target="sec-payload-dir" />.
   </t>
 
   <t hangText="tag directory">
@@ -262,7 +270,19 @@ any ambiguity.
   </t>
 
   <t hangText="tag file">
-    A file which contains the metadata required to validate the bag.
+    A file which contains metadata. The specification defines two standard tag
+    files: tag manifests, which describe other tag files
+    <xref target="sec-tag-manifest" />, and the "bag-info.txt" file containing
+    human-meaningful metadata <xref target="sec-bag-info" />.
+
+    The specification also allows other arbitrary tag files as described in
+    <xref target="sec-other-tag-files" />.
+  </t>
+
+  <t hangText="complete">
+    A bag which contains every element required by this specification,
+    every payload file listed in a manifest, and any optional files which are
+    listed in a tag manifest. See <xref target="sec-complete-valid" />.
   </t>
 
   <t hangText="valid">
@@ -452,7 +472,7 @@ file named ".keep".
 </section> <!-- /Required Elements -->
 
 <section title="Optional Elements" anchor="sec-optional-elements">
-<section title="Tag Manifest: tagmanifest-&lt;alg&gt;.txt">
+<section anchor="sec-tag-manifest" title="Tag Manifest: tagmanifest-&lt;alg&gt;.txt">
 <!-- WARNING: This section should be kept in relative sync with the
               section on Payload Manifests.
 -->
@@ -485,7 +505,7 @@ As a result, no FILENAME listed in a tag manifest begins "data/".
 
 </section> <!-- /Tag Manifest -->
 
-<section title="Bag Metadata: bag-info.txt">
+<section anchor="sec-bag-info" title="Bag Metadata: bag-info.txt">
 <t>
 The "bag-info.txt" file is a tag file that contains metadata elements
 describing the bag and the payload. The metadata elements contained in
@@ -658,10 +678,11 @@ attributes:
 <t>
 <list style="numbers">
   <t>The bag &must; be complete.</t>
-  <t>Every CHECKSUM in every payload manifest and tag manifest
-     can be sucessfully verified against the contents of its
-           corresponding FILENAME.</t>
-        <t>Every element present &must; comply with this specification.</t>
+  <t>
+    Every CHECKSUM in every payload manifest and tag manifest can be
+    sucessfully verified against the contents of its corresponding FILENAME.
+  </t>
+  <t>Every element present &must; comply with this specification.</t>
 </list>
 </t>
 
