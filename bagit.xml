@@ -717,7 +717,7 @@ myfirstbag/
 |    (408ad21d50cef31da4df6d9ed81b01a7 data/27613-h/images/q172.txt)
 |
 |   bagit.txt
-|    (BagIt-version: 0.96                                          )
+|    (BagIt-version: 1.0                                           )
 |    (Tag-File-Character-Encoding: UTF-8                           )
 |
 \--- data/
