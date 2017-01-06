@@ -990,9 +990,10 @@ update the bag with valid manifests.
 <section title="Acknowledgements">
 
 <t>
-BagIt owes much to many thoughtful contributers and reviewers, including
-Stephen Abrams, Mike Ashenfelder, Dan Chudnov, Brad Hards, Scott Fisher, Keith Johnson, Erik
-Hetzner, Leslie Johnston, David Loy, Mark Phillips, Tracy Seneca, Brian Tingle, Adam Turoff, and Jim Tuttle.
+BagIt owes much to many thoughtful contributors and reviewers, including
+Stephen Abrams, Mike Ashenfelder, Dan Chudnov, Brad Hards, Scott Fisher, Keith
+Johnson, Erik Hetzner, Leslie Johnston, David Loy, Mark Phillips, Tracy Seneca,
+Brian Tingle, Adam Turoff, and Jim Tuttle.
 </t>
 
 <section title="IANA Considerations">
