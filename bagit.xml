@@ -550,11 +550,14 @@ the standard checksum validation process before proclaiming a bag to be valid.
 This element &must-not; be present more than once and, if present, &must;
 conform to this format:
 </t>
+
 <t hangText="Payload-Oxum">
-    The "octet-stream sum" of the payload, namely, a two-part number of the
-    form "OctetCount.StreamCount", where OctetCount is the total number of
-    octets (8-bit bytes) across all payload file content and StreamCount is the
-    total number of payload files.
+    The "octet-stream sum" of the payload is a pair of two numbers in the form
+    "<spanx style="emph">OctetCount</spanx>.<spanx style="emph">StreamCount</spanx>",
+    where <spanx style="emph">OctetCount</spanx> is the total number of octets
+    (8-bit bytes) across all payload file content and
+    <spanx style="emph">StreamCount</spanx> is the total number of payload
+    files.
 </t>
 
 <figure>
