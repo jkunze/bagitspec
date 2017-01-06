@@ -206,11 +206,11 @@ storage and transfer of arbitrary digital content (i.e. files).
 A bag consists of a directory containing the payload files and other accompanying
 files known as "tag" files. The "tags" are metadata files intended to facilitate
 and document the storage and transfer of the bag.
-BagIt does not require the processing of the entire structure to understand 
-the payload. The name, BagIt, is inspired by the "enclose and deposit" method 
+BagIt does not require the processing of the entire structure to understand
+the payload. The name, BagIt, is inspired by the "enclose and deposit" method
 <xref target="ENCDEP" />, sometimes referred to as "bag it and tag it".
 BagIt differs from other specifications (like ZIP) by allowing for stronger
-checks then CRC-32, the ability to upgrade to stronger hash algorithms without 
+checks then CRC-32, the ability to upgrade to stronger hash algorithms without
 breaking backwards compatibility, the ability to verify each file without
 having to read the entire archive, and no file size limitation
 </t>
@@ -537,7 +537,7 @@ conform to this format:
     The "octet-stream sum" of the payload, namely, a two-part number of the
     form "OctetCount.StreamCount", where OctetCount is the total number of
     octets (8-bit bytes) across all payload file content and StreamCount is the
-    total number of payload files. 
+    total number of payload files.
 </t>
 
 <figure>
