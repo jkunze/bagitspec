@@ -397,22 +397,25 @@ otherwise ignored for purposes relating to this specification.
               section on Tag Manifests.
 -->
 <t>
-A payload manifest file provides a complete listing of the files contained in the payload,
-and a checksum for each payload file, to permit data integrity checking.
+A payload manifest file provides a complete listing of each payload file along
+with a corresponding checksum to permit data integrity checking.
+</t>
 
-Every bag &must; contain at least one payload manifest file, and &may; contain
+<t>
+Every bag &must; contain at least one payload manifest file and &may; contain
 more than one. Every payload manifest &must; list every payload file. A payload
-manifest file &must; have a name of the form manifest-<spanx
-style="emph">algorithm</spanx>.txt, where <spanx style="emph">algorithm</spanx>
-is a string specifying the bag checksum algorithm used in that manifest, such
-as:
+manifest file &must; have a name of the form "manifest-<spanx
+style="emph">algorithm</spanx>.txt", where <spanx style="emph">algorithm</spanx>
+is a string specifying the checksum algorithm used by that manifest as described
+in <xref target="bag-checksum-algorithms" />.
 </t>
 
 <figure>
- <artwork>
+  <preamble>Example payload manifest filenames</preamble>
+  <artwork>
 manifest-md5.txt
 manifest-sha1.txt
- </artwork>
+  </artwork>
 </figure>
 
 <t>A bag &must-not; contain more than one payload manifest for a particular
@@ -423,22 +426,27 @@ Each line of a payload manifest file &must; be of the form:
 </t>
 
 <figure>
- <artwork>
-CHECKSUM FILENAME
- </artwork>
+  <artwork>CHECKSUM FILENAME</artwork>
+  <postamble>
+    where FILENAME is the pathname of a file relative to the base directory,
+    and CHECKSUM is a hex-encoded checksum calculated according to
+    <spanx style="emph">algorithm</spanx> over every octet in the file.
+  </postamble>
 </figure>
 
 <t>
-where FILENAME is the pathname of a file relative to the base directory,
- and CHECKSUM is a hex-encoded checksum calculated according to <spanx
-  style="emph">algorithm</spanx> over every octet in the file.
-The hex-encoded checksum &may; use uppercase and/or lowercase letters.  The slash
-character ('/') &must; be used as a path separator in FILENAME. One
-or more linear whitespace characters (spaces or tabs) &must; separate
-CHECKSUM from FILENAME. There is no limitation on the length of a pathname.
-The payload manifest &must-not; reference files outside the payload directory. If
-a FILENAME includes a newline (LF), a carriage return (CR), or carriage
-return plus newline (CRLF) it &must; be percent-encoded
+The hex-encoded checksum &may; use uppercase and/or lowercase letters.
+
+The slash character ('/') &must; be used as a path separator in FILENAME.
+
+One or more linear whitespace characters (spaces or tabs) &must; separate CHECKSUM from FILENAME.
+
+There is no limitation on the length of a pathname.
+
+The payload manifest &must-not; reference files outside the payload directory.
+
+If a FILENAME includes a newline (LF), a carriage return (CR), or carriage
+return plus newline (CRLF) it &must; be percent-encoded following
 <xref target="RFC3986"/>.
 </t>
 
