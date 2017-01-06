@@ -1,18 +1,21 @@
 <?xml version='1.0' ?>
-
-<!--See http://xml.resource.org/ for formatting tools that can deal with
-    this RFC2629 (and beyond) XML format.
- -->
+<!--
+  See http://xml.resource.org/ for formatting tools to work with the RFC 7749
+  XML format
+-->
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
 
   <!ENTITY mdash '&#8212;' >
 
-  <!ENTITY rfc1321 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.1321.xml'>
-  <!ENTITY rfc2119 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml'>
-  <!ENTITY rfc3174 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.3174.xml'>
-  <!ENTITY rfc3629 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.3629.xml'>
-  <!ENTITY rfc3986 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml'>
-  <!ENTITY rfc6234 PUBLIC '' 'http://xml.resource.org/public/rfc/bibxml/reference.RFC.6234.xml'>
+  <!ENTITY RFC1321 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1321.xml">
+  <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+  <!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
+  <!ENTITY RFC3174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3174.xml">
+  <!ENTITY RFC3552 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3552.xml">
+  <!ENTITY RFC3629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3629.xml">
+  <!ENTITY RFC3986 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml">
+  <!ENTITY RFC5226 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5226.xml">
+  <!ENTITY RFC6234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6234.xml">
 
   <!-- RFC 2119 entities - for convenience -->
   <!ENTITY must 'MUST' >
@@ -30,21 +33,14 @@
   <!ENTITY current-bagit-version '1.00' >
 ]>
 
-<?xml-stylesheet type="text/xsl" href="rfc2629xslt/rfc2629.xslt" ?>
-
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<?rfc strict="yes" ?>
 <?rfc comments="no"?>
 <?rfc inline="yes"?>
 <?rfc symrefs="yes"?>
 <?rfc toc="yes"?>
 
-<!-- The next line is "on" by default, but the makefile turns it off
-     in favor of the line after it when preparing an IETF draft -->
-
-<!--#if internet-draft dont --> <?rfc private="NDIIPP Content Transfer Project"?> <rfc>
-<!-- reducing docName from URL to old-style draft name in hopes of clearing
-     the automatic I-D submission process; if it works, I'm not sure
-     automatic submission is worth depriving readers of the full URL -->
-<!--#if internet-draft then <rfc ipr="trust200902" docName="draft-A-S-00.txt"> -->
+<rfc category="info" docName="draft-kunze-bagit-14" ipr="trust200902">
  <front>
 
   <title abbrev="BagIt">
@@ -1007,12 +1003,12 @@ This draft does not request any action from IANA.
       target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx" />
     </reference>
 
-    &rfc2119; <!-- Requirements -->
-    &rfc1321; <!-- MD5 -->
-    &rfc3174; <!-- SHA-1 -->
-    &rfc6234; <!-- SHA-2 -->
-    &rfc3629; <!-- utf-8 -->
-    &rfc3986; <!-- URLs -->
+    &RFC2119; <!-- Requirements -->
+    &RFC1321; <!-- MD5 -->
+    &RFC3174; <!-- SHA-1 -->
+    &RFC6234; <!-- SHA-2 -->
+    &RFC3629; <!-- utf-8 -->
+    &RFC3986; <!-- URLs -->
 
     <reference anchor="UNICODE-TR15"
       target="http://www.unicode.org/reports/tr15/">
