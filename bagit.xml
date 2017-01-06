@@ -418,9 +418,6 @@ manifest-sha1.txt
   </artwork>
 </figure>
 
-<t>A bag &must-not; contain more than one payload manifest for a particular
-bag checksum algorithm.</t>
-
 <t>
 Each line of a payload manifest file &must; be of the form:
 </t>
