@@ -206,11 +206,13 @@ storage and transfer of arbitrary digital content (i.e. files).
 A bag consists of a directory containing the payload files and other accompanying
 files known as "tag" files. The "tags" are metadata files intended to facilitate
 and document the storage and transfer of the bag.
-BagIt does not require the processing of the entire structure to understand to
-involve understanding the payload. The name, BagIt, is inspired by the "enclose
-and deposit" method <xref target="ENCDEP" />, sometimes referred to as "bag it and tag it".
-This differs from other specifications (like ZIP) that only ensure the integrity
-of the files in that BagIt also ensures the complete set of files are included.
+BagIt does not require the processing of the entire structure to understand 
+the payload. The name, BagIt, is inspired by the "enclose and deposit" method 
+<xref target="ENCDEP" />, sometimes referred to as "bag it and tag it".
+BagIt differs from other specifications (like ZIP) by allowing for stronger
+checks then CRC-32, the ability to upgrade to stronger hash algorithms without 
+breaking backwards compatibility, the ability to verify each file without
+having to read the entire archive, and no file size limitation
 </t>
 </section> <!-- /Purpose -->
 
@@ -244,7 +246,7 @@ any ambiguity.
 
   <t hangText="bag declaration">
     The file required to be in all bags conforming to this specification.
-    Contains values necessary for bootstrapping the reading and processing of
+    Contains values necessary for the reading and processing of
     the rest of a bag. See <xref target="sec-bag-decl"/>.
   </t>
 
@@ -378,7 +380,7 @@ but is otherwise ignored for purposes relating to this specification.
 </t>
 </section> <!-- /Payload Directory -->
 
-<section title="Payload Manifest: manifest-&lt;alg&gt;.txt" anchor="sec-payload-manifest">
+<section title="Payload Manifest: manifest-&lt;algorithm&gt;.txt" anchor="sec-payload-manifest">
 <!-- WARNING: This section should be kept in relative sync with the
               section on Tag Manifests.
 -->
@@ -386,10 +388,7 @@ but is otherwise ignored for purposes relating to this specification.
 A payload manifest file provides a complete listing of the files contained in the payload,
 and a checksum for each payload file, to permit data integrity checking.
 
-A payload manifest is a tag file that lists payload file names and their checksums
-generated using a checksum algorithm.
-
-Every bag &must; contain one payload manifest file, and &may; contain
+Every bag &must; contain at least one payload manifest file, and &may; contain
 more than one. Every payload manifest &must; list every payload file. A payload
 manifest file &must; have a name of the form manifest-<spanx
 style="emph">algorithm</spanx>.txt, where <spanx style="emph">algorithm</spanx>
@@ -440,7 +439,7 @@ hex-val          = "x" 1*case-hexdig
                    [ 1*("." 1*case-hexdig) / ("-" 1*case-hexdig) ]
 case-hexdig      = DIGIT / "A" / "a" / "B" / "b" / "C" / "c" / "D" /
                    "d" / "F" / "f"
-case-hexdig      = DIGIT / "A" / "B" / "C" / "D" / "F"
+HEXDIG           = DIGIT / "A" / "B" / "C" / "D" / "F"
 filename         = (
                     "data"
                     "/"
@@ -449,7 +448,7 @@ filename         = (
 unreserved       = ALPHA / DIGIT / "-" / "." / "_" / "~"
 sub-delims       = "!" / "$" / "&#38;" / "'" / "(" / ")" / "*"
                    / "+" / "," / ";" / "="
-pct-encoded      = "%" case-hexdig case-hexdig
+pct-encoded      = "%" HEXDIG HEXDIG
 ending           = CR / LF / CRLF
 ]]></artwork>
 </figure>
@@ -518,10 +517,11 @@ linear white space (spaces or tabs).
 <figure>
   <preamble>"bag-info.txt" ABNF</preamble>
   <artwork type="abnf" xml:space="preserve"><![CDATA[
-metadata = key ":" value ending
-key      = ALPHA / DIGIT
-value    = ([1*WSP] 1*[ALPHA / DIGIT])
-ending   = CR / LF / CRLF
+metadata      = key ":" value ending
+key           = 1*alpha-numeric
+value         = 1*(1*alpha-numeric ending 1*WSP 1*alpha-numeric)
+alpha-numeric = ALPHA / DIGIT
+ending        = CR / LF / CRLF
 ]]></artwork>
 </figure>
 
@@ -537,14 +537,13 @@ conform to this format:
     The "octet-stream sum" of the payload, namely, a two-part number of the
     form "OctetCount.StreamCount", where OctetCount is the total number of
     octets (8-bit bytes) across all payload file content and StreamCount is the
-    total number of payload files. Compared to "Bag-Size", "Payload-Oxum" is
-    intended for machine consumption.
+    total number of payload files. 
 </t>
 
 <figure>
   <preamble>Payload-Oxum ABNF</preamble>
   <artwork type="abnf" xml:space="preserve"><![CDATA[
-  payload-oxum = (1*DIGIT "." 1*DIGIT)
+  payload-oxum = 1*DIGIT "." 1*DIGIT
 ]]></artwork>
 </figure>
 
@@ -604,11 +603,7 @@ file. Text tag files except for the bag declaration file &may; include a
 byte-order mark (BOM) only if the specified encoding requires it for
 proper decoding. In accordance with <xref target="RFC3629"/>, when "bagit.txt"
 specifies UTF-8 the tag files &must-not; begin with a byte-order mark (BOM).
-</t>
-
-<t>
-As specified in <xref target="sec-bag-decl"/>, the bag declaration
-file &must; be encoded in UTF-8 and &must-not; include a byte-order mark.
+See <xref target="sec-bag-decl"/>
 </t>
 
 <!-- TODO: Character escaping -->
@@ -662,7 +657,7 @@ attributes:
   <t>Every file in every payload manifest &must; be present on the filesystem.</t>
   <t>Every file in every tag manifest &must; be present on the filesystem.
      Tag files not listed in a tag manifest &may; be present.</t>
-         <t>Every payload file &must; be listed in all manifests.</t>
+         <t>Every payload file &must; be listed in all payload manifests.</t>
 </list>
 </t>
 
@@ -753,35 +748,6 @@ All implementations &should; have a test suite to guard against these cases.
 </section> <!-- End Section: Security considerations -->
 
 <section title="Practical Considerations (non-normative)">
-<section title="Disk and network transfer">
-
-<t>
-When creating a bag on physical media (such as hard disk, CD-ROM, or
-DVD) for transfer to another organization, the sender should select
-and format the media in a manner compatible with both the content
-requirements (e.g., file names and sizes) and the receiver's technical
-infrastructure. If the receiver's infrastructure is not known or the
-media needs to be compatible with a range of potential receivers,
-consideration should be given to portability and common usage. For
-example, a "lowest common denominator" for some potential receivers
-could be USB disk drives formatted with the FAT32 filesystem.
-</t>
-
-<t>
-Although overall bag size is unlimited in principle, network-based
-transfers may involve constraints on the amount of bag data that a
-receiver can receive at one time. It may be practical to split a
-large bag into several smaller bags.
-</t>
-
-<t>
-The mechanics of sending and receiving bags over networks is otherwise
-out of scope of the present document and may be facilitated by protocols
-such as <xref target="SWORD" /> or <xref target="METALINK" />.
-</t>
-
-</section> <!-- /Network and Disk Transfers -->
-
 <section title="Interoperability" anchor="sec-interoperability">
 
 <t>
