@@ -88,7 +88,7 @@
      <code>20052</code>
      <country>USA</country>
     </postal>
-    <email>jlit@loc.gov</email>
+    <email>justinlittman@gwu.edu</email>
    </address>
   </author>
 
@@ -138,7 +138,55 @@
     </postal>
     <email>jsca@loc.gov</email>
    </address>
+  </author>
+
+  <author initials="R." surname="Storey"
+          fullname="Rosie Storey">
+   <organization>
+    Library of Congress
+   </organization>
+   <address>
+    <postal>
+     <street>101 Independence Avenue SE</street>
+     <city>Washington</city> <region>DC</region>
+     <code>20540</code>
+     <country>USA</country>
+    </postal>
+    <email>rstorey@loc.gov</email>
+   </address>
+  </author>
+
+  <author initials="D." surname="Brunton"
+          fullname="David Brunton">
+   <organization>
+    Library of Congress
+   </organization>
+   <address>
+    <postal>
+     <street>101 Independence Avenue SE</street>
+     <city>Washington</city> <region>DC</region>
+     <code>20540</code>
+     <country>USA</country>
+    </postal>
+    <email>dbrun@loc.gov</email>
+   </address>
  </author>
+
+ <author initials="K." surname="Zwaard"
+         fullname="Kate Zwaard">
+  <organization>
+   Library of Congress
+  </organization>
+  <address>
+   <postal>
+    <street>101 Independence Avenue SE</street>
+    <city>Washington</city> <region>DC</region>
+    <code>20540</code>
+    <country>USA</country>
+   </postal>
+   <email>kzwa@loc.gov</email>
+  </address>
+</author>
 
   <author initials="C." surname="Adams"
           fullname="Chris Adams">
