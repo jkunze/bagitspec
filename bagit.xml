@@ -565,9 +565,10 @@ As a result, no FILENAME listed in a tag manifest begins "data/".
 The "bag-info.txt" file is a tag file that contains metadata elements
 describing the bag and the payload. The metadata elements contained in
 the "bag-info.txt" file are intended primarily for human use.
-All metadata elements are optional and &may; be repeated. Implementations
-&must; assume that the ordering is significant and provide access to the
-metadata elements in the order they are given in the "bag-info.txt" file.
+All metadata elements are optional and &may; be repeated. Because
+“bag-info.txt” is intended for human reading and editing, implementations
+&must; assume that the order of metadata elements is significant and &must; be
+preserved.
 </t>
 <t>
 A metadata element &must; consist of a label, a colon, and a value,
