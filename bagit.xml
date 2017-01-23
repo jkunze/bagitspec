@@ -789,25 +789,29 @@ myfirstbag/
 <section title="Special directory characters">
 <!-- Added by Brian Vargas, 2009-04-09 -->
 <t>
-The paths specified in the payload manifest, and tag manifest file do not
-prohibit special directory characters which might be significant on
-implementing systems. Implementors &must; ensure that files outside the bag
+The paths specified in the payload manifest and tag manifest file do not
+prohibit special directory characters which have special meaning on some
+operating systems. Implementors &must; ensure that files outside the bag
 directory structure are not accessed when reading or writing files based on
 paths specified in a bag.
+</t>
+
+<t>
+All implementations &should; have a test suite to guard against these cases.
 </t>
 
 <t>
 For example, a maliciously crafted "tagmanifest-md5.txt" file might
 contain entries which begin with a path character such as "/", "..",
 or a "~username" home directory reference in an attempt to cause a
-naive implementation to leak or overwrite targeted files.
-All implementations &should; have a test suite to guard against these cases.
+naive implementation to leak or overwrite targeted files on a POSIX operating
+system.
 </t>
 
 <t>
-  Windows implementations &should; test their implementations to ensure
-  that safety-checks prevent use of drive letters and the less commonly used
-  namespace sequences (e.g. "\\?\C:\…") described in <xref target="MSFNAM" />.
+Windows implementations &should; test their implementations to ensure
+that safety-checks prevent use of drive letters and the less commonly used
+namespace sequences (e.g. "\\?\C:\…") described in <xref target="MSFNAM" />.
 </t>
 </section> <!-- End Section: Special directory characters -->
 </section> <!-- End Section: Security considerations -->
