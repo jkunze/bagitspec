@@ -1,242 +1,216 @@
-<?xml version='1.0' ?>
+<?xml version="1.0"?>
 <!--
   See http://xml.resource.org/ for formatting tools to work with the RFC 7749
   XML format
 -->
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
-
-  <!ENTITY mdash '&#8212;' >
-
-  <!ENTITY RFC1321 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1321.xml">
-  <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
-  <!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
-  <!ENTITY RFC3174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3174.xml">
-  <!ENTITY RFC3552 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3552.xml">
-  <!ENTITY RFC3629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3629.xml">
-  <!ENTITY RFC3986 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml">
-  <!ENTITY RFC5226 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5226.xml">
-  <!ENTITY RFC6234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6234.xml">
-
-  <!-- RFC 2119 entities - for convenience -->
-  <!ENTITY must 'MUST' >
-  <!ENTITY must-not 'MUST NOT' >
-  <!ENTITY required 'REQUIRED' >
-  <!ENTITY shall 'SHALL' >
-  <!ENTITY shall-not 'SHALL NOT' >
-  <!ENTITY should 'SHOULD' >
-  <!ENTITY should-not 'SHOULD NOT' >
-  <!ENTITY recommended 'RECOMMENDED' >
-  <!ENTITY may 'MAY' >
-  <!ENTITY optional 'OPTIONAL' >
-
-  <!-- The current bagit version, for convenience. -->
-  <!ENTITY current-bagit-version '1.00' >
+<!ENTITY mdash "&#8212;">
+<!ENTITY RFC1321 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1321.xml">
+<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
+<!ENTITY RFC3174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3174.xml">
+<!ENTITY RFC3552 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3552.xml">
+<!ENTITY RFC3629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3629.xml">
+<!ENTITY RFC3986 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml">
+<!ENTITY RFC5226 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5226.xml">
+<!ENTITY RFC6234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6234.xml">
+<!-- RFC 2119 entities - for convenience --><!ENTITY must "MUST">
+<!ENTITY must-not "MUST NOT">
+<!ENTITY required "REQUIRED">
+<!ENTITY shall "SHALL">
+<!ENTITY shall-not "SHALL NOT">
+<!ENTITY should "SHOULD">
+<!ENTITY should-not "SHOULD NOT">
+<!ENTITY recommended "RECOMMENDED">
+<!ENTITY may "MAY">
+<!ENTITY optional "OPTIONAL">
+<!-- The current bagit version, for convenience. --><!ENTITY current-bagit-version "1.00">
 ]>
-
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <?rfc strict="yes" ?>
 <?rfc comments="no"?>
 <?rfc inline="yes"?>
 <?rfc symrefs="yes"?>
 <?rfc toc="yes"?>
-
 <rfc category="info" docName="draft-kunze-bagit-14" ipr="trust200902">
- <front>
-
-  <title abbrev="BagIt">
+  <front>
+    <title abbrev="BagIt">
    The BagIt File Packaging Format (V&current-bagit-version;)
   </title>
-
-  <author initials="A." surname="Boyko"
-          fullname="Andy Boyko">
-   <address>
-    <postal>
-     <street>1438 Kingfisher Way</street>
-     <city>Sunnyvale</city> <region>CA</region>
-     <code>94087</code>
-     <country>USA</country>
-    </postal>
-    <email>andy@boyko.net</email>
-   </address>
-  </author>
-
-  <author initials="J." surname="Kunze"
-          fullname="John A. Kunze">
-   <organization>
+    <author initials="A." surname="Boyko" fullname="Andy Boyko">
+      <address>
+        <postal>
+          <street>1438 Kingfisher Way</street>
+          <city>Sunnyvale</city>
+          <region>CA</region>
+          <code>94087</code>
+          <country>USA</country>
+        </postal>
+        <email>andy@boyko.net</email>
+      </address>
+    </author>
+    <author initials="J." surname="Kunze" fullname="John A. Kunze">
+      <organization>
     California Digital Library
    </organization>
-   <address>
-    <postal>
-     <street>415 20th St, 4th Floor</street>
-     <city>Oakland</city> <region>CA</region>
-     <code>94612</code>
-     <country>US</country>
-    </postal>
-    <email>jak@ucop.edu</email>
-   </address>
-  </author>
-
-  <author initials="J." surname="Littman"
-          fullname="Justin Littman">
-   <organization>
+      <address>
+        <postal>
+          <street>415 20th St, 4th Floor</street>
+          <city>Oakland</city>
+          <region>CA</region>
+          <code>94612</code>
+          <country>US</country>
+        </postal>
+        <email>jak@ucop.edu</email>
+      </address>
+    </author>
+    <author initials="J." surname="Littman" fullname="Justin Littman">
+      <organization>
     George Washington University Libraries
    </organization>
-   <address>
-    <postal>
-     <street>2130 H St NW</street>
-     <city>Washington</city> <region>DC</region>
-     <code>20052</code>
-     <country>USA</country>
-    </postal>
-    <email>justinlittman@gwu.edu</email>
-   </address>
-  </author>
-
-  <author initials="E." surname="Summers"
-          fullname="Ed Summers">
-   <organization>
+      <address>
+        <postal>
+          <street>2130 H St NW</street>
+          <city>Washington</city>
+          <region>DC</region>
+          <code>20052</code>
+          <country>USA</country>
+        </postal>
+        <email>justinlittman@gwu.edu</email>
+      </address>
+    </author>
+    <author initials="E." surname="Summers" fullname="Ed Summers">
+      <organization>
     University of Maryland
   </organization>
-   <address>
-    <postal>
-     <street>4130 Campus Drive</street>
-     <city>College Park</city> <region>MD</region>
-     <code>20742</code>
-     <country>USA</country>
-    </postal>
-    <email>ehs@pobox.com</email>
-   </address>
-  </author>
-
-  <author initials="L." surname="Madden"
-          fullname="Liz Madden">
-   <organization>
+      <address>
+        <postal>
+          <street>4130 Campus Drive</street>
+          <city>College Park</city>
+          <region>MD</region>
+          <code>20742</code>
+          <country>USA</country>
+        </postal>
+        <email>ehs@pobox.com</email>
+      </address>
+    </author>
+    <author initials="L." surname="Madden" fullname="Liz Madden">
+      <organization>
     Library of Congress
    </organization>
-   <address>
-    <postal>
-     <street>101 Independence Avenue SE</street>
-     <city>Washington</city> <region>DC</region>
-     <code>20540</code>
-     <country>USA</country>
-    </postal>
-    <email>emad@loc.gov</email>
-   </address>
-  </author>
-
-  <author initials="J." surname="Scancella"
-          fullname="John Scancella">
-   <organization>
+      <address>
+        <postal>
+          <street>101 Independence Avenue SE</street>
+          <city>Washington</city>
+          <region>DC</region>
+          <code>20540</code>
+          <country>USA</country>
+        </postal>
+        <email>emad@loc.gov</email>
+      </address>
+    </author>
+    <author initials="J." surname="Scancella" fullname="John Scancella">
+      <organization>
     Library of Congress
    </organization>
-   <address>
-    <postal>
-     <street>101 Independence Avenue SE</street>
-     <city>Washington</city> <region>DC</region>
-     <code>20540</code>
-     <country>USA</country>
-    </postal>
-    <email>jsca@loc.gov</email>
-   </address>
-  </author>
-
-  <author initials="R." surname="Storey"
-          fullname="Rosie Storey">
-   <organization>
+      <address>
+        <postal>
+          <street>101 Independence Avenue SE</street>
+          <city>Washington</city>
+          <region>DC</region>
+          <code>20540</code>
+          <country>USA</country>
+        </postal>
+        <email>jsca@loc.gov</email>
+      </address>
+    </author>
+    <author initials="R." surname="Storey" fullname="Rosie Storey">
+      <organization>
     Library of Congress
    </organization>
-   <address>
-    <postal>
-     <street>101 Independence Avenue SE</street>
-     <city>Washington</city> <region>DC</region>
-     <code>20540</code>
-     <country>USA</country>
-    </postal>
-    <email>rstorey@loc.gov</email>
-   </address>
-  </author>
-
-  <author initials="D." surname="Brunton"
-          fullname="David Brunton">
-   <organization>
+      <address>
+        <postal>
+          <street>101 Independence Avenue SE</street>
+          <city>Washington</city>
+          <region>DC</region>
+          <code>20540</code>
+          <country>USA</country>
+        </postal>
+        <email>rstorey@loc.gov</email>
+      </address>
+    </author>
+    <author initials="D." surname="Brunton" fullname="David Brunton">
+      <organization>
     Library of Congress
    </organization>
-   <address>
-    <postal>
-     <street>101 Independence Avenue SE</street>
-     <city>Washington</city> <region>DC</region>
-     <code>20540</code>
-     <country>USA</country>
-    </postal>
-    <email>dbrun@loc.gov</email>
-   </address>
- </author>
-
- <author initials="K." surname="Zwaard"
-         fullname="Kate Zwaard">
-  <organization>
+      <address>
+        <postal>
+          <street>101 Independence Avenue SE</street>
+          <city>Washington</city>
+          <region>DC</region>
+          <code>20540</code>
+          <country>USA</country>
+        </postal>
+        <email>dbrun@loc.gov</email>
+      </address>
+    </author>
+    <author initials="K." surname="Zwaard" fullname="Kate Zwaard">
+      <organization>
    Library of Congress
   </organization>
-  <address>
-   <postal>
-    <street>101 Independence Avenue SE</street>
-    <city>Washington</city> <region>DC</region>
-    <code>20540</code>
-    <country>USA</country>
-   </postal>
-   <email>kzwa@loc.gov</email>
-  </address>
-</author>
-
-  <author initials="C." surname="Adams"
-          fullname="Chris Adams">
-   <organization>
+      <address>
+        <postal>
+          <street>101 Independence Avenue SE</street>
+          <city>Washington</city>
+          <region>DC</region>
+          <code>20540</code>
+          <country>USA</country>
+        </postal>
+        <email>kzwa@loc.gov</email>
+      </address>
+    </author>
+    <author initials="C." surname="Adams" fullname="Chris Adams">
+      <organization>
     Library of Congress
    </organization>
-   <address>
-    <postal>
-     <street>101 Independence Avenue SE</street>
-     <city>Washington</city> <region>DC</region>
-     <code>20540</code>
-     <country>USA</country>
-    </postal>
-    <email>cadams@loc.gov</email>
-   </address>
- </author>
-
-  <author initials="B." surname="Vargas"
-          fullname="Brian Vargas">
-   <address>
-    <postal>
-     <street>1354 Quincy St. NW</street>
-     <city>Washington</city> <region>DC</region>
-     <code>20011</code>
-     <country>USA</country>
-    </postal>
-    <email>brian@ardvaark.net</email>
-   </address>
-  </author>
-
-  <date day="6" month="December" year="2016" />
-
-  <abstract>
-
-<t>
+      <address>
+        <postal>
+          <street>101 Independence Avenue SE</street>
+          <city>Washington</city>
+          <region>DC</region>
+          <code>20540</code>
+          <country>USA</country>
+        </postal>
+        <email>cadams@loc.gov</email>
+      </address>
+    </author>
+    <author initials="B." surname="Vargas" fullname="Brian Vargas">
+      <address>
+        <postal>
+          <street>1354 Quincy St. NW</street>
+          <city>Washington</city>
+          <region>DC</region>
+          <code>20011</code>
+          <country>USA</country>
+        </postal>
+        <email>brian@ardvaark.net</email>
+      </address>
+    </author>
+    <date day="6" month="December" year="2016"/>
+    <abstract>
+      <t>
 This document specifies BagIt, a hierarchical file packaging format for
 storage and transfer of arbitrary digital content. A "bag" has just enough
 structure to enclose descriptive metadata "tags" and a file "payload" but
 does not require knowledge of the payload's internal semantics. This
 BagIt format should be suitable for reliable storage and transfer.
 </t>
-
-  </abstract>
-
- </front>
-
-<middle>
-<section title="Introduction">
-<section title="Purpose">
-<t>
+    </abstract>
+  </front>
+  <middle>
+    <section title="Introduction">
+      <section title="Purpose">
+        <t>
 BagIt is a hierarchical file packaging format designed to support
 storage and transfer of arbitrary digital content.
 A bag consists of a directory containing the payload files and other accompanying
@@ -245,142 +219,126 @@ facilitate and document the storage and transfer of the bag. Processing a bag
 does not require any understanding of the payload file contents and the payload
 can be accessed without processing the BagIt metadata.
 </t>
-
-<t>
+        <t>
 The name, BagIt, is inspired by the "enclose and deposit" method
-<xref target="ENCDEP" />, sometimes referred to as "bag it and tag it".
+<xref target="ENCDEP"/>, sometimes referred to as "bag it and tag it".
 BagIt differs from traditional archive formats such as TAR or ZIP in two general
 areas:
 
-<list style="numbers">
-  <t>
+<list style="numbers"><t>
     Strong integrity assurances: the format supports only cryptographic-quality
-    hash algorithms (see <xref target="bag-checksum-algorithms" />) and allows
+    hash algorithms (see <xref target="bag-checksum-algorithms"/>) and allows
     for in-place upgrades to add additional manifests using stronger algorithms
     without breaking backwards compatibility
-  </t>
-  <t>
+  </t><t>
     Direct file access: files may be accessed using standard operating system
     utilities, implementations do not need to process a potentially large
     archive file to extract a subset of data, and the format imposes no size
     limits for either individual files or a bag.
-  </t>
-</list>
+  </t></list>
 </t>
-</section> <!-- /Purpose -->
-
-<section title="Requirements">
-<t>
+      </section>
+      <!-- /Purpose -->
+      <section title="Requirements">
+        <t>
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
 document are to be interpreted as described in <xref target="RFC2119"/>.
 </t>
-
-<t>
+        <t>
   Implementors are strongly encouraged to review the interoperability
-  considerations described in <xref target="sec-interoperability" />.
+  considerations described in <xref target="sec-interoperability"/>.
 </t>
-</section> <!-- /Requirements -->
-
-<section title="Terminology">
-<t>
+      </section>
+      <!-- /Requirements -->
+      <section title="Terminology">
+        <t>
   The following terms have precise definitions as used in this specification:
 </t>
-
-<t>
-<list style="hanging">
-  <t hangText="bag">
+        <t>
+          <list style="hanging">
+            <t hangText="bag">
     A order independent set of opaque files contained within the structure
     defined by this specification.
   </t>
-
-  <t hangText="bag declaration">
+            <t hangText="bag declaration">
     The file required to be in all bags conforming to this specification.
     Contains values necessary to process the rest of a bag.
     See <xref target="sec-bag-decl"/>.
   </t>
-
-  <t hangText="bag checksum algorithm">
+            <t hangText="bag checksum algorithm">
     The name of a cryptographic checksum algorithm which has been normalized
     for use in a manifest or tag manifest file name (e.g. "SHA-1" becomes
-    "sha1") as described in <xref target="bag-checksum-algorithms" />.
+    "sha1") as described in <xref target="bag-checksum-algorithms"/>.
   </t>
-
-  <t hangText="payload">
+            <t hangText="payload">
     The data encapsulated by the bag. The contents of the payload
     are opaque to this specification, and, with respect to BagIt processing,
     are always considered as an opaque octet stream.
-    See <xref target="sec-payload-dir" />.
+    See <xref target="sec-payload-dir"/>.
   </t>
-
-  <t hangText="tag directory">
+            <t hangText="tag directory">
     A directory that contains one or more tag files.
   </t>
-
-  <t hangText="tag file">
+            <t hangText="tag file">
     A file which contains metadata. The specification defines two standard tag
     files: tag manifests, which describe other tag files
-    <xref target="sec-tag-manifest" />, and the "bag-info.txt" file containing
-    human-meaningful metadata <xref target="sec-bag-info" />.
+    <xref target="sec-tag-manifest"/>, and the "bag-info.txt" file containing
+    human-meaningful metadata <xref target="sec-bag-info"/>.
 
     The specification also allows other arbitrary tag files as described in
-    <xref target="sec-other-tag-files" />.
+    <xref target="sec-other-tag-files"/>.
   </t>
-
-  <t hangText="complete">
+            <t hangText="complete">
     A bag which contains every element required by this specification,
     every payload file listed in a manifest, and any optional files which are
-    listed in a tag manifest. See <xref target="sec-complete-valid" />.
+    listed in a tag manifest. See <xref target="sec-complete-valid"/>.
   </t>
-
-  <t hangText="valid">
+            <t hangText="valid">
     A complete bag where every checksum in every manifest has been
     successfully verified against the corresponding file.
   </t>
-</list>
-</t>
-</section> <!-- /Terminology -->
-
-<!-- TODO -->
-<!--
+          </list>
+        </t>
+      </section>
+      <!-- /Terminology -->
+      <!-- TODO -->
+      <!--
 <section title="Overview of Operation">
 <t>
 </t>
 </section>
---> <!-- /Overview of Operation -->
-</section> <!-- /Introduction -->
-
-<section title="Structure">
-<t>
+-->
+      <!-- /Overview of Operation -->
+    </section>
+    <!-- /Introduction -->
+    <section title="Structure">
+      <t>
   A bag consists of a base directory containing:
 </t>
-
-<t>
-  <list style="numbers">
-    <t>a set of required and optional tag files <xref target="sec-optional-elements" /></t>
-    <t>a sub-directory named "data", called the payload directory. <xref target="sec-payload-dir" /></t>
-    <t>a set of optional tag directories</t>
-  </list>
-</t>
-
-<t>
+      <t>
+        <list style="numbers">
+          <t>a set of required and optional tag files <xref target="sec-optional-elements"/></t>
+          <t>a sub-directory named "data", called the payload directory. <xref target="sec-payload-dir"/></t>
+          <t>a set of optional tag directories</t>
+        </list>
+      </t>
+      <t>
 The tag files in the base directory consist of one or more files named
 "manifest-<spanx style="emph">algorithm</spanx>.txt"
-(see <xref target="sec-payload-manifest" /> and
-<xref target="bag-checksum-algorithms" />),
-a file named "bagit.txt" (see <xref target="sec-bag-decl" />),
+(see <xref target="sec-payload-manifest"/> and
+<xref target="bag-checksum-algorithms"/>),
+a file named "bagit.txt" (see <xref target="sec-bag-decl"/>),
 and zero or more additional tag files (see
-<xref target="sec-optional-elements" />). The tag files and directories are
+<xref target="sec-optional-elements"/>). The tag files and directories are
 arbitrary file hierarchies and &may; have
 any name that is not reserved for a file or directory in this specification.
 </t>
-
-<t>
+      <t>
 The base directory &may; have any name.
 </t>
-
-<figure>
-  <artwork>
+      <figure>
+        <artwork>
       &lt;base directory&gt;/
       |
       +-- bagit.txt
@@ -397,40 +355,35 @@ The base directory &may; have any name.
             |
             +-- [optional tag files]
   </artwork>
-</figure>
-
-<section title="Required Elements" anchor="sec-required-elements">
-<section title="Bag Declaration: bagit.txt" anchor="sec-bag-decl">
-
-<t>
+      </figure>
+      <section title="Required Elements" anchor="sec-required-elements">
+        <section title="Bag Declaration: bagit.txt" anchor="sec-bag-decl">
+          <t>
 The "bagit.txt" tag file &must; consist of exactly two lines:
 </t>
-
-<figure>
-  <artwork>
+          <figure>
+            <artwork>
 BagIt-Version: M.N
 Tag-File-Character-Encoding: UTF-8
   </artwork>
-  <postamble>
+            <postamble>
     M.N identifies the BagIt major (M) and minor (N) version numbers,
     and UTF-8 identifies the character set encoding used by the tag files.
 
     The bag declaration &must; be encoded in UTF-8, and &must-not; contain a
     byte-order mark (BOM) <xref target="RFC3629"/>.
   </postamble>
-</figure>
-
-<t>
+          </figure>
+          <t>
 The number for this version of the specification is "&current-bagit-version;".
 </t>
-</section>  <!-- /Bag Declaration -->
-
-<section title="Payload Directory: data/" anchor="sec-payload-dir">
-<t>
+        </section>
+        <!-- /Bag Declaration -->
+        <section title="Payload Directory: data/" anchor="sec-payload-dir">
+          <t>
 The base directory &must; contain a sub-directory named "data".
 </t>
-
-<t>
+          <t>
 The payload directory contains the arbitrary digital content within the bag.
 The files under the payload directory are called payload files, or the payload.
 Each payload file is treated as an opaque octet stream when verifying file
@@ -438,48 +391,42 @@ correctness.
 Any sub-directory structure within the payload &must; be preserved but is
 otherwise ignored for purposes relating to this specification.
 </t>
-</section> <!-- /Payload Directory -->
-
-<section title="Payload Manifest: manifest-&lt;algorithm&gt;.txt" anchor="sec-payload-manifest">
-<!-- WARNING: This section should be kept in relative sync with the
+        </section>
+        <!-- /Payload Directory -->
+        <section title="Payload Manifest: manifest-&lt;algorithm&gt;.txt" anchor="sec-payload-manifest">
+          <!-- WARNING: This section should be kept in relative sync with the
               section on Tag Manifests.
 -->
-<t>
+          <t>
 A payload manifest file provides a complete listing of each payload file along
 with a corresponding checksum to permit data integrity checking.
 </t>
-
-<t>
+          <t>
 Every bag &must; contain at least one payload manifest file and &may; contain
 more than one. Every payload manifest &must; list every payload file. A payload
-manifest file &must; have a name of the form "manifest-<spanx
-style="emph">algorithm</spanx>.txt", where <spanx style="emph">algorithm</spanx>
+manifest file &must; have a name of the form "manifest-<spanx style="emph">algorithm</spanx>.txt", where <spanx style="emph">algorithm</spanx>
 is a string specifying the checksum algorithm used by that manifest as described
-in <xref target="bag-checksum-algorithms" />.
+in <xref target="bag-checksum-algorithms"/>.
 </t>
-
-<figure>
-  <preamble>Example payload manifest filenames</preamble>
-  <artwork>
+          <figure>
+            <preamble>Example payload manifest filenames</preamble>
+            <artwork>
 manifest-md5.txt
 manifest-sha1.txt
   </artwork>
-</figure>
-
-<t>
+          </figure>
+          <t>
 Each line of a payload manifest file &must; be of the form:
 </t>
-
-<figure>
-  <artwork>CHECKSUM FILENAME</artwork>
-  <postamble>
+          <figure>
+            <artwork>CHECKSUM FILENAME</artwork>
+            <postamble>
     where FILENAME is the pathname of a file relative to the base directory,
     and CHECKSUM is a hex-encoded checksum calculated according to
     <spanx style="emph">algorithm</spanx> over every octet in the file.
   </postamble>
-</figure>
-
-<t>
+          </figure>
+          <t>
 The hex-encoded checksum &may; use uppercase and/or lowercase letters.
 
 The slash character ('/') &must; be used as a path separator in FILENAME.
@@ -494,10 +441,9 @@ If a FILENAME includes a newline (LF), a carriage return (CR), or carriage
 return plus newline (CRLF) it &must; be percent-encoded following
 <xref target="RFC3986"/>.
 </t>
-
-<figure>
-  <preamble>Payload Manifest ABNF</preamble>
-  <artwork type="abnf" xml:space="preserve"><![CDATA[
+          <figure>
+            <preamble>Payload Manifest ABNF</preamble>
+            <artwork type="abnf" xml:space="preserve"><![CDATA[
 payload-manifest = checksum 1*WSP filename ending
 checksum         = 1*hex-val
 hex-val          = "x" 1*case-hexdig
@@ -516,61 +462,57 @@ sub-delims       = "!" / "$" / "&#38;" / "'" / "(" / ")" / "*"
 pct-encoded      = "%" HEXDIG HEXDIG
 ending           = CR / LF / CRLF
 ]]></artwork>
-</figure>
-
-<t>
+          </figure>
+          <t>
 A manifest &must-not; reference directories. Bag creators who wish to create
 an otherwise empty directory have typically done so by creating an empty
 placeholder file with a name such as ".keep".
 </t>
-</section> <!-- /Payload Manifest -->
-</section> <!-- /Required Elements -->
-
-<section title="Optional Elements" anchor="sec-optional-elements">
-<section anchor="sec-tag-manifest" title="Tag Manifest: tagmanifest-&lt;alg&gt;.txt">
-<!-- WARNING: This section should be kept in relative sync with the
+        </section>
+        <!-- /Payload Manifest -->
+      </section>
+      <!-- /Required Elements -->
+      <section title="Optional Elements" anchor="sec-optional-elements">
+        <section anchor="sec-tag-manifest" title="Tag Manifest: tagmanifest-&lt;alg&gt;.txt">
+          <!-- WARNING: This section should be kept in relative sync with the
               section on Payload Manifests.
 -->
-<t>
+          <t>
 A tag manifest is a tag file that lists other tag files and checksums for
 those tag files generated using a particular bag checksum algorithm.
 A bag &may; contain one or more tag manifests.
 
-A tag manifest file &must; have a name of the form "tagmanifest-<spanx
-style="emph">algorithm</spanx>.txt", where <spanx style="emph">algorithm</spanx>
+A tag manifest file &must; have a name of the form "tagmanifest-<spanx style="emph">algorithm</spanx>.txt", where <spanx style="emph">algorithm</spanx>
 is a string following the format described in
-<xref target="bag-checksum-algorithms" /> specifying the bag checksum algorithm
+<xref target="bag-checksum-algorithms"/> specifying the bag checksum algorithm
 used in that manifest.
 </t>
-
-<figure>
-  <preamble>Example tag manifest filenames:</preamble>
-  <artwork>
+          <figure>
+            <preamble>Example tag manifest filenames:</preamble>
+            <artwork>
 tagmanifest-md5.txt
 tagmanifest-sha1.txt
   </artwork>
-</figure>
-
-<t>
+          </figure>
+          <t>
 A tag manifest file has the same form as the payload file manifest
-file described in <xref target="sec-payload-manifest" />,
+file described in <xref target="sec-payload-manifest"/>,
 but &must-not; list any payload files.
 As a result, no FILENAME listed in a tag manifest begins "data/".
 </t>
-
-</section> <!-- /Tag Manifest -->
-
-<section anchor="sec-bag-info" title="Bag Metadata: bag-info.txt">
-<t>
+        </section>
+        <!-- /Tag Manifest -->
+        <section anchor="sec-bag-info" title="Bag Metadata: bag-info.txt">
+          <t>
 The "bag-info.txt" file is a tag file that contains metadata elements
 describing the bag and the payload. The metadata elements contained in
 the "bag-info.txt" file are intended primarily for human use.
 All metadata elements are optional and &may; be repeated. Because
-“bag-info.txt” is intended for human reading and editing, implementations
+&#x201C;bag-info.txt&#x201D; is intended for human reading and editing, implementations
 &must; assume that the order of metadata elements is significant and &must; be
 preserved.
 </t>
-<t>
+          <t>
 A metadata element &must; consist of a label, a colon, and a value,
 each separated by optional whitespace. It is &recommended; that
 lines not exceed 79 characters in length. Long values may be continued
@@ -578,19 +520,17 @@ onto the next line by inserting a newline (LF), a carriage return (CR),
 or carriage return plus newline (CRLF) and indenting the next line with
 linear white space (spaces or tabs).
 </t>
-
-<figure>
-  <preamble>"bag-info.txt" ABNF</preamble>
-  <artwork type="abnf" xml:space="preserve"><![CDATA[
+          <figure>
+            <preamble>"bag-info.txt" ABNF</preamble>
+            <artwork type="abnf" xml:space="preserve"><![CDATA[
 metadata      = key ":" value ending
 key           = 1*alpha-numeric
 value         = 1*(1*alpha-numeric ending 1*WSP 1*alpha-numeric)
 alpha-numeric = ALPHA / DIGIT
 ending        = CR / LF / CRLF
 ]]></artwork>
-</figure>
-
-<t>
+          </figure>
+          <t>
 An implementation &should; add the optional "Payload-Oxum" element for the
 purpose of quickly detecting incomplete bags before performing checksum
 validation. This is strictly an optimization and implementations &must; perform
@@ -598,8 +538,7 @@ the standard checksum validation process before proclaiming a bag to be valid.
 This element &must-not; be present more than once and, if present, &must;
 conform to this format:
 </t>
-
-<t hangText="Payload-Oxum">
+          <t hangText="Payload-Oxum">
     The "octet-stream sum" of the payload is a pair of two numbers in the form
     "<spanx style="emph">OctetCount</spanx>.<spanx style="emph">StreamCount</spanx>",
     where <spanx style="emph">OctetCount</spanx> is the total number of octets
@@ -607,17 +546,15 @@ conform to this format:
     <spanx style="emph">StreamCount</spanx> is the total number of payload
     files.
 </t>
-
-<figure>
-  <preamble>Payload-Oxum ABNF</preamble>
-  <artwork type="abnf" xml:space="preserve"><![CDATA[
+          <figure>
+            <preamble>Payload-Oxum ABNF</preamble>
+            <artwork type="abnf" xml:space="preserve"><![CDATA[
   payload-oxum = 1*DIGIT "." 1*DIGIT
 ]]></artwork>
-</figure>
-
-<figure>
-  <preamble>An example "bag-info.txt" file</preamble>
-  <artwork>
+          </figure>
+          <figure>
+            <preamble>An example "bag-info.txt" file</preamble>
+            <artwork>
     Source-Organization: FOO University
     Organization-Address: 1 Main St., Cupertino, California, 11111
     Contact-Name: Jane Doe
@@ -635,34 +572,34 @@ conform to this format:
     Internal-Sender-Description: Uncompressed greyscale TIFFs created
          from microfilm and are...
   </artwork>
-</figure>
-</section> <!-- /Bag Metadata -->
-
-<section title="Other Tag Files" anchor="sec-other-tag-files">
-<t>
+          </figure>
+        </section>
+        <!-- /Bag Metadata -->
+        <section title="Other Tag Files" anchor="sec-other-tag-files">
+          <t>
 A bag &may; contain other tag files that are not defined by this
 specification.
 
 Implementations &must; perform standard checksum validation on any tag file
 which is listed in a tag manifest but &must; otherwise ignore their contents.
 </t>
-</section> <!-- /Other Tag Files -->
-</section> <!-- /Optional Elements -->
-
-<section title="Text Tag File Format" anchor="sec-tag-files">
-<t>
+        </section>
+        <!-- /Other Tag Files -->
+      </section>
+      <!-- /Optional Elements -->
+      <section title="Text Tag File Format" anchor="sec-tag-files">
+        <t>
 All tag files specifically described in this specification &must; adhere to
 the text tag file format described below. Other tag files &may; adhere to
 the text tag file format described below.
 </t>
-<t>
+        <t>
 Text tag files are line-oriented, and each line &must; be
 terminated by a newline (LF), a carriage return (CR), or carriage return
 plus newline (CRLF).
 Text tag file names &must; end in the extension ".txt".
 </t>
-
-<t>
+        <t>
 In all text tag files except for the bag declaration file, text &must; be
 encoded in the character encoding specified in the "bagit.txt" bag declaration
 file. Text tag files except for the bag declaration file &may; include a
@@ -671,31 +608,28 @@ proper decoding. In accordance with <xref target="RFC3629"/>, when "bagit.txt"
 specifies UTF-8 the tag files &must-not; begin with a byte-order mark (BOM).
 See <xref target="sec-bag-decl"/>
 </t>
-
-<!-- TODO: Character escaping -->
-<!--
+        <!-- TODO: Character escaping -->
+        <!--
 <t>
 The backslash character ('\', U+005C) escapes from special processing any
 </t>
 -->
-</section> <!-- /Tags Files -->
-
-<section title="Bag Checksum Algorithms" anchor="bag-checksum-algorithms">
-<t>
+      </section>
+      <!-- /Tags Files -->
+      <section title="Bag Checksum Algorithms" anchor="bag-checksum-algorithms">
+        <t>
 The payload manifest and tag manifests permit validating the integrity of the payload
 and tag files in a bag produced by the checksum algorithms.
 Checksum values &must; be encoded so as to conform to the manifest format
 specified in <xref target="sec-payload-manifest"/>. However, the internal details
 of a checksum are outside the scope of this document.
 </t>
-
-<t>
+        <t>
 The name of the checksum algorithm &must; be normalized for use in the
 manifest's filename by lowercasing the common name of the algorithm and
 removing all non-alphanumeric characters.
 </t>
-
-<t>
+        <t>
   Bag creation and validation tools &must; support the SHA-2 family of
   algorithms <xref target="RFC6234"/> and &should; enable SHA-512 by default
   when creating new bags.
@@ -707,49 +641,42 @@ removing all non-alphanumeric characters.
   manifests using new algorithms to streamline the process of in-place
   upgrades.
 </t>
-</section> <!-- /Bag Checksum Algorithms -->
-
-</section> <!-- /Bag Structure -->
-
-<section title="Complete, Incomplete, and Valid bags" anchor="sec-complete-valid">
-<t>
+      </section>
+      <!-- /Bag Checksum Algorithms -->
+    </section>
+    <!-- /Bag Structure -->
+    <section title="Complete, Incomplete, and Valid bags" anchor="sec-complete-valid">
+      <t>
 A <spanx style="emph">complete</spanx> bag &must; meet the following
 requirements:
 </t>
-
-<t>
-<list style="numbers">
-  <t>Every required element &must; be present
-     (<xref target="sec-required-elements" />).</t>
-  <t>Every file listed in every tag manifest &must; be present.</t>
-  <t>Every file listed in every payload manifest &must; be present.</t>
-  <t>Every payload file &must; be listed in every payload manifest.</t>
-</list>
-</t>
-
-<t>
+      <t>
+        <list style="numbers">
+          <t>Every required element &must; be present
+     (<xref target="sec-required-elements"/>).</t>
+          <t>Every file listed in every tag manifest &must; be present.</t>
+          <t>Every file listed in every payload manifest &must; be present.</t>
+          <t>Every payload file &must; be listed in every payload manifest.</t>
+        </list>
+      </t>
+      <t>
 A <spanx style="emph">valid</spanx> bag &must; meet the following requirements:
 </t>
-
-<t>
-<list style="numbers">
-  <t>The bag &must; be <spanx style="emph">complete</spanx>.</t>
-  <t>
+      <t>
+        <list style="numbers">
+          <t>The bag &must; be <spanx style="emph">complete</spanx>.</t>
+          <t>
     Every checksum in every payload manifest and tag manifest has been
     successfully verified against the contents of the corresponding file.
   </t>
-  <t>Every element present &must; comply with this specification.</t>
-</list>
-</t>
-
-</section> <!-- Completeness and validity -->
-
-
-
-<section title="Examples">
-<section title="Example of a basic bag">
-
-<t>
+          <t>Every element present &must; comply with this specification.</t>
+        </list>
+      </t>
+    </section>
+    <!-- Completeness and validity -->
+    <section title="Examples">
+      <section title="Example of a basic bag">
+        <t>
 This is the layout of a basic bag containing an image and a companion
 OCR file. Lines of file content are shown in parentheses beneath the
 file name.
@@ -757,8 +684,7 @@ file name.
 <!-- Note that the artwork looks funky on the version line, to account
    for the fact that the entity value is much shorter than the entity
    name. -->
-<figure>
- <artwork>
+<figure><artwork>
 myfirstbag/
 |
 |   manifest-md5.txt
@@ -777,102 +703,86 @@ myfirstbag/
      |   27613-h/images/q172.txt
      |    (... OCR text ...                                        )
      ....
- </artwork>
-</figure>
+ </artwork></figure>
 
 </t>
-</section>
-
-</section> <!-- /Examples -->
-
-<section title="Security Considerations" anchor="sec-security">
-
-<section title="Special directory characters">
-<!-- Added by Brian Vargas, 2009-04-09 -->
-<t>
+      </section>
+    </section>
+    <!-- /Examples -->
+    <section title="Security Considerations" anchor="sec-security">
+      <section title="Special directory characters">
+        <!-- Added by Brian Vargas, 2009-04-09 -->
+        <t>
 The paths specified in the payload manifest and tag manifest file do not
 prohibit special directory characters which have special meaning on some
 operating systems. Implementors &must; ensure that files outside the bag
 directory structure are not accessed when reading or writing files based on
 paths specified in a bag.
 </t>
-
-<t>
+        <t>
 All implementations &should; have a test suite to guard against these cases.
 </t>
-
-<t>
+        <t>
 For example, a maliciously crafted "tagmanifest-md5.txt" file might
 contain entries which begin with a path character such as "/", "..",
 or a "~username" home directory reference in an attempt to cause a
 naive implementation to leak or overwrite targeted files on a POSIX operating
 system.
 </t>
-
-<t>
+        <t>
 Windows implementations &should; test their implementations to ensure
 that safety-checks prevent use of drive letters and the less commonly used
-namespace sequences (e.g. "\\?\C:\…") described in <xref target="MSFNAM" />.
+namespace sequences (e.g. "\\?\C:\&#x2026;") described in <xref target="MSFNAM"/>.
 </t>
-</section> <!-- End Section: Special directory characters -->
-</section> <!-- End Section: Security considerations -->
-
-<section title="Practical Considerations (non-normative)">
-<section title="Interoperability" anchor="sec-interoperability">
-
-<t>
+      </section>
+      <!-- End Section: Special directory characters -->
+    </section>
+    <!-- End Section: Security considerations -->
+    <section title="Practical Considerations (non-normative)">
+      <section title="Interoperability" anchor="sec-interoperability">
+        <t>
 This section lists practical considerations for implementors and users. None of
 the points below are required but they are recommended for general-purpose
 usage.
 </t>
-
-<section title="Filename normalization" anchor="filename-normalization">
-
-<t>
+        <section title="Filename normalization" anchor="filename-normalization">
+          <t>
   This section provides background information on various challenges caused by
   differences in how operating systems, filesystems, and common tools handle
   filenames followed by a list of recommendations for implementors in
-  <xref target="filename-normalization-recommendations" />.
+  <xref target="filename-normalization-recommendations"/>.
 </t>
-
-<section title="Case sensitivity">
-  <t>
+          <section title="Case sensitivity">
+            <t>
     There are two challenges for interoperability related to filename case:
-    <list style="symbols">
-      <t>
+    <list style="symbols"><t>
         Filesystems such as FAT or EXFAT always convert filenames to uppercase:
         "example.txt" will be stored as "EXAMPLE.TXT"
-      </t>
-      <t>
+      </t><t>
         Many Unix filesystems save filenames exactly as provided, allowing
         multiple files which differ only in case: "example.txt" and
         "Example.txt" are separate files
-      </t>
-      <t>
+      </t><t>
         NTFS and HFS+ usually preserve case when storing files but are
         case-insensitive when retrieving them. A file saved as "Example.txt"
         will be retrieved by that name but will also be retrieved as
         "EXAMPLE.TXT", "example.txt", etc.
-      </t>
-    </list>
+      </t></list>
   </t>
-</section>
-
-<section title="Unicode normalization">
-
-<t>
+          </section>
+          <section title="Unicode normalization">
+            <t>
 The Unicode specification has common cases where different character sequences
-produce the same human-meaningful text. These are referred to as “canonically
-equivalent” and the Unicode specification defines different normalization
-forms — see <xref target="UNICODE-TR15" /> for the full details and a brief
+produce the same human-meaningful text. These are referred to as &#x201C;canonically
+equivalent&#x201D; and the Unicode specification defines different normalization
+forms &#x2014; see <xref target="UNICODE-TR15"/> for the full details and a brief
 example below:
 </t>
-
-<figure>
-  <preamble>
-    The common surname "Núñez" normalized in different forms
+            <figure>
+              <preamble>
+    The common surname "N&#xFA;&#xF1;ez" normalized in different forms
   </preamble>
-  <artwork><![CDATA[
+              <artwork><![CDATA[
 NFD (Decomposition):
 
 Char      UTF8 Hex  Name
@@ -895,73 +805,61 @@ N               4e  LATIN CAPITAL LETTER N
 e               65  LATIN SMALL LETTER E
 z               7a  LATIN SMALL LETTER Z
   ]]></artwork>
-</figure>
-
-<t>
+            </figure>
+            <t>
   Unicode normalization is relevant to BagIt implementors because different
   systems have different standards for normalization:
 
-  <list style="symbols">
-    <t>
+  <list style="symbols"><t>
       Apple's HFS Plus filesystem always normalizes filenames to a
-      fully-decomposed form based on the Unicode 2.0 specification (see <xref
-      target="TN1150" />).
-    </t>
-    <t>
-      Windows treats filenames as opaque character sequences (see <xref
-      target="MSFNAM" />) and will store and return the encoded bytes exactly
+      fully-decomposed form based on the Unicode 2.0 specification (see <xref target="TN1150"/>).
+    </t><t>
+      Windows treats filenames as opaque character sequences (see <xref target="MSFNAM"/>) and will store and return the encoded bytes exactly
       as provided.
-    </t>
-    <t>
+    </t><t>
       Linux and other common Unix systems are generally similar to Windows in
       storing and returning opaque byte streams but this behaviour is
       technically filesystem-dependent.
-    </t>
-    <t>
+    </t><t>
       Utilities used for file management, transfer, and archival may ignore this
       issue, apply an arbitrary normalization form, or allow the user to control
       how normalization is applied.
-    </t>
-  </list>
+    </t></list>
 </t>
-
-<t>
+            <t>
   In practice, this means that the encoded filename stored in a manifest may
   fail a simple file existence check because the filename's normalization was
   changed at some point after the manifest was written. This situation is very
   confusing for users because the filenames are visually indistinguishable and
-  the “missing” file is obviously present in the payload directory.
+  the &#x201C;missing&#x201D; file is obviously present in the payload directory.
 </t>
-</section>
-
-<section title="Recommendations" anchor="filename-normalization-recommendations">
-  <t>
-    <list style="symbols">
-      <t>
+          </section>
+          <section title="Recommendations" anchor="filename-normalization-recommendations">
+            <t>
+              <list style="symbols">
+                <t>
         Implementations &should; discourage the creation of bags containing
         files which differ only in case.
       </t>
-      <t>
+                <t>
         Implementations &must; prevent the creation of bags containing files
         which differ only in normalization form.
       </t>
-      <t>
+                <t>
         BagIt implementations &should; tolerate differences in normalization
         form by comparing both the list of filesystem and manifest names after
         applying the same normalization form to both.
       </t>
-      <t>
+                <t>
         Implementations &should; issue a warning when multiple manifests are
         present which differ only in case or normalization form.
       </t>
-    </list>
-  </t>
-</section>
-</section>
-
-<section title="Windows and Unix file naming" anchor="windows-and-unix-file-naming">
-
-<t>
+              </list>
+            </t>
+          </section>
+        </section>
+        <section title="Windows and Unix file naming" anchor="windows-and-unix-file-naming">
+          <t>
 As specified above, only the Unix-based path separator ('/') may be
 used inside filenames listed in BagIt manifests files.
 When bags are exchanged between Windows and Unix platforms, care should
@@ -971,46 +869,40 @@ Windows or Unix. Besides the fundamental difference between path
 separators ('\' and '/'), generally, Windows filesystems have more
 limitations than Unix filesystems.
 </t>
-
-<figure>
-  <preamble>
+          <figure>
+            <preamble>
     Windows path names have a maximum of
     255 characters, and none of these characters may be used in a path
     component:
 
   </preamble>
- <artwork>
+            <artwork>
     &lt; &gt; : " / | ? *
  </artwork>
-</figure>
-
-<figure>
-  <preamble>
+          </figure>
+          <figure>
+            <preamble>
     Windows also reserves the following names, with or without a file extension:
   </preamble>
-  <artwork>
+            <artwork>
     CON, PRN, AUX, NUL
     COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8, COM9
     LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, LPT9
   </artwork>
-</figure>
-
-<t>
-  See <xref target="MSFNAM" /> for more information and possible alternatives.
+          </figure>
+          <t>
+  See <xref target="MSFNAM"/> for more information and possible alternatives.
 </t>
-</section>
-
-<section title="Legacy checksum tools" anchor="sec-legacy-checksum-tools">
-
-<t>
+        </section>
+        <section title="Legacy checksum tools" anchor="sec-legacy-checksum-tools">
+          <t>
 Some bags have been manually assembled using checksum utilities such as those
 contained in the GNU Coreutils package (md5sum, sha1sum, etc.), collectively
 referred to here as "md5sum". Implementors who desire wide support of legacy
 content should be aware of some known quirks of these tools:
 </t>
-
-<t>
-md5sum can be run in “text mode” which causes it to normalize line-endings
+          <t>
+md5sum can be run in &#x201C;text mode&#x201D; which causes it to normalize line-endings
 on some operating systems. On Unix-like systems both modes will usually produce
 the same results but on systems like Windows they may produce different results
 based on the file contents.
@@ -1019,71 +911,40 @@ The md5sum output format has two characters between the checksum and the
 filename: the first is always a space and the second is an asterisk ("*") for
 binary mode and a space for text mode.
 </t>
-
-<t>
+          <t>
 A final note about md5sum-generated manifests is that for a FILENAME containing
 a backslash ('\'), the manifest line will have a backslash inserted in front of
 the CHECKSUM and, under Windows, the backslashes inside FILENAME may be doubled.
 </t>
-
-<t>
+          <t>
 Implementers &may; wish to accept this format by ignoring a leading asterisk or
 handling differences in line termination gracefully but, if so, implementations
 &must; warn the user that the bag in question will fail strict validation. In
 such cases it is strongly encouraged that tools provide an easy option to
 update the bag with valid manifests.
 </t>
-</section>
-
-</section> <!-- /Interoperability -->
-</section> <!-- /Practical Considerations -->
-
-<section title="Acknowledgements">
-
-<t>
+        </section>
+      </section>
+      <!-- /Interoperability -->
+    </section>
+    <!-- /Practical Considerations -->
+    <section title="Acknowledgements">
+      <t>
 BagIt owes much to many thoughtful contributors and reviewers, including
 Stephen Abrams, Mike Ashenfelder, Dan Chudnov, Brad Hards, Scott Fisher, Keith
 Johnson, Erik Hetzner, Leslie Johnston, David Loy, Mark Phillips, Tracy Seneca,
 Brian Tingle, Adam Turoff, and Jim Tuttle.
 </t>
-
-<section title="IANA Considerations">
-
-<t>
+      <section title="IANA Considerations">
+        <t>
 This draft does not request any action from IANA.
 </t>
-
-</section>
-
-</section>
-
- </middle>
-
- <back>
-   <references>
-
-    <reference anchor="ENCDEP"
-      target="http://www.iwaw.net/05/papers/iwaw05-tabata.pdf">
-     <front>
-       <title>A Collaboration Model between Archival Systems to Enhance
-       the Reliability of Preservation by an Enclose-and-Deposit Method</title>
-       <author initials="K." surname="Tabata" fullname="Koichi Tabata" />
-       <date year="2005" />
-     </front>
-     <format type="PDF"
-       target="http://www.iwaw.net/05/papers/iwaw05-tabata.pdf" />
-    </reference>
-
-    <reference anchor="MSFNAM"
-      target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx">
-     <front>
-       <title>Naming a File</title>
-       <author><organization>Microsoft, Inc.</organization></author>
-       <date month="" year="2008" />
-     </front>
-     <format type="HTML"
-      target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx" />
-    </reference>
+      </section>
+    </section>
+  </middle>
+  <back>
+    <references><reference anchor="ENCDEP" target="http://www.iwaw.net/05/papers/iwaw05-tabata.pdf"><front><title>A Collaboration Model between Archival Systems to Enhance
+       the Reliability of Preservation by an Enclose-and-Deposit Method</title><author initials="K." surname="Tabata" fullname="Koichi Tabata"/><date year="2005"/></front><format type="PDF" target="http://www.iwaw.net/05/papers/iwaw05-tabata.pdf"/></reference><reference anchor="MSFNAM" target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx"><front><title>Naming a File</title><author><organization>Microsoft, Inc.</organization></author><date month="" year="2008"/></front><format type="HTML" target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx"/></reference>
 
     &RFC2119; <!-- Requirements -->
     &RFC1321; <!-- MD5 -->
@@ -1092,25 +953,9 @@ This draft does not request any action from IANA.
     &RFC3629; <!-- utf-8 -->
     &RFC3986; <!-- URLs -->
 
-    <reference anchor="UNICODE-TR15"
-      target="http://www.unicode.org/reports/tr15/">
-      <front>
-        <title>Unicode® Standard Annex #15: Unicode Normalization Forms</title>
-        <author><organization>Unicode Consortium</organization></author>
-        <date year="2016" month="2" day="24" />
-      </front>
-      <format type="HTML" target="http://www.unicode.org/reports/tr15/" />
-    </reference>
+    <reference anchor="UNICODE-TR15" target="http://www.unicode.org/reports/tr15/"><front><title>Unicode&#xAE; Standard Annex #15: Unicode Normalization Forms</title><author><organization>Unicode Consortium</organization></author><date year="2016" month="2" day="24"/></front><format type="HTML" target="http://www.unicode.org/reports/tr15/"/></reference>
 
-    <reference anchor="TN1150" target="https://developer.apple.com/legacy/library/technotes/tn/tn1150.html">
-      <front>
-        <title>Technical Note TN1150: HFS Plus Volume Format</title>
-        <author><organization>Apple Inc.</organization></author>
-        <date year="2004" month="3" day="5" />
-      </front>
-    </reference>
+    <reference anchor="TN1150" target="https://developer.apple.com/legacy/library/technotes/tn/tn1150.html"><front><title>Technical Note TN1150: HFS Plus Volume Format</title><author><organization>Apple Inc.</organization></author><date year="2004" month="3" day="5"/></front></reference>
   </references>
-
- </back>
-
+  </back>
 </rfc>
