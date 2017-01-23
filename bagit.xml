@@ -519,10 +519,9 @@ ending           = CR / LF / CRLF
 </figure>
 
 <t>
-A payload manifest &must-not; reference empty directories. To account for
-an empty directory, a bag creator may wish to include at least one file
-in that directory; a bag creator might wish for example, to include a zero-length
-file named ".keep".
+A manifest &must-not; reference directories. Bag creators who wish to create
+an otherwise empty directory have typically done so by creating an empty
+placeholder file with a name such as ".keep".
 </t>
 </section> <!-- /Payload Manifest -->
 </section> <!-- /Required Elements -->
