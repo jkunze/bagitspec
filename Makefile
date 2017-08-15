@@ -1,9 +1,9 @@
 default: html text
 
-html:
+text:
 	xml2rfc bagit.xml
 
-text:
+html:
 	xml2rfc --html bagit.xml
 
 format:
