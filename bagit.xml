@@ -942,19 +942,48 @@ This draft does not request any action from IANA.
     </section>
   </middle>
   <back>
-    <references><reference anchor="ENCDEP" target="http://www.iwaw.net/05/papers/iwaw05-tabata.pdf"><front><title>A Collaboration Model between Archival Systems to Enhance
-       the Reliability of Preservation by an Enclose-and-Deposit Method</title><author initials="K." surname="Tabata" fullname="Koichi Tabata"/><date year="2005"/></front><format type="PDF" target="http://www.iwaw.net/05/papers/iwaw05-tabata.pdf"/></reference><reference anchor="MSFNAM" target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx"><front><title>Naming a File</title><author><organization>Microsoft, Inc.</organization></author><date month="" year="2008"/></front><format type="HTML" target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx"/></reference>
+    <references>
+      <reference anchor="ENCDEP" target="http://www.iwaw.net/05/papers/iwaw05-tabata.pdf">
+        <front>
+          <title>A Collaboration Model between Archival Systems to Enhance the Reliability of Preservation by an Enclose-and-Deposit Method</title>
+          <author initials="K." surname="Tabata" fullname="Koichi Tabata"/>
+          <date year="2005"/>
+        </front>
+        <format type="PDF" target="http://www.iwaw.net/05/papers/iwaw05-tabata.pdf"/>
+      </reference>
+      <reference anchor="MSFNAM" target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx">
+        <front>
+          <title>Naming a File</title>
+          <author><organization>Microsoft, Inc.</organization></author>
+          <date month="" year="2008"/>
+        </front>
+        <format type="HTML" target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx"/>
+      </reference>
 
-    &RFC2119; <!-- Requirements -->
-    &RFC1321; <!-- MD5 -->
-    &RFC3174; <!-- SHA-1 -->
-    &RFC6234; <!-- SHA-2 -->
-    &RFC3629; <!-- utf-8 -->
-    &RFC3986; <!-- URLs -->
+      &RFC2119; <!-- Requirements -->
+      &RFC1321; <!-- MD5 -->
+      &RFC3174; <!-- SHA-1 -->
+      &RFC6234; <!-- SHA-2 -->
+      &RFC3629; <!-- utf-8 -->
+      &RFC3986; <!-- URLs -->
 
-    <reference anchor="UNICODE-TR15" target="http://www.unicode.org/reports/tr15/"><front><title>Unicode&#xAE; Standard Annex #15: Unicode Normalization Forms</title><author><organization>Unicode Consortium</organization></author><date year="2016" month="2" day="24"/></front><format type="HTML" target="http://www.unicode.org/reports/tr15/"/></reference>
+      <reference anchor="UNICODE-TR15" target="http://www.unicode.org/reports/tr15/">
+        <front>
+          <title>Unicode&#xAE; Standard Annex #15: Unicode Normalization Forms</title>
+          <author><organization>Unicode Consortium</organization></author>
+          <date year="2016" month="2" day="24"/>
+        </front>
+        <format type="HTML" target="http://www.unicode.org/reports/tr15/"/>
+      </reference>
 
-    <reference anchor="TN1150" target="https://developer.apple.com/legacy/library/technotes/tn/tn1150.html"><front><title>Technical Note TN1150: HFS Plus Volume Format</title><author><organization>Apple Inc.</organization></author><date year="2004" month="3" day="5"/></front></reference>
+      <reference anchor="TN1150" target="https://developer.apple.com/legacy/library/technotes/tn/tn1150.html">
+        <front>
+          <title>Technical Note TN1150: HFS Plus Volume Format</title>
+          <author><organization>Apple Inc.</organization></author>
+          <date year="2004" month="3" day="5"/>
+        </front>
+      </reference>
+
   </references>
   </back>
 </rfc>
