@@ -586,10 +586,22 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
 
           <figure>
             <preamble>Each line of "fetch.txt" has the form:</preamble>
-            <artwork>URL LENGTH FILENAME</artwork>
+            <artwork type="abnf"><![CDATA[
+fetch           = url 1*WSP length 1*WSP filename line-terminator
+url             = <absolute-URI, see [RFC3986], Section 4.3>
+length          = DIGIT
+filename        = (
+                    "data"
+                    "/"
+                    *( unreserved / pct-encoded / sub-delims )
+                  )
+line-terminator = CR / LF / CRLF
+]]></artwork>
+
             <postamble>
-              URL identifies the file to be fetched
-              LENGTH is the number of octets in the file (or "-", to leave it unspecified)
+              URL identifies the file to be fetched and must be an absolute URI
+              as defined in <xref target="RFC3986"/>.
+              LENGTH is the number of octets in the file (or "-", to leave it unspecified).
               FILENAME identifies the corresponding payload file, relative to the base directory.
             </postamble>
           </figure>
