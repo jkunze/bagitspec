@@ -580,6 +580,10 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
             contains such a list.
           </t>
 
+          <t>
+            Every file listed in fetch.txt &must; be listed in every payload manifest.
+          </t>
+
           <figure>
             <preamble>Each line of "fetch.txt" has the form:</preamble>
             <artwork>URL LENGTH FILENAME</artwork>
