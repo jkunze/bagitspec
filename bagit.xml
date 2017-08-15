@@ -740,10 +740,17 @@ namespace sequences (e.g. "\\?\C:\&#x2026;") described in <xref target="MSFNAM"/
     <section title="Practical Considerations (non-normative)">
       <section title="Interoperability" anchor="sec-interoperability">
         <t>
-This section lists practical considerations for implementors and users. None of
-the points below are required but they are recommended for general-purpose
-usage.
-</t>
+          This section lists practical considerations for implementors and
+          users. None of the points below are required but they are recommended
+          for general-purpose usage.
+        </t>
+
+        <t>
+          The <xref target="LC-CONFORMANCE-SUITE">Library of Congress conformance suite</xref>
+          is provided as a public resource to test new implementations for compatibility and
+          error handling.
+        </t>
+
         <section title="Filename normalization" anchor="filename-normalization">
           <t>
   This section provides background information on various challenges caused by
@@ -984,6 +991,13 @@ This draft does not request any action from IANA.
         </front>
       </reference>
 
+      <reference anchor="LC-CONFORMANCE-SUITE" target="https://github.com/LibraryOfCongress/bagit-conformance-suite/">
+        <front>
+          <title>BagIt Conformance Suite</title>
+          <author><organization>The Library of Congress</organization></author>
+          <date year="2016-"/>
+        </front>
+      </reference>
   </references>
   </back>
 </rfc>
