@@ -474,19 +474,16 @@ placeholder file with a name such as ".keep".
       <!-- /Required Elements -->
       <section title="Optional Elements" anchor="sec-optional-elements">
         <section anchor="sec-tag-manifest" title="Tag Manifest: tagmanifest-&lt;alg&gt;.txt">
-          <!-- WARNING: This section should be kept in relative sync with the
-              section on Payload Manifests.
--->
           <t>
-A tag manifest is a tag file that lists other tag files and checksums for
-those tag files generated using a particular bag checksum algorithm.
-A bag &may; contain one or more tag manifests.
+            A tag manifest is a tag file that lists other tag files and checksums for
+            those tag files generated using a particular bag checksum algorithm.
+            A bag &may; contain one or more tag manifests.
 
-A tag manifest file &must; have a name of the form "tagmanifest-<spanx style="emph">algorithm</spanx>.txt", where <spanx style="emph">algorithm</spanx>
-is a string following the format described in
-<xref target="bag-checksum-algorithms"/> specifying the bag checksum algorithm
-used in that manifest.
-</t>
+            A tag manifest file &must; have a name of the form "tagmanifest-<spanx style="emph">algorithm</spanx>.txt", where <spanx style="emph">algorithm</spanx>
+            is a string following the format described in
+            <xref target="bag-checksum-algorithms"/> specifying the bag checksum algorithm
+            used in that manifest.
+          </t>
           <figure>
             <preamble>Example tag manifest filenames:</preamble>
             <artwork>
@@ -548,40 +545,85 @@ conform to this format:
 </t>
           <figure>
             <preamble>Payload-Oxum ABNF</preamble>
-            <artwork type="abnf" xml:space="preserve"><![CDATA[
-  payload-oxum = 1*DIGIT "." 1*DIGIT
+            <artwork type="abnf"><![CDATA[
+payload-oxum = 1*DIGIT "." 1*DIGIT
 ]]></artwork>
           </figure>
           <figure>
             <preamble>An example "bag-info.txt" file</preamble>
             <artwork>
-    Source-Organization: FOO University
-    Organization-Address: 1 Main St., Cupertino, California, 11111
-    Contact-Name: Jane Doe
-    Contact-Phone: +1 111-111-1111
-    Contact-Email: example@example.com
-    External-Description: Uncompressed greyscale TIFF images from the
-         FOO papers colle...
-    Bagging-Date: 2008-01-15
-    External-Identifier: university_foo_001
-    Payload-Oxum: 279164409832.1198
-    Bag-Group-Identifier: univerisity_foo
-    Bag-Count: 1 of 15
-    Internal-Sender-Identifier: /storage/images/foo
-    Internal-Sender-Description: Uncompressed greyscale TIFFs created
-         from microfilm and are...
-  </artwork>
+Source-Organization: FOO University
+Organization-Address: 1 Main St., Cupertino, California, 11111
+Contact-Name: Jane Doe
+Contact-Phone: +1 111-111-1111
+Contact-Email: example@example.com
+External-Description: Uncompressed greyscale TIFF images from the
+      FOO papers colle...
+Bagging-Date: 2008-01-15
+External-Identifier: university_foo_001
+Payload-Oxum: 279164409832.1198
+Bag-Group-Identifier: univerisity_foo
+Bag-Count: 1 of 15
+Internal-Sender-Identifier: /storage/images/foo
+Internal-Sender-Description: Uncompressed greyscale TIFFs created
+      from microfilm and are...
+          </artwork>
           </figure>
         </section>
+
+        <section title="Fetch File: fetch.txt" anchor="sec-fetch-file">
+
+          <t>
+            For reasons of efficiency, a bag &may; be sent with a list of files to be
+            fetched and added to the payload before it can meaningfully be checked
+            for completeness.  An &optional; tag file named "fetch.txt"
+            contains such a list.
+          </t>
+
+          <figure>
+            <preamble>Each line of "fetch.txt" has the form:</preamble>
+            <artwork>URL LENGTH FILENAME</artwork>
+            <postamble>
+              URL identifies the file to be fetched
+              LENGTH is the number of octets in the file (or "-", to leave it unspecified)
+              FILENAME identifies the corresponding payload file, relative to the base directory.
+            </postamble>
+          </figure>
+
+          <t>
+            The slash character ('/') &must; be used as a path separator in FILENAME.
+            If FILENAME begins with a slash character, the destination &must; still be
+            treated as relative to the bag base directory.
+            One or more linear whitespace characters (spaces or tabs) &must; separate these
+            three values, and any such characters in the URL &must; be percent-encoded
+            <xref target="RFC3986"/>.  There is no limitation on the length of any
+            of the fields in the "fetch.txt".
+          </t>
+
+          <t>
+            The "fetch.txt" file allows a bag to be transmitted with
+            "holes" in it, which can be practical for several reasons.  For example,
+            it obviates the need for the sender to stage a large serialized copy of
+            the content while the bag is transferred to the receiver.  Also, this
+            method allows a sender to construct a bag from components that are either
+            a subset of logically related components (e.g., the localized logical
+            object could be much larger than what is intended for export) or
+            assembled from logically distributed sources (e.g., the object components
+            for export are not stored locally under one filesystem tree).
+          </t>
+
+        </section> <!-- Fetch File -->
+
+
         <!-- /Bag Metadata -->
         <section title="Other Tag Files" anchor="sec-other-tag-files">
           <t>
-A bag &may; contain other tag files that are not defined by this
-specification.
+            A bag &may; contain other tag files that are not defined by this
+            specification.
 
-Implementations &must; perform standard checksum validation on any tag file
-which is listed in a tag manifest but &must; otherwise ignore their contents.
-</t>
+            Implementations &must; perform standard checksum validation on any tag file
+            which is listed in a tag manifest but &must; otherwise ignore their contents.
+          </t>
         </section>
         <!-- /Other Tag Files -->
       </section>
@@ -651,8 +693,7 @@ requirements:
 </t>
       <t>
         <list style="numbers">
-          <t>Every required element &must; be present
-     (<xref target="sec-required-elements"/>).</t>
+          <t>Every required element &must; be present (<xref target="sec-required-elements"/>).</t>
           <t>Every file listed in every tag manifest &must; be present.</t>
           <t>Every file listed in every payload manifest &must; be present.</t>
           <t>Every payload file &must; be listed in every payload manifest.</t>
@@ -676,14 +717,13 @@ A <spanx style="emph">valid</spanx> bag &must; meet the following requirements:
     <section title="Examples">
       <section title="Example of a basic bag">
         <t>
-This is the layout of a basic bag containing an image and a companion
-OCR file. Lines of file content are shown in parentheses beneath the
-file name.
+          This is the layout of a basic bag containing an image and a companion
+          OCR file. Lines of file content are shown with added parentheses to
+          indicate each complete line.
+        </t>
 
-<!-- Note that the artwork looks funky on the version line, to account
-   for the fact that the entity value is much shorter than the entity
-   name. -->
-<figure><artwork>
+        <figure>
+          <artwork>
 myfirstbag/
 |
 |   manifest-md5.txt
@@ -702,9 +742,36 @@ myfirstbag/
      |   27613-h/images/q172.txt
      |    (... OCR text ...                                        )
      ....
- </artwork></figure>
+ </artwork>
+        </figure>
+      </section>
+      <section title="Example bag using fetch.txt">
+        <t>
+          This is the layout of a bag which expects the receiver to download the
+          files listed in the payload manifests prior to validation. Lines of
+          file content are shown with added parentheses to indicate each
+          complete line.
+        </t>
 
-</t>
+        <figure>
+          <artwork>
+highsmith-tahoe/
+|
+|   manifest-md5.txt
+|    (102b0e6effe208ef9b29864946de9e22 data/23364a.tif             )
+|
+|    fetch.txt
+|     (https://cdn.loc.gov/master/pnp/highsm/23300/23364a.tif
+|         216951362 data/23364a.tif                                )
+|
+|   bagit.txt
+|    (BagIt-version: 1.0                                           )
+|    (Tag-File-Character-Encoding: UTF-8                           )
+|
+|   bag-info.txt
+|    (Source-URL: https://www.loc.gov/resource/highsm.23364/       )
+ </artwork>
+        </figure>
       </section>
     </section>
     <!-- /Examples -->
@@ -712,28 +779,57 @@ myfirstbag/
       <section title="Special directory characters">
         <!-- Added by Brian Vargas, 2009-04-09 -->
         <t>
-The paths specified in the payload manifest and tag manifest file do not
-prohibit special directory characters which have special meaning on some
-operating systems. Implementors &must; ensure that files outside the bag
-directory structure are not accessed when reading or writing files based on
-paths specified in a bag.
-</t>
+          The paths specified in the payload manifests, tag manifests, and
+          fetch.txt do not prohibit special directory characters which have
+          special meaning on some operating systems. Implementors &must; ensure
+          that files outside the bag directory structure are not accessed when
+          reading or writing files based on paths specified in a bag.
+        </t>
         <t>
-All implementations &should; have a test suite to guard against these cases.
-</t>
+          All implementations &should; have a test suite to guard against these
+          cases.
+        </t>
         <t>
-For example, a maliciously crafted "tagmanifest-md5.txt" file might
-contain entries which begin with a path character such as "/", "..",
-or a "~username" home directory reference in an attempt to cause a
-naive implementation to leak or overwrite targeted files on a POSIX operating
-system.
-</t>
+          For example, a maliciously crafted "tagmanifest-md5.txt" file might
+          contain entries which begin with a path character such as "/", "..",
+          or a "~username" home directory reference in an attempt to cause a
+          naive implementation to leak or overwrite targeted files on a POSIX
+          operating system.
+        </t>
         <t>
-Windows implementations &should; test their implementations to ensure
-that safety-checks prevent use of drive letters and the less commonly used
-namespace sequences (e.g. "\\?\C:\&#x2026;") described in <xref target="MSFNAM"/>.
-</t>
+          Windows implementations &should; test their implementations to ensure
+          that safety-checks prevent use of drive letters and the less commonly used
+          namespace sequences (e.g. "\\?\C:\&#x2026;") described in <xref target="MSFNAM"/>.
+        </t>
+        <t>
+          The <xref target="LC-CONFORMANCE-SUITE">Library of Congress conformance suite</xref>
+          has some tests for invalid bags which are expected to fail on POSIX or Windows clients
+          which should be useful for implementors.
+        </t>
       </section>
+      <section title="Control of URLs in fetch.txt">
+        <t>
+          Implementors of tools that complete bags by retrieving URLs listed in
+          a "fetch.txt" file need to be aware that some of those URLs may point
+          to hosts, intentionally or unintentionally, that are not under control
+          of the bag's sender. Checksums are intended as a reasonable guarantee
+          against corruption during transit, not a strong cryptographic
+          protection against intentional spoofing.
+        </t>
+      </section>
+
+      <section title="File sizes in fetch.txt">
+        <t>
+          The size of files, as optionally reported in the "fetch.txt" file,
+          cannot be guaranteed to match the actual file size to be downloaded.
+          Implementors &should; take care to appropriately handle cases where
+          the actual file size does not match the file size reported in the
+          fetch.txt.  Implementors &should-not; use the file size in the
+          "fetch.txt" file for critical resource allocation, such as buffer
+          sizing or storage requisitioning.
+        </t>
+      </section>
+
       <!-- End Section: Special directory characters -->
     </section>
     <!-- End Section: Security considerations -->
@@ -866,15 +962,15 @@ z               7a  LATIN SMALL LETTER Z
         </section>
         <section title="Windows and Unix file naming" anchor="windows-and-unix-file-naming">
           <t>
-As specified above, only the Unix-based path separator ('/') may be
-used inside filenames listed in BagIt manifests files.
-When bags are exchanged between Windows and Unix platforms, care should
-be taken to translate the path separator as needed. Receivers of bags on
-physical media should be prepared for filesystems created under either
-Windows or Unix. Besides the fundamental difference between path
-separators ('\' and '/'), generally, Windows filesystems have more
-limitations than Unix filesystems.
-</t>
+            As specified above, only the Unix-based path separator ('/') may be
+            used inside filenames listed in BagIt manifest and fetch.txt files.
+            When bags are exchanged between Windows and Unix platforms, care
+            should be taken to translate the path separator as needed. Receivers
+            of bags on physical media should be prepared for filesystems created
+            under either Windows or Unix. Besides the fundamental difference
+            between path separators ('\' and '/'), generally, Windows
+            filesystems have more limitations than Unix filesystems.
+          </t>
           <figure>
             <preamble>
     Windows path names have a maximum of
