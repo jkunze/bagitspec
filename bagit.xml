@@ -302,14 +302,6 @@ document are to be interpreted as described in <xref target="RFC2119"/>.
         </t>
       </section>
       <!-- /Terminology -->
-      <!-- TODO -->
-      <!--
-<section title="Overview of Operation">
-<t>
-</t>
-</section>
--->
-      <!-- /Overview of Operation -->
     </section>
     <!-- /Introduction -->
     <section title="Structure">
@@ -665,12 +657,6 @@ proper decoding. In accordance with <xref target="RFC3629"/>, when "bagit.txt"
 specifies UTF-8 the tag files &must-not; begin with a byte-order mark (BOM).
 See <xref target="sec-bag-decl"/>
 </t>
-        <!-- TODO: Character escaping -->
-        <!--
-<t>
-The backslash character ('\', U+005C) escapes from special processing any
-</t>
--->
       </section>
       <!-- /Tags Files -->
       <section title="Bag Checksum Algorithms" anchor="bag-checksum-algorithms">
