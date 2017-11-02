@@ -367,28 +367,25 @@ Tag-File-Character-Encoding: UTF-8
   </postamble>
           </figure>
           <t>
-The number for this version of the specification is "&current-bagit-version;".
-</t>
+            The number for this version of the specification is "&current-bagit-version;".
+          </t>
         </section>
         <!-- /Bag Declaration -->
         <section title="Payload Directory: data/" anchor="sec-payload-dir">
           <t>
-The base directory &must; contain a sub-directory named "data".
-</t>
+            The base directory &must; contain a sub-directory named "data".
+          </t>
           <t>
-The payload directory contains the arbitrary digital content within the bag.
-The files under the payload directory are called payload files, or the payload.
-Each payload file is treated as an opaque octet stream when verifying file
-correctness.
-Any sub-directory structure within the payload &must; be preserved but is
-otherwise ignored for purposes relating to this specification.
-</t>
+            The payload directory contains the arbitrary digital content within the bag.
+            The files under the payload directory are called payload files, or the payload.
+            Each payload file is treated as an opaque octet stream when verifying file
+            correctness.
+            Any sub-directory structure within the payload &must; be preserved but is
+            otherwise ignored for purposes relating to this specification.
+          </t>
         </section>
         <!-- /Payload Directory -->
         <section title="Payload Manifest: manifest-&lt;algorithm&gt;.txt" anchor="sec-payload-manifest">
-          <!-- WARNING: This section should be kept in relative sync with the
-              section on Tag Manifests.
--->
           <t>
 A payload manifest file provides a complete listing of each payload file along
 with a corresponding checksum to permit data integrity checking.
@@ -408,8 +405,8 @@ manifest-sha1.txt
   </artwork>
           </figure>
           <t>
-Each line of a payload manifest file &must; be of the form:
-</t>
+            Each line of a payload manifest file &must; be of the form:
+          </t>
           <figure>
             <artwork>CHECKSUM FILENAME</artwork>
             <postamble>
@@ -419,20 +416,19 @@ Each line of a payload manifest file &must; be of the form:
   </postamble>
           </figure>
           <t>
-The hex-encoded checksum &may; use uppercase and/or lowercase letters.
-
-The slash character ('/') &must; be used as a path separator in FILENAME.
-
-One or more linear whitespace characters (spaces or tabs) &must; separate CHECKSUM from FILENAME.
-
-There is no limitation on the length of a pathname.
-
-The payload manifest &must-not; reference files outside the payload directory.
-
-If a FILENAME includes a newline (LF), a carriage return (CR), or carriage
-return plus newline (CRLF) it &must; be percent-encoded following
-<xref target="RFC3986"/>.
-</t>
+            <list style="symbols">
+              <t>The hex-encoded checksum &may; use uppercase and/or lowercase letters.</t>
+              <t>The slash character ('/') &must; be used as a path separator in FILENAME.</t>
+              <t>One or more linear whitespace characters (spaces or tabs) &must; separate CHECKSUM from FILENAME.</t>
+              <t>There is no limitation on the length of a pathname.</t>
+              <t>The payload manifest &must-not; reference files outside the payload directory.</t>
+              <t>
+                If a FILENAME includes a newline (LF), a carriage return (CR),
+                or carriage return plus newline (CRLF) it &must; be
+                percent-encoded following <xref target="RFC3986"/>.
+              </t>
+            </list>
+          </t>
           <figure>
             <preamble>Payload Manifest ABNF</preamble>
             <artwork type="abnf" xml:space="preserve"><![CDATA[
@@ -638,16 +634,16 @@ line-terminator = CR / LF / CRLF
       <!-- /Optional Elements -->
       <section title="Text Tag File Format" anchor="sec-tag-files">
         <t>
-All tag files specifically described in this specification &must; adhere to
-the text tag file format described below. Other tag files &may; adhere to
-the text tag file format described below.
-</t>
+          All tag files specifically described in this specification &must; adhere to
+          the text tag file format described below. Other tag files &may; adhere to
+          the text tag file format described below.
+        </t>
         <t>
-Text tag files are line-oriented, and each line &must; be
-terminated by a newline (LF), a carriage return (CR), or carriage return
-plus newline (CRLF).
-Text tag file names &must; end in the extension ".txt".
-</t>
+          Text tag files are line-oriented, and each line &must; be terminated
+          by a newline (LF), a carriage return (CR), or carriage return plus
+          newline (CRLF). Text tag file names &must; end in the extension
+          ".txt".
+        </t>
         <t>
 In all text tag files except for the bag declaration file, text &must; be
 encoded in the character encoding specified in the "bagit.txt" bag declaration
