@@ -387,16 +387,31 @@ Tag-File-Character-Encoding: UTF-8
         <!-- /Payload Directory -->
         <section title="Payload Manifest: manifest-&lt;algorithm&gt;.txt" anchor="sec-payload-manifest">
           <t>
-A payload manifest file provides a complete listing of each payload file along
-with a corresponding checksum to permit data integrity checking.
-</t>
+            A payload manifest file provides a complete listing of each payload file along
+            with a corresponding checksum to permit data integrity checking. Manifest entries
+            &must; satisfy the following constraints:
+          </t>
+
           <t>
-Every bag &must; contain at least one payload manifest file and &may; contain
-more than one. Every payload manifest &must; list every payload file. A payload
-manifest file &must; have a name of the form "manifest-<spanx style="emph">algorithm</spanx>.txt", where <spanx style="emph">algorithm</spanx>
-is a string specifying the checksum algorithm used by that manifest as described
-in <xref target="bag-checksum-algorithms"/>.
-</t>
+            <list style="symbols">
+              <t>
+                Every bag &must; contain at least one payload manifest file and &may; contain
+                more than one.
+              </t>
+              <t>
+                Every payload manifest &must; list every payload file exactly once.
+              </t>
+              <t>
+                A payload manifest file &must; have a name of the form
+                "manifest-<spanx style="emph">algorithm</spanx>.txt", where
+                <spanx style="emph">algorithm</spanx>
+                is a string specifying the checksum algorithm used by that
+                manifest as described in <xref
+                target="bag-checksum-algorithms"/>.
+              </t>
+            </list>
+          </t>
+
           <figure>
             <preamble>Example payload manifest filenames</preamble>
             <artwork>
