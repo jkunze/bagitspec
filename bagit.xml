@@ -504,22 +504,23 @@ As a result, no FILENAME listed in a tag manifest begins "data/".
         <!-- /Tag Manifest -->
         <section anchor="sec-bag-info" title="Bag Metadata: bag-info.txt">
           <t>
-The "bag-info.txt" file is a tag file that contains metadata elements
-describing the bag and the payload. The metadata elements contained in
-the "bag-info.txt" file are intended primarily for human use.
-All metadata elements are optional and &may; be repeated. Because
-&#x201C;bag-info.txt&#x201D; is intended for human reading and editing, implementations
-&must; assume that the order of metadata elements is significant and &must; be
-preserved.
-</t>
+            The "bag-info.txt" file is a tag file that contains metadata
+            elements describing the bag and the payload. The metadata elements
+            contained in the "bag-info.txt" file are intended primarily for
+            human use. All metadata elements are optional and &may; be repeated.
+            Because &#x201C;bag-info.txt&#x201D; is intended for human reading
+            and editing, implementations &must; assume that the order of
+            metadata elements is significant and &must; be preserved.
+          </t>
           <t>
-A metadata element &must; consist of a label, a colon, and a value,
-each separated by optional whitespace. It is &recommended; that
-lines not exceed 79 characters in length. Long values may be continued
-onto the next line by inserting a newline (LF), a carriage return (CR),
-or carriage return plus newline (CRLF) and indenting the next line with
-linear white space (spaces or tabs).
-</t>
+            A metadata element &must; consist of a label, a colon, and a value,
+            each separated by optional whitespace (spaces or tabs). It is
+            &recommended; that lines not exceed 79 characters in length. Long
+            values may be continued onto the next line by inserting a newline
+            (LF), a carriage return (CR), or carriage return plus newline (CRLF)
+            and indenting the next line with linear white space (spaces or
+            tabs).
+          </t>
           <figure>
             <preamble>"bag-info.txt" ABNF</preamble>
             <artwork type="abnf" xml:space="preserve"><![CDATA[
