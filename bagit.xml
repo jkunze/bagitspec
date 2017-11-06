@@ -513,24 +513,32 @@ As a result, no FILENAME listed in a tag manifest begins "data/".
             metadata elements is significant and &must; be preserved.
           </t>
           <t>
-            A metadata element &must; consist of a label, a colon, and a value,
-            each separated by optional whitespace (spaces or tabs). It is
-            &recommended; that lines not exceed 79 characters in length. Long
-            values may be continued onto the next line by inserting a newline
-            (LF), a carriage return (CR), or carriage return plus newline (CRLF)
-            and indenting the next line with linear white space (spaces or
-            tabs).
+            A metadata element &must; consist of a label, a colon, a single
+            linear whitespace character, and a value. It is &recommended; that
+            lines not exceed 79 characters in length. Long values may be
+            continued onto the next line by inserting a newline (LF), a carriage
+            return (CR), or carriage return plus newline (CRLF) and indenting
+            the next line with linear white space (spaces or tabs).
           </t>
           <figure>
             <preamble>"bag-info.txt" ABNF</preamble>
             <artwork type="abnf" xml:space="preserve"><![CDATA[
-metadata      = key ":" value ending
+metadata      = key ":" WSP value ending
 key           = 1*alpha-numeric
 value         = 1*(1*alpha-numeric ending 1*WSP 1*alpha-numeric)
 alpha-numeric = ALPHA / DIGIT
 ending        = CR / LF / CRLF
 ]]></artwork>
           </figure>
+
+          <t>
+            For BagIt 1.0, the colon separating the key from the value &must; be
+            followed by a single linear whitespace character. For compatibility
+            with previous versions, implementations &must; accept multiple
+            linear whitespace before and after the colon when the bag version is
+            earlier than 1.0.
+          </t>
+
           <t>
 An implementation &should; add the optional "Payload-Oxum" element for the
 purpose of quickly detecting incomplete bags before performing checksum
