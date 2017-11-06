@@ -351,20 +351,20 @@ The base directory &may; have any name.
       <section title="Required Elements" anchor="sec-required-elements">
         <section title="Bag Declaration: bagit.txt" anchor="sec-bag-decl">
           <t>
-The "bagit.txt" tag file &must; consist of exactly two lines:
-</t>
+            The "bagit.txt" tag file &must; consist of exactly two lines in this order:
+          </t>
           <figure>
             <artwork>
 BagIt-Version: M.N
 Tag-File-Character-Encoding: UTF-8
   </artwork>
             <postamble>
-    M.N identifies the BagIt major (M) and minor (N) version numbers,
-    and UTF-8 identifies the character set encoding used by the tag files.
+              M.N identifies the BagIt major (M) and minor (N) version numbers,
+              and UTF-8 identifies the character set encoding used by the tag files.
 
-    The bag declaration &must; be encoded in UTF-8, and &must-not; contain a
-    byte-order mark (BOM) <xref target="RFC3629"/>.
-  </postamble>
+              The bag declaration &must; be encoded in UTF-8, and &must-not; contain a
+              byte-order mark (BOM) <xref target="RFC3629"/>.
+            </postamble>
           </figure>
           <t>
             The number for this version of the specification is "&current-bagit-version;".
