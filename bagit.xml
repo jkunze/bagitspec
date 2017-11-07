@@ -369,6 +369,15 @@ Tag-File-Character-Encoding: UTF-8
           <t>
             The number for this version of the specification is "&current-bagit-version;".
           </t>
+	  <figure>
+            <preamble>bagit.txt ABNF:</preamble>
+            <artwork type="abnf" xml:space="preserve"><![CDATA[
+bagit.txt = "BagIt-Version: " 1*DIGIT "." 1*DIGIT ending 
+            "Tag-File-Character-Encoding: " encoding
+encoding         = 1*CHAR
+ending           = CR / LF / CRLF
+]]></artwork>
+          </figure>
         </section>
         <!-- /Bag Declaration -->
         <section title="Payload Directory: data/" anchor="sec-payload-dir">
@@ -445,7 +454,7 @@ manifest-sha1.txt
             </list>
           </t>
           <figure>
-            <preamble>Payload Manifest ABNF</preamble>
+            <preamble>Payload Manifest ABNF:</preamble>
             <artwork type="abnf" xml:space="preserve"><![CDATA[
 payload-manifest = checksum 1*WSP filename ending
 checksum         = 1*hex-val
@@ -521,11 +530,11 @@ As a result, no FILENAME listed in a tag manifest begins "data/".
             the next line with linear white space (spaces or tabs).
           </t>
           <figure>
-            <preamble>"bag-info.txt" ABNF</preamble>
+            <preamble>bag-info.txt ABNF:</preamble>
             <artwork type="abnf" xml:space="preserve"><![CDATA[
 metadata      = key ":" WSP value ending
 key           = 1*alpha-numeric
-value         = 1*(1*alpha-numeric ending 1*WSP 1*alpha-numeric)
+value         = 1*(alpha-numeric ending) *(WSP 1*alpha-numeric ending)
 alpha-numeric = ALPHA / DIGIT
 ending        = CR / LF / CRLF
 ]]></artwork>
@@ -556,7 +565,7 @@ conform to this format:
     files.
 </t>
           <figure>
-            <preamble>Payload-Oxum ABNF</preamble>
+            <preamble>Payload-Oxum ABNF:</preamble>
             <artwork type="abnf"><![CDATA[
 payload-oxum = 1*DIGIT "." 1*DIGIT
 ]]></artwork>
@@ -597,7 +606,7 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
           </t>
 
           <figure>
-            <preamble>Each line of "fetch.txt" has the form:</preamble>
+            <preamble>fetch.txt ABNF:</preamble>
             <artwork type="abnf"><![CDATA[
 fetch           = url 1*WSP length 1*WSP filename line-terminator
 url             = <absolute-URI, see [RFC3986], Section 4.3>
