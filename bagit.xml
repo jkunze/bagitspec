@@ -523,7 +523,7 @@ As a result, no <spanx style="emph">filename</spanx> listed in a tag manifest be
             earlier than 1.0.
           </t>
           <t>
-            Following are reserved metadata elements. The use of these reserved
+            The following are reserved metadata elements. The use of these reserved
             metadata elements are &optional; but encouraged. Reserved metadata
             element names are case-insensitive.
           </t>
@@ -734,7 +734,7 @@ mapping common algorithm names to normalized names:
 
 </list></t>
         <t>
-  For BagIt 1.0, bag creation and validation tools &must; support the SHA-2 family of
+  Starting with BagIt 1.0, bag creation and validation tools &must; support the SHA-2 family of
   algorithms <xref target="RFC6234"/> and &should; enable SHA-512 by default
   when creating new bags.
 
