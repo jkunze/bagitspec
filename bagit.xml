@@ -471,14 +471,22 @@ placeholder file with a name such as ".keep".
       <section title="Optional Elements" anchor="sec-optional-elements">
         <section anchor="sec-tag-manifest" title="Tag Manifest: tagmanifest-algorithm.txt">
           <t>
-            A tag manifest is a tag file that lists other tag files and checksums for
-            those tag files generated using a particular bag checksum algorithm.
+            A tag manifest is a tag file that lists other tag files and
+            checksums for those tag files generated using a particular bag
+            checksum algorithm.
+          </t>
+          <t>
             A bag &may; contain one or more tag manifests.
-
-            A tag manifest file &must; have a name of the form "tagmanifest-<spanx style="emph">algorithm</spanx>.txt", where <spanx style="emph">algorithm</spanx>
-            is a string following the format described in
-            <xref target="bag-checksum-algorithms"/> specifying the bag checksum algorithm
-            used in that manifest.
+          </t>
+          <t>
+            Each tag manifest &must; list every payload manifest.
+          </t>
+          <t>
+            A tag manifest file &must; have a name of the form
+            "tagmanifest-<spanx style="emph">algorithm</spanx>.txt",
+            where <spanx style="emph">algorithm</spanx> is a string following
+            the format described in <xref target="bag-checksum-algorithms"/>
+            specifying the bag checksum algorithm used in that manifest.
           </t>
           <figure>
             <preamble>Example tag manifest filenames:</preamble>
