@@ -509,7 +509,7 @@ As a result, no <spanx style="emph">filename</spanx> listed in a tag manifest be
             The "bag-info.txt" file is a tag file that contains metadata
             elements describing the bag and the payload. The metadata elements
             contained in the "bag-info.txt" file are intended primarily for
-            human use. All metadata elements are optional and &may; be repeated.
+            human use. All metadata elements are &optional; and &may; be repeated.
             Because "bag-info.txt" is intended for human reading
             and editing, ordering &may; be significant and the ordering of
             metadata elements &must; be preserved.
