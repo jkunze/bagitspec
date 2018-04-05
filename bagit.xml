@@ -7,6 +7,7 @@
 <!ENTITY mdash "&#8212;">
 <!ENTITY RFC1321 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1321.xml">
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC2234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2234.xml">
 <!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
 <!ENTITY RFC3174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3174.xml">
 <!ENTITY RFC3552 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3552.xml">
@@ -1105,7 +1106,9 @@ update the bag with valid manifests.
       <t>
 The Augmented Backus-Naur form (ABNF) provided below are non-normative. If
 there is a discrepancy between requirements in the normative sections and
-the ABNF, the requirements in the normative sections prevail.
+the ABNF, the requirements in the normative sections prevail. Some 
+definitions use the core rules (e.g. DIGIT, HEXDIG, etc) as defined in 
+<xref target="RFC2234"/>
 </t>
       <section title="Bag Declaration: bagit.txt">
         <figure>
@@ -1208,6 +1211,7 @@ This draft does not request any action from IANA.
       &RFC6234; <!-- SHA-2 -->
       &RFC3629; <!-- utf-8 -->
       &RFC3986; <!-- URLs -->
+      &RFC2234; <!-- ABNF -->
 
       <reference anchor="UNICODE-TR15" target="http://www.unicode.org/reports/tr15/">
         <front>
