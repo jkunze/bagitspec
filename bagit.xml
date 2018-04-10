@@ -743,9 +743,9 @@ mapping common algorithm names to normalized names:
 
 </list></t>
         <t>
-  Starting with BagIt 1.0, bag creation and validation tools &must; support the SHA-2 family of
-  algorithms <xref target="RFC6234"/> and &should; enable SHA-512 by default
-  when creating new bags.
+  Starting with BagIt 1.0, bag creation and validation tools &must; support the
+  SHA-256 and SHA-512 algorithms <xref target="RFC6234"/> and &should; enable
+  SHA-512 by default when creating new bags.
 
   For backwards-compatibility implementers &should; support
   MD-5 <xref target="RFC1321"/> and SHA-1 <xref target="RFC3174"/>.
