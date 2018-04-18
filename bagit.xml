@@ -1018,7 +1018,7 @@ z               7a  LATIN SMALL LETTER Z
         files which differ only in case.
       </t>
                 <t>
-        Implementations &must; prevent the creation of bags containing files
+        Implementations &should; prevent the creation of bags containing files
         which differ only in normalization form.
       </t>
                 <t>
