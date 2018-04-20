@@ -391,8 +391,9 @@ Tag-File-Character-Encoding: UTF-8
             The files under the payload directory are called payload files, or the payload.
             Each payload file is treated as an opaque octet stream when verifying file
             correctness.
-            Any sub-directory structure within the payload &must-not; be changed but is
-            otherwise ignored for purposes relating to this specification.
+            Payload files &may; be organized in arbitrary sub-directory structures
+            within the payload directory, however for the purpose of this specification
+            such sub-directory structures and file names have no given meaning.
           </t>
         </section>
         <!-- /Payload Directory -->
