@@ -367,11 +367,11 @@ The base directory &may; have any name.
           <figure>
             <artwork>
 BagIt-Version: M.N
-Tag-File-Character-Encoding: UTF-8
+Tag-File-Character-Encoding: ENCODING
   </artwork>
             <postamble>
               M.N identifies the BagIt major (M) and minor (N) version numbers,
-              and UTF-8 identifies the character set encoding used by the tag files.
+              and ENCODING identifies the character set encoding used by the tag files.
 
               The bag declaration &must; be encoded in UTF-8, and &must-not; contain a
               byte-order mark (BOM) <xref target="RFC3629"/>.
