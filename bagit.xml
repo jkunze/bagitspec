@@ -736,7 +736,7 @@ manifest's filename by lowercasing the common name of the algorithm and
 removing all non-alphanumeric characters. Following is a partial list
 mapping common algorithm names to normalized names:
           <list style="symbols">
-            <t>MD-5: md5</t>
+            <t>MD5: md5</t>
             <t>SHA-1: sha1</t>
             <t>SHA-256: sha256</t>
             <t>SHA-512: sha512</t>
@@ -748,7 +748,7 @@ mapping common algorithm names to normalized names:
   SHA-512 by default when creating new bags.
 
   For backwards-compatibility implementers &should; support
-  MD-5 <xref target="RFC1321"/> and SHA-1 <xref target="RFC3174"/>.
+  MD5 <xref target="RFC1321"/> and SHA-1 <xref target="RFC3174"/>.
 
   Implementers are encouraged to simplify the process of adding additional
   manifests using new algorithms to streamline the process of in-place
