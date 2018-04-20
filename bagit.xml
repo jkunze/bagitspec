@@ -1132,11 +1132,13 @@ ending    = CR / LF / CRLF
 payload-manifest      = 1*payload-manifest-line
 payload-manifest-line = checksum 1*WSP filename ending
 checksum              = 1*case-hexdig
-case-hexdig           = DIGIT / "A" / "a" / "B" / "b" / "C" / "c" / "D" /
-                        "d" / "E"/ "e"/ "F" / "f"
-filename              = "data/" 1*( unreserved / pct-encoded / sub-delims )
+case-hexdig           = DIGIT / "A" / "a" / "B" / "b" / "C" / "c" / 
+                        "D" / "d" / "E"/ "e"/ "F" / "f"
+filename              = "data/" 
+                        1*( unreserved / pct-encoded / sub-delims )
 unreserved            = ALPHA / DIGIT / "-" / "." / "_" / "~"
-sub-delims            = "!" / "$" / "&" / DQUOTE / "'" / "(" / ")" / "*" / "+" / "," / ";" / "=" / "/"
+sub-delims            = "!" / "$" / "&" / DQUOTE / "'" / "(" / ")" /
+                        "*" / "+" / "," / ";" / "=" / "/"              
 pct-encoded           = "%" HEXDIG HEXDIG
 ending                = CR / LF / CRLF
 ]]></artwork>
@@ -1153,7 +1155,8 @@ key           = 1*non-reserved
 value         = 1*non-reserved
 continuation  = WSP 1*non-reserved
 non-reserved  = VCHAR / WSP 
-                ;any valid character for the specific encoding except those that match "ending"
+                ; any valid character for the specific encoding 
+                ; except those that match "ending"
 ending        = CR / LF / CRLF
 ]]></artwork>
         </figure>
@@ -1167,7 +1170,8 @@ fetch      = 1*fetch-line
 fetch-line = url 1*WSP length 1*WSP filename ending
 url        = <absolute-URI, see [RFC3986], Section 4.3>
 length     = 1*DIGIT / "-"
-filename   = ("data/" 1*( unreserved / pct-encoded / sub-delims ))
+filename   = ("data/" 
+              1*( unreserved / pct-encoded / sub-delims ))
 ending     = CR / LF / CRLF
 ]]></artwork>
         </figure>
