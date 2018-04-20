@@ -768,10 +768,10 @@ requirements:
           <t>Every required element &must; be present (<xref target="sec-required-elements"/>).</t>
           <t>Every file listed in every tag manifest &must; be present.</t>
           <t>Every file listed in every payload manifest &must; be present.</t>
-          <t>For BagIt 1.0, every payload file &must; be listed in every payload manifest. 
-            For compatibility with previous versions every payload file &must; 
-            be listed in at least one payload manifest. Additionally in previous versions, 
-            a payload file &may; be listed in multiple payload manifests.</t>
+          <t>For BagIt 1.0, every payload file &must; be listed in every payload manifest.
+            Note that older versions of this specification allowed payload files to be 
+            listed in just one of the manifests.
+          </t>
           <t>Every element present &must; comply with this specification.</t>
         </list>
       </t>
