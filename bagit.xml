@@ -292,12 +292,16 @@ document are to be interpreted as described in <xref target="RFC2119"/>.
     A directory that contains one or more tag files.
   </t>
             <t hangText="tag file">
-    A file which contains metadata. The specification defines two standard tag
-    files: tag manifests, which describe other tag files
-    <xref target="sec-tag-manifest"/>, and the "bag-info.txt" file containing
-    human-meaningful metadata <xref target="sec-bag-info"/>.
+    A file which contains metadata about the bag or its payload.
+    This specification defines the standard
+    BagIt tag files: 
+    the bag declaration in "bagit.txt" <xref target="sec-bag-decl"/>,
+    payload manifests <xref target="sec-payload-manifest"/>,
+    tag manifests <xref target="sec-tag-manifest"/>, 
+    bag metadata in "bag-info.txt" <xref target="sec-bag-info"/>,
+    and remote payload in "fetch.txt" <xref target="sec-fetch-file"/>.
 
-    The specification also allows other arbitrary tag files as described in
+    This specification also allows other arbitrary tag files as described in
     <xref target="sec-other-tag-files"/>.
   </t>
             <t hangText="complete">
