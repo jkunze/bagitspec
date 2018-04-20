@@ -426,8 +426,8 @@ Tag-File-Character-Encoding: UTF-8
           <figure>
             <preamble>Example payload manifest filenames</preamble>
             <artwork>
-manifest-md5.txt
-manifest-sha1.txt
+manifest-sha256.txt
+manifest-sha512.txt
   </artwork>
           </figure>
           <t>
@@ -492,8 +492,8 @@ placeholder file with a name such as ".keep".
           <figure>
             <preamble>Example tag manifest filenames:</preamble>
             <artwork>
-tagmanifest-md5.txt
-tagmanifest-sha1.txt
+tagmanifest-sha256.txt
+tagmanifest-sha512.txt
   </artwork>
           </figure>
           <t>
@@ -864,7 +864,7 @@ highsmith-tahoe/
           special directory characters.
         </t>
         <t>
-          For example, a maliciously crafted "tagmanifest-md5.txt" file might
+          For example, a maliciously crafted "tagmanifest-sha512.txt" file might
           contain entries which begin with a path character such as "/", "..",
           or a "~username" home directory reference in an attempt to cause a
           naive implementation to leak or overwrite targeted files on a POSIX
