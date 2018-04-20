@@ -795,6 +795,8 @@ A <spanx style="emph">valid</spanx> bag &must; meet the following requirements:
           This is the layout of a basic bag containing an image and a companion
           OCR file. Lines of file content are shown with added parentheses to
           indicate each complete line.
+          For brevity this example uses the algorithm "md5"
+          ather than the recommended "sha512".
         </t>
 
         <figure>
@@ -826,6 +828,8 @@ myfirstbag/
           files listed in the payload manifests prior to validation. Lines of
           file content are shown with added parentheses to indicate each
           complete line.
+          For brevity this example uses the algorithm "md5"
+          rather than the recommended "sha512".
         </t>
 
         <figure>
