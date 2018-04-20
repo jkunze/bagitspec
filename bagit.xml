@@ -279,8 +279,8 @@ document are to be interpreted as described in <xref target="RFC2119"/>.
   </t>
             <t hangText="bag checksum algorithm">
     The name of a cryptographic checksum algorithm which has been normalized
-    for use in a manifest or tag manifest file name (e.g. "SHA-1" becomes
-    "sha1") as described in <xref target="bag-checksum-algorithms"/>.
+    for use in a manifest or tag manifest file name (e.g. "sha512")
+    as described in <xref target="bag-checksum-algorithms"/>.
   </t>
             <t hangText="payload">
     The data encapsulated by the bag. The contents of the payload
