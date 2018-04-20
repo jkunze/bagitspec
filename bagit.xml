@@ -283,7 +283,7 @@ document are to be interpreted as described in <xref target="RFC2119"/>.
     "sha1") as described in <xref target="bag-checksum-algorithms"/>.
   </t>
             <t hangText="payload">
-    The data encapsulated by the bag. The contents of the payload
+    The data encapsulated by the bag as a set of named files. The contents of the payload files
     are opaque to this specification, and, with respect to BagIt processing,
     are always considered as a sequence of uninterpreted octets.
     See <xref target="sec-payload-dir"/>.
