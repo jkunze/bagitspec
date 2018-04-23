@@ -515,21 +515,27 @@ As a result, no <spanx style="emph">filename</spanx> listed in a tag manifest be
             metadata elements &must; be preserved.
           </t>
           <t>
-            A metadata element &must; consist of a label, a colon, at least one
-            linear whitespace character, and a value. The label &may; contain
-            linear whitespace characters, but &must-not; be preceded by
-            linear whitespace. It is &recommended; that
-            lines not exceed 79 characters in length. Long values &may; be
-            continued onto the next line by inserting a newline (LF), a carriage
-            return (CR), or carriage return plus newline (CRLF) and indenting
-            the next line with linear white space (spaces or tabs).
+            A metadata element &must; consist of a label, a colon ":", a single
+            linear whitespace character (space or tab), and a value, terminated with a newline (CR), carriage return (LF) or 
+            carriage return plus newline (CRLF).
           </t>
           <t>
-            For BagIt 1.0, the colon separating the key from the value &must; be
-            followed by a single linear whitespace character. For compatibility
-            with previous versions, implementations &must; accept multiple
-            linear whitespace before and after the colon when the bag version is
-            earlier than 1.0.
+            The label &must-not; contain colon (:), newlines (CR) or carriage returns (LF). 
+            The label &may; contain linear whitespace characters, but &must-not; start or
+            end with whitespace. 
+          </t> 
+          <t>
+            It is &recommended; that lines not exceed 79 characters in length. Long values &may; be
+            continued onto the next line by inserting a newline (LF), a carriage
+            return (CR), or carriage return plus newline (CRLF) and indenting
+            the next line with one or more linear white space (spaces or tabs).
+            Except for linebreaks such padding does not form part of the value.
+          </t>
+          <t>
+            Implementations wishing to support previous BagIt versions 
+            &must; accept multiple linear whitespace before and after the 
+            colon when the bag version is earlier than 1.0; such whitespace 
+            does not form part of the label or value.
           </t>
           <t>
             The following are reserved metadata elements. The use of these reserved
