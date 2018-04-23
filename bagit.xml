@@ -434,9 +434,9 @@ manifest-sha1.txt
             Each line of a payload manifest file &must; be of the form:
           </t>
           <figure>
-            <artwork>checksum filename</artwork>
+            <artwork>checksum filepath</artwork>
             <postamble>
-    where <spanx style="emph">filename</spanx> is the pathname of a file
+    where <spanx style="emph">filepath</spanx> is the pathname of a file
     relative to the base directory, and <spanx style="emph">checksum</spanx> is
     a hex-encoded checksum calculated according to
     <spanx style="emph">algorithm</spanx> over every octet in the file.
@@ -446,14 +446,14 @@ manifest-sha1.txt
             <list style="symbols">
               <t>The hex-encoded checksum &may; use uppercase and/or lowercase letters.</t>
               <t>The slash character ('/') &must; be used as a path separator
-                in <spanx style="emph">filename</spanx>.</t>
+                in <spanx style="emph">filepath</spanx>.</t>
               <t>One or more linear whitespace characters (spaces or tabs)
                 &must; separate <spanx style="emph">checksum</spanx> from
-                <spanx style="emph">filename</spanx>.</t>
+                <spanx style="emph">filepath</spanx>.</t>
               <t>There is no limitation on the length of a pathname.</t>
               <t>The payload manifest &must-not; reference files outside the payload directory.</t>
               <t>
-                If a <spanx style="emph">filename</spanx> includes a newline
+                If a <spanx style="emph">filepath</spanx> includes a newline
                 (LF), a carriage return (CR),
                 or carriage return plus newline (CRLF) it &must; be
                 percent-encoded following <xref target="RFC3986"/>.
@@ -500,7 +500,7 @@ tagmanifest-sha1.txt
 A tag manifest file has the same form as the payload file manifest
 file described in <xref target="sec-payload-manifest"/>,
 but &must-not; list any payload files.
-As a result, no <spanx style="emph">filename</spanx> listed in a tag manifest begins "data/".
+As a result, no <spanx style="emph">filepath</spanx> listed in a tag manifest begins "data/".
 </t>
         </section>
         <!-- /Tag Manifest -->
@@ -649,20 +649,20 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
             Each line of a fetch file &must; be of the form:
           </t>
           <figure>
-            <artwork>url length filename</artwork>
+            <artwork>url length filepath</artwork>
             <postamble>
               where <spanx style="emph">url</spanx> identifies the file to be
               fetched and must be an absolute URI as defined in
               <xref target="RFC3986"/>, <spanx style="emph">length</spanx> is
               the number of octets in the file (or "-", to leave it unspecified),
-              and <spanx style="emph">filename</spanx> identifies the
+              and <spanx style="emph">filepath</spanx> identifies the
               corresponding payload file, relative to the base directory.
             </postamble>
           </figure>
 
           <t>
             The slash character ('/') &must; be used as a path separator in
-            <spanx style="emph">filename</spanx>. One or more linear whitespace
+            <spanx style="emph">filepath</spanx>. One or more linear whitespace
             characters (spaces or tabs) &must; separate these
             three values, and any such characters in the <spanx style="emph">url</spanx>
             &must; be percent-encoded <xref target="RFC3986"/>.  There is no
@@ -1084,14 +1084,14 @@ the same results but on systems like Windows they can produce different results
 based on the file contents.
 
 The md5sum output format has two characters between the checksum and the
-filename: the first is always a space and the second is an asterisk ("*") for
+filepath: the first is always a space and the second is an asterisk ("*") for
 binary mode and a space for text mode.
 </t>
           <t>
-A final note about md5sum-generated manifests is that for a <spanx style="emph">filename</spanx> containing
+A final note about md5sum-generated manifests is that for a <spanx style="emph">filepath</spanx> containing
 a backslash ('\'), the manifest line will have a backslash inserted in front of
 the <spanx style="emph">checksum</spanx> and, under Windows, the backslashes inside
-<spanx style="emph">filename</spanx> can be doubled.
+<spanx style="emph">fiilepath</spanx> can be doubled.
 </t>
           <t>
 Implementers &may; wish to accept this format by ignoring a leading asterisk or
@@ -1130,11 +1130,11 @@ ending    = CR / LF / CRLF
           <preamble>Payload Manifest ABNF:</preamble>
           <artwork type="abnf" xml:space="preserve"><![CDATA[
 payload-manifest      = 1*payload-manifest-line
-payload-manifest-line = checksum 1*WSP filename ending
+payload-manifest-line = checksum 1*WSP filepath ending
 checksum              = 1*case-hexdig
 case-hexdig           = DIGIT / "A" / "a" / "B" / "b" / "C" / "c" / 
                         "D" / "d" / "E"/ "e"/ "F" / "f"
-filename              = "data/" 
+filepath              = "data/"
                         1*( unreserved / pct-encoded / sub-delims )
 unreserved            = ALPHA / DIGIT / "-" / "." / "_" / "~"
 sub-delims            = "!" / "$" / "&" / DQUOTE / "'" / "(" / ")" /
@@ -1167,10 +1167,10 @@ ending        = CR / LF / CRLF
           <preamble>fetch.txt ABNF:</preamble>
           <artwork type="abnf"><![CDATA[
 fetch      = 1*fetch-line
-fetch-line = url 1*WSP length 1*WSP filename ending
+fetch-line = url 1*WSP length 1*WSP filepath ending
 url        = <absolute-URI, see [RFC3986], Section 4.3>
 length     = 1*DIGIT / "-"
-filename   = ("data/" 
+filepath   = ("data/"
               1*( unreserved / pct-encoded / sub-delims ))
 ending     = CR / LF / CRLF
 ]]></artwork>
