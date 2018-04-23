@@ -393,7 +393,7 @@ Tag-File-Character-Encoding: UTF-8
             correctness.
             Payload files &may; be organized in arbitrary sub-directory structures
             within the payload directory, however for the purpose of this specification
-            such sub-directory structures and file names have no given meaning.
+            such sub-directory structures and filenames have no given meaning.
           </t>
         </section>
         <!-- /Payload Directory -->
