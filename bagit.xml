@@ -342,7 +342,7 @@ in arbitrary file hierarchies and &may; have
 any name that is not reserved for a file or directory in this specification.
 </t>
       <t>
-The base directory &may; have any name.
+The base directory can have any name.
 </t>
       <figure>
         <artwork>
