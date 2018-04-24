@@ -227,7 +227,7 @@ BagIt differs from serialized archive formats such as MIME, TAR, or ZIP
 in two general areas:
 
 <list style="numbers"><t>
-    Strong integrity assurances. The format supports only cryptographic-quality
+    Strong integrity assurances. The format supports cryptographic-quality
     hash algorithms (see <xref target="bag-checksum-algorithms"/>) and allows
     for in-place upgrades to add additional manifests using stronger algorithms
     without breaking backwards compatibility.
