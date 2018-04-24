@@ -1200,7 +1200,7 @@ ending     = CR / LF / CRLF
 BagIt owes much to many thoughtful contributors and reviewers, including
 Stephen Abrams, Mike Ashenfelder, Dan Chudnov, Dave Crocker, Brad Hards, Scott Fisher, Keith
 Johnson, Erik Hetzner, Leslie Johnston, David Loy, Mark Phillips, Tracy Seneca,
-Brian Tingle, Adam Turoff, and Jim Tuttle.
+Brian Tingle, Adam Turoff, Jim Tuttle, and Stian Soiland-Reyes.
 </t>
       <section title="IANA Considerations">
         <t>
