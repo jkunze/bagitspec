@@ -600,8 +600,8 @@ As a result, no <spanx style="emph">filename</spanx> listed in a tag manifest be
               ordinal number within the group; if T is not known, specify it as "?"
               (question mark).  Examples:  1 of 2, 4 of 4, 3 of ?, 89 of 145.
               This metadata element &should-not; be repeated.
-              If this metadata element is present, the Bag-Group-Identifier element
-              &should; be present.              
+              If this metadata element is present, it is &recommended; to also
+              include the Bag-Group-Identifier element.
           </t>
           <t hangText="Internal-Sender-Identifier">
               An alternate sender-specific identifier for the content
