@@ -1091,7 +1091,7 @@ binary mode and a space for text mode.
 A final note about md5sum-generated manifests is that for a <spanx style="emph">filepath</spanx> containing
 a backslash ('\'), the manifest line will have a backslash inserted in front of
 the <spanx style="emph">checksum</spanx> and, under Windows, the backslashes inside
-<spanx style="emph">fiilepath</spanx> can be doubled.
+<spanx style="emph">filepath</spanx> can be doubled.
 </t>
           <t>
 Implementers &may; wish to accept this format by ignoring a leading asterisk or
