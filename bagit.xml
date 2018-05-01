@@ -9,6 +9,7 @@
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2234.xml">
 <!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
+<!ENTITY RFC2978 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2978.xml">
 <!ENTITY RFC3174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3174.xml">
 <!ENTITY RFC3552 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3552.xml">
 <!ENTITY RFC3629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3629.xml">
@@ -370,10 +371,15 @@ BagIt-Version: M.N
 Tag-File-Character-Encoding: ENCODING
   </artwork>
             <postamble>
-              M.N identifies the BagIt major (M) and minor (N) version numbers,
-              and ENCODING identifies the character set encoding used by the remaining tag files.
+              <spanx style="emph">M.N</spanx> identifies the BagIt major (M) and minor (N) version numbers.
+              <spanx style="emph">ENCODING</spanx> identifies the character set encoding used by the remaining tag files.
 
-              The bag declaration &must; be encoded in UTF-8, and &must-not; contain a
+              <spanx style="emph">ENCODING</spanx> &should; 
+              be <spanx style="verb">UTF-8</spanx> but 
+              for backwards compatibility it &may; be any 
+              other encoding registered in <xref target="RFC2978"/>.
+
+              The bag declaration itself &must; be encoded in UTF-8, and &must-not; contain a
               byte-order mark (BOM) <xref target="RFC3629"/>.
             </postamble>
           </figure>
@@ -1212,13 +1218,14 @@ This draft does not request any action from IANA.
         <format type="HTML" target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx"/>
       </reference>
 
-      &RFC2119; <!-- Requirements -->
       &RFC1321; <!-- MD5 -->
+      &RFC2119; <!-- Requirements -->
+      &RFC2234; <!-- ABNF -->
+      &RFC2978; <!-- character sets -->
       &RFC3174; <!-- SHA-1 -->
-      &RFC6234; <!-- SHA-2 -->
       &RFC3629; <!-- utf-8 -->
       &RFC3986; <!-- URLs -->
-      &RFC2234; <!-- ABNF -->
+      &RFC6234; <!-- SHA-2 -->
 
       <reference anchor="UNICODE-TR15" target="http://www.unicode.org/reports/tr15/">
         <front>
