@@ -464,9 +464,9 @@ manifest-sha512.txt
               <t>There is no limitation on the length of a pathname.</t>
               <t>The payload manifest &must-not; reference files outside the payload directory.</t>
               <t>
-                If a <spanx style="emph">filepath</spanx> includes a newline
+                If a <spanx style="emph">filepath</spanx> includes a line feed
                 (LF), a carriage return (CR),
-                or carriage return plus newline (CRLF) it &must; be
+                or carriage return plus line feed (CRLF) it &must; be
                 percent-encoded following <xref target="RFC3986"/>.
               </t>
             </list>
@@ -527,18 +527,18 @@ As a result, no <spanx style="emph">filepath</spanx> listed in a tag manifest be
           </t>
           <t>
             A metadata element &must; consist of a label, a colon ":", a single
-            linear whitespace character (space or tab), and a value, terminated with a newline (CR), carriage return (LF) or 
-            carriage return plus newline (CRLF).
+            linear whitespace character (space or tab), and a value, terminated with a line feed (CR), carriage return (LF) or 
+            carriage return plus line feed (CRLF).
           </t>
           <t>
-            The label &must-not; contain colon (:), newlines (CR) or carriage returns (LF). 
+            The label &must-not; contain colon (:), line feeds (LF) or carriage returns (CR). 
             The label &may; contain linear whitespace characters, but &must-not; start or
             end with whitespace. 
           </t> 
           <t>
             It is &recommended; that lines not exceed 79 characters in length. Long values &may; be
-            continued onto the next line by inserting a newline (LF), a carriage
-            return (CR), or carriage return plus newline (CRLF) and indenting
+            continued onto the next line by inserting a line feed (LF), a carriage
+            return (CR), or carriage return plus line feed (CRLF) and indenting
             the next line with one or more linear white space (spaces or tabs).
             Except for linebreaks such padding does not form part of the value.
           </t>
@@ -728,8 +728,8 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
         </t>
         <t>
           Text tag files are line-oriented, and each line &must; be terminated
-          by a newline (LF), a carriage return (CR), or carriage return plus
-          newline (CRLF). Text tag file names &must; end in the extension
+          by a line feed (LF), a carriage return (CR), or carriage return plus
+          line feed (CRLF). Text tag file names &must; end in the extension
           ".txt".
         </t>
         <t>
