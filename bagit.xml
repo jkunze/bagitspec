@@ -16,6 +16,7 @@
 <!ENTITY RFC3986 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml">
 <!ENTITY RFC5226 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5226.xml">
 <!ENTITY RFC6234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6234.xml">
+<!ENTITY RFC6920 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6920.xml">
 <!-- RFC 2119 entities - for convenience --><!ENTITY must "MUST">
 <!ENTITY must-not "MUST NOT">
 <!ENTITY required "REQUIRED">
@@ -766,6 +767,12 @@ Checksum values &must; be encoded so as to conform to the manifest format
 specified in <xref target="sec-payload-manifest"/>. However, the internal details
 of a checksum are outside the scope of this document.
 </t>
+<t>
+  To avoid future ambiguity, the checksum algorithm &should; be registered
+  in IANA's "Named Information Hash Algorithm Registry" <xref target="ni-registry" />
+  according to <xref target="RFC6920"/>, but &may; for backwards compatibility also be the
+  MD5 <xref target="RFC1321"/> or SHA-1 <xref target="RFC3174"/>.
+</t>
         <t>
 The name of the checksum algorithm &must; be normalized for use in the
 manifest's filename by lowercasing the common name of the algorithm and
@@ -774,8 +781,8 @@ mapping common algorithm names to normalized names:
           <list style="symbols">
             <t>MD5: md5</t>
             <t>SHA-1: sha1</t>
-            <t>SHA-256: sha256</t>
-            <t>SHA-512: sha512</t>
+            <t>sha-256: sha256</t>
+            <t>sha-512: sha512</t>
 
 </list></t>
         <t>
@@ -783,7 +790,7 @@ mapping common algorithm names to normalized names:
   SHA-256 and SHA-512 algorithms <xref target="RFC6234"/> and &should; enable
   SHA-512 by default when creating new bags.
 
-  For backwards-compatibility implementers &should; support
+  For backwards compatibility implementers &should; support
   MD5 <xref target="RFC1321"/> and SHA-1 <xref target="RFC3174"/>.
 
   Implementers are encouraged to simplify the process of adding additional
@@ -1256,6 +1263,15 @@ This draft does not request any action from IANA.
       &RFC1321; <!-- MD5 -->
       &RFC2119; <!-- Requirements -->
       &RFC2234; <!-- ABNF -->
+      &RFC6920; <!-- Named Information Hash Algorithm Registry -->
+
+      <reference anchor="ni-registry" target="https://www.iana.org/assignments/named-information/named-information.xhtml">
+        <front>
+          <title>Named Information Hash Algorithm Registry</title>
+          <author><organization>IANA</organization></author>
+          <date year="2016" month="9" day="14"/>
+        </front>
+      </reference>
       &RFC2978; <!-- character sets -->
       &RFC3174; <!-- SHA-1 -->
       &RFC3629; <!-- utf-8 -->
