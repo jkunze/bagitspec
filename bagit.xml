@@ -466,7 +466,8 @@ manifest-sha512.txt
               <t>
                 If a <spanx style="emph">filepath</spanx> includes a line feed
                 (LF), a carriage return (CR),
-                or carriage return plus line feed (CRLF) it &must; be
+                carriage return plus line feed (CRLF) or
+                percent sign (%), those characters (and only those) &must; be
                 percent-encoded following <xref target="RFC3986"/>.
               </t>
             </list>
@@ -693,7 +694,13 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
             <spanx style="emph">filepath</spanx>. One or more linear whitespace
             characters (spaces or tabs) &must; separate these
             three values, and any such characters in the <spanx style="emph">url</spanx>
-            &must; be percent-encoded <xref target="RFC3986"/>.  There is no
+            &must; be percent-encoded <xref target="RFC3986"/>.
+            If <spanx style="emph">filename</spanx> includes a line feed
+            (LF), a carriage return (CR),
+            carriage return plus line feed (CRLF) or
+            percent sign (%), those characters (and only those) &must; be
+            percent-encoded following <xref target="RFC3986"/>.
+            There is no
             limitation on the length of any of the fields in the fetch file.
           </t>
 
@@ -1172,7 +1179,7 @@ filepath              = "data/"
 unreserved            = ALPHA / DIGIT / "-" / "." / "_" / "~"
 sub-delims            = "!" / "$" / "&" / DQUOTE / "'" / "(" / ")" /
                         "*" / "+" / "," / ";" / "=" / "/"              
-pct-encoded           = "%" HEXDIG HEXDIG
+pct-encoded           = "%0D" / "%0d" / "%0A" / "%0a" / "%25"
 ending                = CR / LF / CRLF
 ]]></artwork>
         </figure>
