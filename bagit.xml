@@ -490,10 +490,12 @@ placeholder file with a name such as ".keep".
             checksum algorithm.
           </t>
           <t>
-            A bag &may; contain one or more tag manifests.
+            A bag &may; contain one or more tag manifests, in which case each tag manifest &should; list the same set of tag files.
           </t>
           <t>
             Each tag manifest &must; list every payload manifest.
+            Each tag manifest &must-not; list any tag manifests,
+            but &should; list the remaining tag files present in the bag.
           </t>
           <t>
             A tag manifest file &must; have a name of the form
