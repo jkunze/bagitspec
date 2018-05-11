@@ -739,8 +739,9 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
         <t>
           Text tag files are line-oriented, and each line &must; be terminated
           by a line feed (LF), a carriage return (CR), or carriage return plus
-          line feed (CRLF). Text tag file names &must; end in the extension
-          ".txt".
+          newline (CRLF). It is &recommended; that the last line in a tag
+          file also ends with LF, CR, or CRLF.
+          Text tag file names &must; end in the extension ".txt".
         </t>
         <t>
 In all text tag files except for the bag declaration file, text &must; be
@@ -1158,7 +1159,7 @@ definitions use the core rules (e.g. DIGIT, HEXDIG, etc) as defined in
                 <preamble>bagit.txt ABNF:</preamble>
                 <artwork type="abnf" xml:space="preserve"><![CDATA[
 bagit-txt = "BagIt-Version: " 1*DIGIT "." 1*DIGIT ending
-            "Tag-File-Character-Encoding: " encoding
+            "Tag-File-Character-Encoding: " encoding ending
 encoding  = 1*CHAR
 ending    = CR / LF / CRLF
     ]]></artwork>
