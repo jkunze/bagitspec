@@ -220,7 +220,7 @@ A bag consists of a directory containing the payload files and other accompanyin
 metadata files known as "tag" files. The "tags" are metadata files intended to
 facilitate and document the storage and transfer of the bag. Processing a bag
 does not require any understanding of the payload file contents and the payload
-can be accessed without processing the BagIt metadata.
+files can be accessed without processing the BagIt metadata.
 </t>
         <t>
 The name, BagIt, is inspired by the "enclose and deposit" method
@@ -296,10 +296,10 @@ document are to be interpreted as described in <xref target="RFC2119"/>.
             <t hangText="tag file">
     A file which contains metadata about the bag or its payload.
     This specification defines the standard
-    BagIt tag files: 
+    BagIt tag files:
     the bag declaration in "bagit.txt" <xref target="sec-bag-decl"/>,
     payload manifests <xref target="sec-payload-manifest"/>,
-    tag manifests <xref target="sec-tag-manifest"/>, 
+    tag manifests <xref target="sec-tag-manifest"/>,
     bag metadata in "bag-info.txt" <xref target="sec-bag-info"/>,
     and remote payload in "fetch.txt" <xref target="sec-fetch-file"/>.
 
@@ -379,9 +379,9 @@ Tag-File-Character-Encoding: ENCODING
               <spanx style="emph">M.N</spanx> identifies the BagIt major (M) and minor (N) version numbers.
               <spanx style="emph">ENCODING</spanx> identifies the character set encoding used by the remaining tag files.
 
-              <spanx style="emph">ENCODING</spanx> &should; 
-              be <spanx style="verb">UTF-8</spanx> but 
-              for backwards compatibility it &may; be any 
+              <spanx style="emph">ENCODING</spanx> &should;
+              be <spanx style="verb">UTF-8</spanx> but
+              for backwards compatibility it &may; be any
               other encoding registered in <xref target="RFC2978"/>.
 
               The bag declaration itself &must; be encoded in UTF-8, and &must-not; contain a
@@ -534,14 +534,14 @@ As a result, no <spanx style="emph">filepath</spanx> listed in a tag manifest be
           </t>
           <t>
             A metadata element &must; consist of a label, a colon ":", a single
-            linear whitespace character (space or tab), and a value, terminated with a line feed (CR), carriage return (LF) or 
+            linear whitespace character (space or tab), and a value, terminated with a line feed (CR), carriage return (LF) or
             carriage return plus line feed (CRLF).
           </t>
           <t>
-            The label &must-not; contain colon (:), line feeds (LF) or carriage returns (CR). 
+            The label &must-not; contain colons (:), line feeds (LF) or carriage returns (CR).
             The label &may; contain linear whitespace characters, but &must-not; start or
-            end with whitespace. 
-          </t> 
+            end with whitespace.
+          </t>
           <t>
             It is &recommended; that lines not exceed 79 characters in length. Long values &may; be
             continued onto the next line by inserting a line feed (LF), a carriage
@@ -550,15 +550,15 @@ As a result, no <spanx style="emph">filepath</spanx> listed in a tag manifest be
             Except for linebreaks such padding does not form part of the value.
           </t>
           <t>
-            Implementations wishing to support previous BagIt versions 
-            &must; accept multiple linear whitespace before and after the 
-            colon when the bag version is earlier than 1.0; such whitespace 
+            Implementations wishing to support previous BagIt versions
+            &must; accept multiple linear whitespace before and after the
+            colon when the bag version is earlier than 1.0; such whitespace
             does not form part of the label or value.
           </t>
           <t>
             The following are reserved metadata elements. The use of these reserved
             metadata elements are &optional; but encouraged. Reserved metadata
-            element names are case-insensitive. Except where indicated otherwise, 
+            element names are case-insensitive. Except where indicated otherwise,
             these metadata element names &may; be repeated to capture multiple values.
           </t>
 
@@ -613,9 +613,9 @@ As a result, no <spanx style="emph">filepath</spanx> listed in a tag manifest be
           <t hangText="Bag-Group-Identifier">
               A sender-supplied identifier for the set, if any, of bags
               to which it logically belongs.
-              This identifier must be unique across the sender's content, and if
+              This identifier &should; be unique across the sender's content, and if
               recognizable as belonging to a globally unique scheme, the receiver
-              should make an effort to honor reference to it.
+              &should; make an effort to honor reference to it.
               This metadata element &should-not; be repeated.
           </t>
           <t hangText="Bag-Count">
@@ -632,8 +632,7 @@ As a result, no <spanx style="emph">filepath</spanx> listed in a tag manifest be
               and/or bag.
           </t>
           <t hangText="Internal-Sender-Description">
-              A sender-local prose description of the contents of the
-              bag.
+              A sender-local explanation of the contents and provenance.
           </t>
           </list>
           </t>
@@ -684,7 +683,7 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
             <artwork>url length filepath</artwork>
             <postamble>
               where <spanx style="emph">url</spanx> identifies the file to be
-              fetched and must be an absolute URI as defined in
+              fetched and &must; be an absolute URI as defined in
               <xref target="RFC3986"/>, <spanx style="emph">length</spanx> is
               the number of octets in the file (or "-", to leave it unspecified),
               and <spanx style="emph">filepath</spanx> identifies the
@@ -772,7 +771,7 @@ of a checksum are outside the scope of this document.
 <t>
   To avoid future ambiguity, the checksum algorithm &should; be registered
   in IANA's "Named Information Hash Algorithm Registry" <xref target="ni-registry" />
-  according to <xref target="RFC6920"/>, but &may; for backwards compatibility also be the
+  according to <xref target="RFC6920"/>, but &may; for backwards compatibility also be
   MD5 <xref target="RFC1321"/> or SHA-1 <xref target="RFC3174"/>.
 </t>
         <t>
@@ -814,7 +813,7 @@ requirements:
           <t>Every file listed in every tag manifest &must; be present.</t>
           <t>Every file listed in every payload manifest &must; be present.</t>
           <t>For BagIt 1.0, every payload file &must; be listed in every payload manifest.
-            Note that older versions of this specification allowed payload files to be 
+            Note that older versions of this specification allowed payload files to be
             listed in just one of the manifests.
           </t>
           <t>Every element present &must; comply with this specification.</t>
@@ -840,8 +839,7 @@ A <spanx style="emph">valid</spanx> bag &must; meet the following requirements:
           This is the layout of a basic bag containing an image and a companion
           OCR file. Lines of file content are shown with added parentheses to
           indicate each complete line.
-          For brevity this example uses the algorithm "md5"
-          rather than the recommended "sha512".
+          For brevity this example uses MD5 rather than the recommended SHA-512.
         </t>
 
         <figure>
@@ -873,8 +871,7 @@ myfirstbag/
           files listed in the payload manifests prior to validation. Lines of
           file content are shown with added parentheses to indicate each
           complete line.
-          For brevity this example uses the algorithm "md5"
-          rather than the recommended "sha512".
+          For brevity this example uses MD5 rather than the recommended SHA-512.
         </t>
 
         <figure>
@@ -926,8 +923,9 @@ highsmith-tahoe/
           namespace sequences (e.g. "\\?\C:\&#x2026;") described in <xref target="MSFNAM"/>.
         </t>
         <t>
-          To assist implementers, the <xref target="LC-CONFORMANCE-SUITE">Library
-          of Congress conformance suite</xref> has some tests for invalid bags
+          To assist implementers, the Library
+          of Congress conformance suite [<xref target="LC-CONFORMANCE-SUITE" />]
+          has some tests for invalid bags
           which are expected to fail on POSIX or Windows clients.
         </t>
       </section>
@@ -966,7 +964,7 @@ highsmith-tahoe/
         </t>
 
         <t>
-          The <xref target="LC-CONFORMANCE-SUITE">Library of Congress conformance suite</xref>
+          The Library of Congress conformance suite [<xref target="LC-CONFORMANCE-SUITE" />]
           is provided as a public resource to test new implementations for compatibility and
           error handling.
         </t>
@@ -1159,8 +1157,8 @@ update the bag with valid manifests.
       <t>
 The Augmented Backus-Naur form (ABNF) provided below are non-normative. If
 there is a discrepancy between requirements in the normative sections and
-the ABNF, the requirements in the normative sections prevail. Some 
-definitions use the core rules (e.g. DIGIT, HEXDIG, etc) as defined in 
+the ABNF, the requirements in the normative sections prevail. Some
+definitions use the core rules (e.g. DIGIT, HEXDIG, etc) as defined in
 <xref target="RFC2234"/>
 </t>
       <section title="Bag Declaration: bagit.txt">
@@ -1182,13 +1180,13 @@ ending    = CR / LF / CRLF
 payload-manifest      = 1*payload-manifest-line
 payload-manifest-line = checksum 1*WSP filepath ending
 checksum              = 1*case-hexdig
-case-hexdig           = DIGIT / "A" / "a" / "B" / "b" / "C" / "c" / 
+case-hexdig           = DIGIT / "A" / "a" / "B" / "b" / "C" / "c" /
                         "D" / "d" / "E"/ "e"/ "F" / "f"
 filepath              = "data/"
                         1*( unreserved / pct-encoded / sub-delims )
 unreserved            = ALPHA / DIGIT / "-" / "." / "_" / "~"
 sub-delims            = "!" / "$" / "&" / DQUOTE / "'" / "(" / ")" /
-                        "*" / "+" / "," / ";" / "=" / "/"              
+                        "*" / "+" / "," / ";" / "=" / "/"
 pct-encoded           = "%0D" / "%0d" / "%0A" / "%0a" / "%25"
 ending                = CR / LF / CRLF
 ]]></artwork>
@@ -1204,8 +1202,8 @@ metadata-line = key ":" WSP value ending *(continuation ending)
 key           = 1*non-reserved
 value         = 1*non-reserved
 continuation  = WSP 1*non-reserved
-non-reserved  = VCHAR / WSP 
-                ; any valid character for the specific encoding 
+non-reserved  = VCHAR / WSP
+                ; any valid character for the specific encoding
                 ; except those that match "ending"
 ending        = CR / LF / CRLF
 ]]></artwork>
