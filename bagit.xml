@@ -296,10 +296,10 @@ document are to be interpreted as described in <xref target="RFC2119"/>.
             <t hangText="tag file">
     A file which contains metadata about the bag or its payload.
     This specification defines the standard
-    BagIt tag files: 
+    BagIt tag files:
     the bag declaration in "bagit.txt" <xref target="sec-bag-decl"/>,
     payload manifests <xref target="sec-payload-manifest"/>,
-    tag manifests <xref target="sec-tag-manifest"/>, 
+    tag manifests <xref target="sec-tag-manifest"/>,
     bag metadata in "bag-info.txt" <xref target="sec-bag-info"/>,
     and remote payload in "fetch.txt" <xref target="sec-fetch-file"/>.
 
@@ -379,9 +379,9 @@ Tag-File-Character-Encoding: ENCODING
               <spanx style="emph">M.N</spanx> identifies the BagIt major (M) and minor (N) version numbers.
               <spanx style="emph">ENCODING</spanx> identifies the character set encoding used by the remaining tag files.
 
-              <spanx style="emph">ENCODING</spanx> &should; 
-              be <spanx style="verb">UTF-8</spanx> but 
-              for backwards compatibility it &may; be any 
+              <spanx style="emph">ENCODING</spanx> &should;
+              be <spanx style="verb">UTF-8</spanx> but
+              for backwards compatibility it &may; be any
               other encoding registered in <xref target="RFC2978"/>.
 
               The bag declaration itself &must; be encoded in UTF-8, and &must-not; contain a
@@ -534,14 +534,14 @@ As a result, no <spanx style="emph">filepath</spanx> listed in a tag manifest be
           </t>
           <t>
             A metadata element &must; consist of a label, a colon ":", a single
-            linear whitespace character (space or tab), and a value, terminated with a line feed (CR), carriage return (LF) or 
+            linear whitespace character (space or tab), and a value, terminated with a line feed (CR), carriage return (LF) or
             carriage return plus line feed (CRLF).
           </t>
           <t>
-            The label &must-not; contain colon (:), line feeds (LF) or carriage returns (CR). 
+            The label &must-not; contain colon (:), line feeds (LF) or carriage returns (CR).
             The label &may; contain linear whitespace characters, but &must-not; start or
-            end with whitespace. 
-          </t> 
+            end with whitespace.
+          </t>
           <t>
             It is &recommended; that lines not exceed 79 characters in length. Long values &may; be
             continued onto the next line by inserting a line feed (LF), a carriage
@@ -550,15 +550,15 @@ As a result, no <spanx style="emph">filepath</spanx> listed in a tag manifest be
             Except for linebreaks such padding does not form part of the value.
           </t>
           <t>
-            Implementations wishing to support previous BagIt versions 
-            &must; accept multiple linear whitespace before and after the 
-            colon when the bag version is earlier than 1.0; such whitespace 
+            Implementations wishing to support previous BagIt versions
+            &must; accept multiple linear whitespace before and after the
+            colon when the bag version is earlier than 1.0; such whitespace
             does not form part of the label or value.
           </t>
           <t>
             The following are reserved metadata elements. The use of these reserved
             metadata elements are &optional; but encouraged. Reserved metadata
-            element names are case-insensitive. Except where indicated otherwise, 
+            element names are case-insensitive. Except where indicated otherwise,
             these metadata element names &may; be repeated to capture multiple values.
           </t>
 
@@ -814,7 +814,7 @@ requirements:
           <t>Every file listed in every tag manifest &must; be present.</t>
           <t>Every file listed in every payload manifest &must; be present.</t>
           <t>For BagIt 1.0, every payload file &must; be listed in every payload manifest.
-            Note that older versions of this specification allowed payload files to be 
+            Note that older versions of this specification allowed payload files to be
             listed in just one of the manifests.
           </t>
           <t>Every element present &must; comply with this specification.</t>
@@ -1088,9 +1088,9 @@ z               7a  LATIN SMALL LETTER Z
           <t>
             As specified above, only the Unix-based path separator ('/') may be
             used inside filenames listed in BagIt manifest and fetch.txt files.
-            When bags are exchanged between Windows and Unix platforms, care
-            should be taken to translate the path separator as needed. Receivers
-            of bags on physical media should be prepared for filesystems created
+            When bags are exchanged between Windows and Unix platforms,
+            the path separator &should; be translated as needed. Receivers
+            of bags on physical media &should; be prepared for filesystems created
             under either Windows or Unix. Besides the fundamental difference
             between path separators ('\' and '/'), generally, Windows
             filesystems have more limitations than Unix filesystems.
@@ -1147,7 +1147,7 @@ the <spanx style="emph">checksum</spanx> and, under Windows, the backslashes ins
 Implementers &may; wish to accept this format by ignoring a leading asterisk or
 handling differences in line termination gracefully but, if so, implementations
 &must; warn the user that the bag in question will fail strict validation. In
-such cases it is strongly encouraged that tools provide an easy option to
+such cases it is &recommended; that tools provide an easy option to
 update the bag with valid manifests.
 </t>
         </section>
@@ -1159,8 +1159,8 @@ update the bag with valid manifests.
       <t>
 The Augmented Backus-Naur form (ABNF) provided below are non-normative. If
 there is a discrepancy between requirements in the normative sections and
-the ABNF, the requirements in the normative sections prevail. Some 
-definitions use the core rules (e.g. DIGIT, HEXDIG, etc) as defined in 
+the ABNF, the requirements in the normative sections prevail. Some
+definitions use the core rules (e.g. DIGIT, HEXDIG, etc) as defined in
 <xref target="RFC2234"/>
 </t>
       <section title="Bag Declaration: bagit.txt">
@@ -1182,13 +1182,13 @@ ending    = CR / LF / CRLF
 payload-manifest      = 1*payload-manifest-line
 payload-manifest-line = checksum 1*WSP filepath ending
 checksum              = 1*case-hexdig
-case-hexdig           = DIGIT / "A" / "a" / "B" / "b" / "C" / "c" / 
+case-hexdig           = DIGIT / "A" / "a" / "B" / "b" / "C" / "c" /
                         "D" / "d" / "E"/ "e"/ "F" / "f"
 filepath              = "data/"
                         1*( unreserved / pct-encoded / sub-delims )
 unreserved            = ALPHA / DIGIT / "-" / "." / "_" / "~"
 sub-delims            = "!" / "$" / "&" / DQUOTE / "'" / "(" / ")" /
-                        "*" / "+" / "," / ";" / "=" / "/"              
+                        "*" / "+" / "," / ";" / "=" / "/"
 pct-encoded           = "%0D" / "%0d" / "%0A" / "%0a" / "%25"
 ending                = CR / LF / CRLF
 ]]></artwork>
@@ -1204,8 +1204,8 @@ metadata-line = key ":" WSP value ending *(continuation ending)
 key           = 1*non-reserved
 value         = 1*non-reserved
 continuation  = WSP 1*non-reserved
-non-reserved  = VCHAR / WSP 
-                ; any valid character for the specific encoding 
+non-reserved  = VCHAR / WSP
+                ; any valid character for the specific encoding
                 ; except those that match "ending"
 ending        = CR / LF / CRLF
 ]]></artwork>
