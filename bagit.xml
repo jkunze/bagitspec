@@ -538,7 +538,7 @@ As a result, no <spanx style="emph">filepath</spanx> listed in a tag manifest be
             carriage return plus line feed (CRLF).
           </t>
           <t>
-            The label &must-not; contain colons (:), line feeds (LF) or carriage returns (CR).
+            The label &must-not; contain colon (:), line feeds (LF) or carriage returns (CR).
             The label &may; contain linear whitespace characters, but &must-not; start or
             end with whitespace.
           </t>
@@ -1086,9 +1086,9 @@ z               7a  LATIN SMALL LETTER Z
           <t>
             As specified above, only the Unix-based path separator ('/') may be
             used inside filenames listed in BagIt manifest and fetch.txt files.
-            When bags are exchanged between Windows and Unix platforms, care
-            should be taken to translate the path separator as needed. Receivers
-            of bags on physical media should be prepared for filesystems created
+            When bags are exchanged between Windows and Unix platforms,
+            the path separator &should; be translated as needed. Receivers
+            of bags on physical media &should; be prepared for filesystems created
             under either Windows or Unix. Besides the fundamental difference
             between path separators ('\' and '/'), generally, Windows
             filesystems have more limitations than Unix filesystems.
@@ -1145,7 +1145,7 @@ the <spanx style="emph">checksum</spanx> and, under Windows, the backslashes ins
 Implementers &may; wish to accept this format by ignoring a leading asterisk or
 handling differences in line termination gracefully but, if so, implementations
 &must; warn the user that the bag in question will fail strict validation. In
-such cases it is strongly encouraged that tools provide an easy option to
+such cases it is &recommended; that tools provide an easy option to
 update the bag with valid manifests.
 </t>
         </section>
