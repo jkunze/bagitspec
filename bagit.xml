@@ -199,7 +199,7 @@
         <email>brian@ardvaark.net</email>
       </address>
     </author>
-    <date day="20" month="April" year="2018"/>
+    <date day="22" month="May" year="2018"/>
     <abstract>
       <t>
 This document specifies BagIt, a set of hierarchical file layout conventions for
