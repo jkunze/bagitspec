@@ -40,18 +40,6 @@
     <title abbrev="BagIt">
    The BagIt File Packaging Format (V&current-bagit-version;)
   </title>
-    <author initials="A." surname="Boyko" fullname="Andy Boyko">
-      <address>
-        <postal>
-          <street>1438 Kingfisher Way</street>
-          <city>Sunnyvale</city>
-          <region>CA</region>
-          <code>94087</code>
-          <country>USA</country>
-        </postal>
-        <email>andy@boyko.net</email>
-      </address>
-    </author>
     <author initials="J." surname="Kunze" fullname="John A. Kunze">
       <organization>
     California Digital Library
@@ -80,6 +68,18 @@
           <country>USA</country>
         </postal>
         <email>justinlittman@gwu.edu</email>
+      </address>
+    </author>
+    <author initials="A." surname="Boyko" fullname="Andy Boyko">
+      <address>
+        <postal>
+          <street>1438 Kingfisher Way</street>
+          <city>Sunnyvale</city>
+          <region>CA</region>
+          <code>94087</code>
+          <country>USA</country>
+        </postal>
+        <email>andy@boyko.net</email>
       </address>
     </author>
     <author initials="E." surname="Summers" fullname="Ed Summers">
