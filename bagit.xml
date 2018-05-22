@@ -70,18 +70,6 @@
         <email>justinlittman@gwu.edu</email>
       </address>
     </author>
-    <author initials="A." surname="Boyko" fullname="Andy Boyko">
-      <address>
-        <postal>
-          <street>1438 Kingfisher Way</street>
-          <city>Sunnyvale</city>
-          <region>CA</region>
-          <code>94087</code>
-          <country>USA</country>
-        </postal>
-        <email>andy@boyko.net</email>
-      </address>
-    </author>
     <author initials="E." surname="Summers" fullname="Ed Summers">
       <organization>
     University of Maryland
@@ -185,6 +173,18 @@
           <country>USA</country>
         </postal>
         <email>cadams@loc.gov</email>
+      </address>
+    </author>
+    <author initials="A." surname="Boyko" fullname="Andy Boyko">
+      <address>
+        <postal>
+          <street>1438 Kingfisher Way</street>
+          <city>Sunnyvale</city>
+          <region>CA</region>
+          <code>94087</code>
+          <country>USA</country>
+        </postal>
+        <email>andy@boyko.net</email>
       </address>
     </author>
     <author initials="B." surname="Vargas" fullname="Brian Vargas">
