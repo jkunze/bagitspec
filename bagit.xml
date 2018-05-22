@@ -35,7 +35,7 @@
 <?rfc inline="yes"?>
 <?rfc symrefs="yes"?>
 <?rfc toc="yes"?>
-<rfc category="info" docName="draft-kunze-bagit-14" ipr="trust200902">
+<rfc category="info" docName="draft-kunze-bagit-15" ipr="trust200902">
   <front>
     <title abbrev="BagIt">
    The BagIt File Packaging Format (V&current-bagit-version;)
