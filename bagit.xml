@@ -7,7 +7,7 @@
 <!ENTITY mdash "&#8212;">
 <!ENTITY RFC1321 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1321.xml">
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
-<!ENTITY RFC2234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2234.xml">
+<!ENTITY RFC4234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4234.xml">
 <!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
 <!ENTITY RFC2978 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2978.xml">
 <!ENTITY RFC3174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3174.xml">
@@ -17,6 +17,7 @@
 <!ENTITY RFC5226 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5226.xml">
 <!ENTITY RFC6234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6234.xml">
 <!ENTITY RFC6920 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6920.xml">
+<!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
 <!-- RFC 2119 entities - for convenience --><!ENTITY must "MUST">
 <!ENTITY must-not "MUST NOT">
 <!ENTITY required "REQUIRED">
@@ -25,6 +26,7 @@
 <!ENTITY should "SHOULD">
 <!ENTITY should-not "SHOULD NOT">
 <!ENTITY recommended "RECOMMENDED">
+<!ENTITY not-recommended "NOT RECOMMENDED">
 <!ENTITY may "MAY">
 <!ENTITY optional "OPTIONAL">
 <!-- The current bagit version, for convenience. --><!ENTITY current-bagit-version "1.0">
@@ -70,22 +72,7 @@
         <email>justinlittman@gwu.edu</email>
       </address>
     </author>
-    <author initials="E." surname="Summers" fullname="Ed Summers">
-      <organization>
-    University of Maryland
-  </organization>
-      <address>
-        <postal>
-          <street>4130 Campus Drive</street>
-          <city>College Park</city>
-          <region>MD</region>
-          <code>20742</code>
-          <country>USA</country>
-        </postal>
-        <email>ehs@pobox.com</email>
-      </address>
-    </author>
-    <author initials="L." surname="Madden" fullname="Liz Madden">
+    <author initials="E." surname="Madden" fullname="Liz Madden">
       <organization>
     Library of Congress
    </organization>
@@ -115,51 +102,6 @@
         <email>jsca@loc.gov</email>
       </address>
     </author>
-    <author initials="R." surname="Storey" fullname="Rosie Storey">
-      <organization>
-    Library of Congress
-   </organization>
-      <address>
-        <postal>
-          <street>101 Independence Avenue SE</street>
-          <city>Washington</city>
-          <region>DC</region>
-          <code>20540</code>
-          <country>USA</country>
-        </postal>
-        <email>rstorey@loc.gov</email>
-      </address>
-    </author>
-    <author initials="D." surname="Brunton" fullname="David Brunton">
-      <organization>
-    Library of Congress
-   </organization>
-      <address>
-        <postal>
-          <street>101 Independence Avenue SE</street>
-          <city>Washington</city>
-          <region>DC</region>
-          <code>20540</code>
-          <country>USA</country>
-        </postal>
-        <email>dbrun@loc.gov</email>
-      </address>
-    </author>
-    <author initials="K." surname="Zwaard" fullname="Kate Zwaard">
-      <organization>
-   Library of Congress
-  </organization>
-      <address>
-        <postal>
-          <street>101 Independence Avenue SE</street>
-          <city>Washington</city>
-          <region>DC</region>
-          <code>20540</code>
-          <country>USA</country>
-        </postal>
-        <email>kzwa@loc.gov</email>
-      </address>
-    </author>
     <author initials="C." surname="Adams" fullname="Chris Adams">
       <organization>
     Library of Congress
@@ -175,40 +117,14 @@
         <email>cadams@loc.gov</email>
       </address>
     </author>
-    <author initials="A." surname="Boyko" fullname="Andy Boyko">
-      <organization> - </organization>
-      <address>
-        <postal>
-          <street>1438 Kingfisher Way</street>
-          <city>Sunnyvale</city>
-          <region>CA</region>
-          <code>94087</code>
-          <country>USA</country>
-        </postal>
-        <email>andy@boyko.net</email>
-      </address>
-    </author>
-    <author initials="B." surname="Vargas" fullname="Brian Vargas">
-      <organization> - </organization>
-      <address>
-        <postal>
-          <street>1354 Quincy St. NW</street>
-          <city>Washington</city>
-          <region>DC</region>
-          <code>20011</code>
-          <country>USA</country>
-        </postal>
-        <email>brian@ardvaark.net</email>
-      </address>
-    </author>
     <date day="22" month="May" year="2018"/>
     <abstract>
       <t>
-This document specifies BagIt, a set of hierarchical file layout conventions for
+This document describes BagIt, a set of hierarchical file layout conventions for
 storage and transfer of arbitrary digital content. A "bag" has just enough
 structure to enclose descriptive metadata "tags" and a file "payload" but
 does not require knowledge of the payload's internal semantics. This
-BagIt format should be suitable for reliable storage and transfer.
+BagIt format is suitable for reliable storage and transfer.
 </t>
     </abstract>
   </front>
@@ -257,8 +173,10 @@ Ghent University, New York University, and the University of California.
       <section title="Requirements">
         <t>
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-"SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-document are to be interpreted as described in <xref target="RFC2119"/>.
+"SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL"
+in this document are to be interpreted as described in BCP 14
+<xref target="RFC2119"/> <xref target="RFC8174"/> when, and only when, they
+appear in all capitals as shown here.
 </t>
         <t>
   Implementers are strongly encouraged to review the interoperability
@@ -268,16 +186,16 @@ document are to be interpreted as described in <xref target="RFC2119"/>.
       <!-- /Requirements -->
       <section title="Terminology">
         <t>
-  The following terms have precise definitions as used in this specification:
+  The following terms have precise definitions as used in this document:
 </t>
         <t>
           <list style="hanging">
             <t hangText="bag">
     A set of opaque files contained within the structure
-    defined by this specification.
+    defined by this document.
   </t>
             <t hangText="bag declaration">
-    The file required to be in all bags conforming to this specification.
+    The file required to be in all bags conforming to this document.
     Contains values necessary to process the rest of a bag.
     See <xref target="sec-bag-decl"/>.
   </t>
@@ -286,9 +204,14 @@ document are to be interpreted as described in <xref target="RFC2119"/>.
     for use in a manifest or tag manifest file name (e.g. "sha512")
     as described in <xref target="bag-checksum-algorithms"/>.
   </t>
+            <t hangText="manifest">
+    A tag file thats maps filepaths to checksums. A manifest can be a payload
+    manifest <xref target="sec-payload-manifest"/> or a tag manifest <xref target="sec-tag-manifest"/>.
+  </t>
             <t hangText="payload">
-    The data encapsulated by the bag as a set of named files, which may be organized in sub-directories. The contents of the payload files
-    are opaque to this specification, and, with respect to BagIt processing,
+    The data encapsulated by the bag as a set of named files, which may be
+    organized in sub-directories. The contents of the payload files
+    are opaque to this document, and, with respect to BagIt processing,
     are always considered as sequences of uninterpreted octets.
     See <xref target="sec-payload-dir"/>.
   </t>
@@ -297,7 +220,7 @@ document are to be interpreted as described in <xref target="RFC2119"/>.
   </t>
             <t hangText="tag file">
     A file which contains metadata about the bag or its payload.
-    This specification defines the standard
+    This document defines the standard
     BagIt tag files:
     the bag declaration in "bagit.txt" <xref target="sec-bag-decl"/>,
     payload manifests <xref target="sec-payload-manifest"/>,
@@ -305,11 +228,11 @@ document are to be interpreted as described in <xref target="RFC2119"/>.
     bag metadata in "bag-info.txt" <xref target="sec-bag-info"/>,
     and remote payload in "fetch.txt" <xref target="sec-fetch-file"/>.
 
-    This specification also allows other arbitrary tag files as described in
+    This document also allows other arbitrary tag files as described in
     <xref target="sec-other-tag-files"/>.
   </t>
             <t hangText="complete">
-    A bag which contains every element required by this specification,
+    A bag which contains every element required by this document,
     every payload file listed in a manifest, and any optional files which are
     listed in a tag manifest. See <xref target="sec-complete-valid"/>.
   </t>
@@ -343,7 +266,7 @@ a file named "bagit.txt" (see <xref target="sec-bag-decl"/>),
 and zero or more additional tag files (see
 <xref target="sec-optional-elements"/>). The tag files and directories are
 in arbitrary file hierarchies and &may; have
-any name that is not reserved for a file or directory in this specification.
+any name that is not reserved for a file or directory in this document.
 </t>
       <t>
 The base directory can have any name.
@@ -391,7 +314,7 @@ Tag-File-Character-Encoding: ENCODING
             </postamble>
           </figure>
           <t>
-            The number for this version of the specification is "&current-bagit-version;".
+            The number for this version of BagIt is "&current-bagit-version;".
           </t>
         </section>
         <!-- /Bag Declaration -->
@@ -405,7 +328,7 @@ Tag-File-Character-Encoding: ENCODING
             Each payload file is treated as an opaque octet stream when verifying file
             correctness.
             Payload files &may; be organized in arbitrary sub-directory structures
-            within the payload directory, however for the purpose of this specification
+            within the payload directory, however for the purpose of this document
             such sub-directory structures and filenames have no given meaning.
           </t>
         </section>
@@ -725,7 +648,7 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
         <section title="Other Tag Files" anchor="sec-other-tag-files">
           <t>
             A bag &may; contain other tag files that are not defined by this
-            specification.
+            document.
 
             Implementations &must; perform standard checksum validation on any tag file
             which is listed in a tag manifest but &must; otherwise ignore their contents.
@@ -736,7 +659,7 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
       <!-- /Optional Elements -->
       <section title="Text Tag File Format" anchor="sec-tag-files">
         <t>
-          All tag files specifically described in this specification &must; adhere to
+          All tag files specifically described in this document &must; adhere to
           the text tag file format described below. Other tag files &may; adhere to
           the text tag file format described below.
         </t>
@@ -815,10 +738,10 @@ requirements:
           <t>Every file listed in every tag manifest &must; be present.</t>
           <t>Every file listed in every payload manifest &must; be present.</t>
           <t>For BagIt 1.0, every payload file &must; be listed in every payload manifest.
-            Note that older versions of this specification allowed payload files to be
+            Note that older versions of BagIt allowed payload files to be
             listed in just one of the manifests.
           </t>
-          <t>Every element present &must; comply with this specification.</t>
+          <t>Every element present &must; conform to BagIt &current-bagit-version;.</t>
         </list>
       </t>
       <t>
@@ -926,7 +849,7 @@ highsmith-tahoe/
         </t>
         <t>
           To assist implementers, the Library
-          of Congress conformance suite [<xref target="LC-CONFORMANCE-SUITE" />]
+          of Congress conformance suite <xref target="LC-CONFORMANCE-SUITE" />
           has some tests for invalid bags
           which are expected to fail on POSIX or Windows clients.
         </t>
@@ -966,7 +889,7 @@ highsmith-tahoe/
         </t>
 
         <t>
-          The Library of Congress conformance suite [<xref target="LC-CONFORMANCE-SUITE" />]
+          The Library of Congress conformance suite <xref target="LC-CONFORMANCE-SUITE" />
           is provided as a public resource to test new implementations for compatibility and
           error handling.
         </t>
@@ -1161,7 +1084,7 @@ The Augmented Backus-Naur form (ABNF) provided below are non-normative. If
 there is a discrepancy between requirements in the normative sections and
 the ABNF, the requirements in the normative sections prevail. Some
 definitions use the core rules (e.g. DIGIT, HEXDIG, etc) as defined in
-<xref target="RFC2234"/>
+<xref target="RFC4234"/>
 </t>
       <section title="Bag Declaration: bagit.txt">
         <figure>
@@ -1229,22 +1152,47 @@ ending     = CR / LF / CRLF
 
     </section>
     <!-- /ABNF -->
+    <section title="Contributors">
+      <t>
+Additional contributors to the authoring of BagIt are David Brunton, Rosie Storey,
+Ed Summers, Andy Boyko, Brian Vargas, and Kate Zwaard.
+</t>
+    </section>
     <section title="Acknowledgements">
       <t>
-BagIt owes much to many thoughtful contributors and reviewers, including
+BagIt benefitted from the thoughful assistance of
 Stephen Abrams, Mike Ashenfelder, Dan Chudnov, Dave Crocker, Brad Hards, Scott Fisher, Keith
 Johnson, Erik Hetzner, Leslie Johnston, David Loy, Mark Phillips, Tracy Seneca,
 Brian Tingle, Adam Turoff, Jim Tuttle, and Stian Soiland-Reyes.
 </t>
+    </section>
       <section title="IANA Considerations">
         <t>
 This draft does not request any action from IANA.
 </t>
       </section>
-    </section>
   </middle>
   <back>
-    <references>
+    <references title="Normative References">
+      &RFC1321; <!-- MD5 -->
+      &RFC2119; <!-- Requirements -->
+      &RFC6920; <!-- Named Information Hash Algorithm Registry -->
+
+      <reference anchor="ni-registry" target="https://www.iana.org/assignments/named-information/named-information.xhtml">
+        <front>
+          <title>Named Information Hash Algorithm Registry</title>
+          <author><organization>IANA</organization></author>
+          <date year="2016" month="9" day="14"/>
+        </front>
+      </reference>
+      &RFC2978; <!-- character sets -->
+      &RFC3174; <!-- SHA-1 -->
+      &RFC3629; <!-- utf-8 -->
+      &RFC3986; <!-- URLs -->
+      &RFC6234; <!-- SHA-2 -->
+      &RFC8174;
+    </references>
+    <references title="Informative References">
       <reference anchor="ENCDEP" target="http://www.iwaw.net/05/papers/iwaw05-tabata.pdf">
         <front>
           <title>A Collaboration Model between Archival Systems to Enhance the Reliability of Preservation by an Enclose-and-Deposit Method</title>
@@ -1262,24 +1210,7 @@ This draft does not request any action from IANA.
         <format type="HTML" target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx"/>
       </reference>
 
-      &RFC1321; <!-- MD5 -->
-      &RFC2119; <!-- Requirements -->
-      &RFC2234; <!-- ABNF -->
-      &RFC6920; <!-- Named Information Hash Algorithm Registry -->
-
-      <reference anchor="ni-registry" target="https://www.iana.org/assignments/named-information/named-information.xhtml">
-        <front>
-          <title>Named Information Hash Algorithm Registry</title>
-          <author><organization>IANA</organization></author>
-          <date year="2016" month="9" day="14"/>
-        </front>
-      </reference>
-      &RFC2978; <!-- character sets -->
-      &RFC3174; <!-- SHA-1 -->
-      &RFC3629; <!-- utf-8 -->
-      &RFC3986; <!-- URLs -->
-      &RFC6234; <!-- SHA-2 -->
-
+      &RFC4234; <!-- ABNF -->
       <reference anchor="UNICODE-TR15" target="http://www.unicode.org/reports/tr15/">
         <front>
           <title>Unicode&#xAE; Standard Annex #15: Unicode Normalization Forms</title>
@@ -1304,6 +1235,6 @@ This draft does not request any action from IANA.
           <date year="2016-"/>
         </front>
       </reference>
-  </references>
+    </references>
   </back>
 </rfc>
