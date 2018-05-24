@@ -887,6 +887,12 @@ highsmith-tahoe/
           users. None of the points below are required but they are recommended
           for general-purpose usage.
         </t>
+        
+        <t>
+          Upon discovering errors in bags, an implementation is free to take action
+          (for example, logging or reporting) in an application-specific manner.
+          This document does not mandate any particular action.
+        </t>
 
         <t>
           The Library of Congress conformance suite <xref target="LC-CONFORMANCE-SUITE" />
