@@ -1154,16 +1154,16 @@ ending     = CR / LF / CRLF
     <!-- /ABNF -->
     <section title="Contributors">
       <t>
-Additional contributors to the authoring of BagIt are David Brunton, Rosie Storey,
-Ed Summers, Andy Boyko, Brian Vargas, and Kate Zwaard.
+Additional contributors to the authoring of BagIt are Andy Boyko, David Brunton, Rosie Storey,
+Ed Summers, Brian Vargas, and Kate Zwaard.
 </t>
     </section>
     <section title="Acknowledgements">
       <t>
-BagIt benefitted from the thoughful assistance of
-Stephen Abrams, Mike Ashenfelder, Dan Chudnov, Dave Crocker, Brad Hards, Scott Fisher, Keith
-Johnson, Erik Hetzner, Leslie Johnston, David Loy, Mark Phillips, Tracy Seneca,
-Brian Tingle, Adam Turoff, Jim Tuttle, and Stian Soiland-Reyes.
+BagIt benefitted from the thoughtful assistance of
+Stephen Abrams, Mike Ashenfelder, Dan Chudnov, Dave Crocker, Scott Fisher, Brad Hards, Erik Hetzner,
+Keith Johnson, Leslie Johnston, David Loy, Mark Phillips, Tracy Seneca, Stian Soiland-Reyes,
+Brian Tingle, Adam Turoff, and Jim Tuttle.
 </t>
     </section>
       <section title="IANA Considerations">
