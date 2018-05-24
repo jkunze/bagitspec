@@ -1086,7 +1086,7 @@ update the bag with valid manifests.
     <!-- /Practical Considerations -->
     <section title="Augmented Backus-Naur Form (non-normative)">
       <t>
-The Augmented Backus-Naur form (ABNF) provided below are non-normative. If
+The Augmented Backus-Naur Form (ABNF) rules provided below are non-normative. If
 there is a discrepancy between requirements in the normative sections and
 the ABNF, the requirements in the normative sections prevail. Some
 definitions use the core rules (e.g. DIGIT, HEXDIG, etc) as defined in
@@ -1094,7 +1094,7 @@ definitions use the core rules (e.g. DIGIT, HEXDIG, etc) as defined in
 </t>
       <section title="Bag Declaration: bagit.txt">
         <figure>
-                <preamble>bagit.txt ABNF:</preamble>
+                <preamble>bagit.txt ABNF rules:</preamble>
                 <artwork type="abnf" xml:space="preserve"><![CDATA[
 bagit-txt = "BagIt-Version: " 1*DIGIT "." 1*DIGIT ending
             "Tag-File-Character-Encoding: " encoding ending
@@ -1106,7 +1106,7 @@ ending    = CR / LF / CRLF
       <!-- /bag declaration -->
       <section title="Payload Manifest: manifest-algorithm.txt">
         <figure>
-          <preamble>Payload Manifest ABNF:</preamble>
+          <preamble>Payload Manifest ABNF rules:</preamble>
           <artwork type="abnf" xml:space="preserve"><![CDATA[
 payload-manifest      = 1*payload-manifest-line
 payload-manifest-line = checksum 1*WSP filepath ending
@@ -1126,7 +1126,7 @@ ending                = CR / LF / CRLF
       <!-- /payload manifest -->
       <section title="Bag Metadata: bag-info.txt">
         <figure>
-          <preamble>bag-info.txt ABNF:</preamble>
+          <preamble>bag-info.txt ABNF rules:</preamble>
           <artwork type="abnf" xml:space="preserve"><![CDATA[
 metadata      = 1*metadata-line
 metadata-line = key ":" WSP value ending *(continuation ending)
@@ -1143,7 +1143,7 @@ ending        = CR / LF / CRLF
       <!-- /bag-info.txt -->
       <section title="Fetch File: fetch.txt">
         <figure>
-          <preamble>fetch.txt ABNF:</preamble>
+          <preamble>fetch.txt ABNF rules:</preamble>
           <artwork type="abnf"><![CDATA[
 fetch      = 1*fetch-line
 fetch-line = url 1*WSP length 1*WSP filepath ending
