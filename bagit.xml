@@ -850,9 +850,9 @@ highsmith-tahoe/
           Implementers of tools that complete bags by retrieving URLs listed in
           a fetch file need to be aware that some of those URLs might point
           to hosts, intentionally or unintentionally, that are not under control
-          of the bag's sender. Checksums are intended as a reasonable guarantee
-          against corruption during transit, not a strong cryptographic
-          protection against intentional spoofing.
+          of the bag's sender. Moreover, older checksum algorithms, even if 
+          reasonable for detecting corruption during transit, may not offer strong 
+          cryptographic protection against intentional spoofing.
         </t>
       </section>
 
