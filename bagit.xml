@@ -664,8 +664,8 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
           Text tag file names &must; end in the extension ".txt".
         </t>
         <t>
-In all text tag files except for the bag declaration file, text &must; be
-encoded in the character encoding specified in the "bagit.txt" bag declaration
+In all text tag files except for the bag declaration file, text &must; use
+the character encoding specified in the "bagit.txt" bag declaration
 file. Text tag files except for the bag declaration file &may; include a
 byte-order mark (BOM) only if the specified encoding requires it for
 proper decoding. In accordance with <xref target="RFC3629"/>, when "bagit.txt"
