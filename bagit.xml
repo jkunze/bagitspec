@@ -279,15 +279,15 @@ The base directory can have any name.
       |
       +-- manifest-&lt;algorithm&gt;.txt
       |
-      +-- [optional additional tag files]
+      +-- [additional tag files]
       |
       +-- data/
       |     |
       |     +-- [payload files]
       |
-      +-- [optional tag directories]/
+      +-- [tag directories]/
             |
-            +-- [optional tag files] </artwork>
+            +-- [tag files] </artwork>
       </figure>
       <section title="Required Elements" anchor="sec-required-elements">
         <section title="Bag Declaration: bagit.txt" anchor="sec-bag-decl">
