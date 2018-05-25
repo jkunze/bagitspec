@@ -490,7 +490,7 @@ As a result, no <spanx style="emph">filepath</spanx> listed in a tag manifest be
               Organization transferring the content.
           </t>
           <t hangText="Organization-Address">
-              Mailing address of the organization.
+              Mailing address of the source organization.
           </t>
           <t hangText="Contact-Name">
               Person at the source organization who is responsible for the content
@@ -506,7 +506,7 @@ As a result, no <spanx style="emph">filepath</spanx> listed in a tag manifest be
               A brief explanation of the contents and provenance.
           </t>
           <t hangText="Bagging-Date">
-              Date (YYYY-MM-DD) that the content was prepared for delivery.
+              Date (YYYY-MM-DD) that the content was prepared for transfer.
               This metadata element &should-not; be repeated.
           </t>
           <t hangText="External-Identifier">
