@@ -287,8 +287,7 @@ The base directory can have any name.
       |
       +-- [optional tag directories]/
             |
-            +-- [optional tag files]
-  </artwork>
+            +-- [optional tag files] </artwork>
       </figure>
       <section title="Required Elements" anchor="sec-required-elements">
         <section title="Bag Declaration: bagit.txt" anchor="sec-bag-decl">
@@ -298,8 +297,7 @@ The base directory can have any name.
           <figure>
             <artwork>
 BagIt-Version: M.N
-Tag-File-Character-Encoding: ENCODING
-  </artwork>
+Tag-File-Character-Encoding: ENCODING </artwork>
             <postamble>
               <spanx style="emph">M.N</spanx> identifies the BagIt major (M) and minor (N) version numbers.
               <spanx style="emph">ENCODING</spanx> identifies the character set encoding used by the remaining tag files.
@@ -364,8 +362,7 @@ Tag-File-Character-Encoding: ENCODING
             <preamble>Example payload manifest filenames</preamble>
             <artwork>
 manifest-sha256.txt
-manifest-sha512.txt
-  </artwork>
+manifest-sha512.txt </artwork>
           </figure>
           <t>
             Each line of a payload manifest file &must; be of the form:
@@ -436,8 +433,7 @@ placeholder file with a name such as ".keep".
             <preamble>Example tag manifest filenames:</preamble>
             <artwork>
 tagmanifest-sha256.txt
-tagmanifest-sha512.txt
-  </artwork>
+tagmanifest-sha512.txt </artwork>
           </figure>
           <t>
 A tag manifest file has the same form as the payload file manifest
@@ -582,8 +578,7 @@ Bag-Group-Identifier: university_foo
 Bag-Count: 1 of 15
 Internal-Sender-Identifier: /storage/images/foo
 Internal-Sender-Description: Uncompressed greyscale TIFFs created
-      from microfilm and are...
-          </artwork>
+      from microfilm and are... </artwork>
           </figure>
         </section>
 
@@ -786,8 +781,7 @@ myfirstbag/
      |
      |   27613-h/images/q172.txt
      |    (... OCR text ...                                        )
-     ....
- </artwork>
+     .... </artwork>
         </figure>
       </section>
       <section title="Example bag using fetch.txt">
@@ -816,8 +810,7 @@ highsmith-tahoe/
 |
 |   bag-info.txt
 |    (Internal-Sender-Description: Download link found at          )
-|    (  https://www.loc.gov/resource/highsm.23364/                 )
- </artwork>
+|    (  https://www.loc.gov/resource/highsm.23364/                 )</artwork>
         </figure>
       </section>
     </section>
@@ -958,8 +951,7 @@ N               4e  LATIN CAPITAL LETTER N
 ú             c3ba  LATIN SMALL LETTER U WITH ACUTE
 ñ             c3b1  LATIN SMALL LETTER N WITH TILDE
 e               65  LATIN SMALL LETTER E
-z               7a  LATIN SMALL LETTER Z
-  ]]></artwork>
+z               7a  LATIN SMALL LETTER Z ]]></artwork>
             </figure>
             <t>
   Unicode normalization is relevant to BagIt implementors because different
@@ -1032,8 +1024,7 @@ z               7a  LATIN SMALL LETTER Z
 
   </preamble>
             <artwork>
-    &lt; &gt; : " / | ? *
- </artwork>
+    &lt; &gt; : " / | ? * </artwork>
           </figure>
           <figure>
             <preamble>
@@ -1042,8 +1033,7 @@ z               7a  LATIN SMALL LETTER Z
             <artwork>
     CON, PRN, AUX, NUL
     COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8, COM9
-    LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, LPT9
-  </artwork>
+    LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, LPT9 </artwork>
           </figure>
           <t>
   See <xref target="MSFNAM"/> for more information and possible alternatives.
@@ -1099,8 +1089,7 @@ definitions use the core rules (e.g. DIGIT, HEXDIG, etc) as defined in
 bagit-txt = "BagIt-Version: " 1*DIGIT "." 1*DIGIT ending
             "Tag-File-Character-Encoding: " encoding ending
 encoding  = 1*CHAR
-ending    = CR / LF / CRLF
-    ]]></artwork>
+ending    = CR / LF / CRLF ]]></artwork>
               </figure>
       </section>
       <!-- /bag declaration -->
@@ -1119,8 +1108,7 @@ unreserved            = ALPHA / DIGIT / "-" / "." / "_" / "~"
 sub-delims            = "!" / "$" / "&" / DQUOTE / "'" / "(" / ")" /
                         "*" / "+" / "," / ";" / "=" / "/"
 pct-encoded           = "%0D" / "%0d" / "%0A" / "%0a" / "%25"
-ending                = CR / LF / CRLF
-]]></artwork>
+ending                = CR / LF / CRLF ]]></artwork>
         </figure>
       </section>
       <!-- /payload manifest -->
@@ -1136,8 +1124,7 @@ continuation  = WSP 1*non-reserved
 non-reserved  = VCHAR / WSP
                 ; any valid character for the specific encoding
                 ; except those that match "ending"
-ending        = CR / LF / CRLF
-]]></artwork>
+ending        = CR / LF / CRLF ]]></artwork>
         </figure>
       </section>
       <!-- /bag-info.txt -->
@@ -1151,8 +1138,7 @@ url        = <absolute-URI, see [RFC3986], Section 4.3>
 length     = 1*DIGIT / "-"
 filepath   = ("data/"
               1*( unreserved / pct-encoded / sub-delims ))
-ending     = CR / LF / CRLF
-]]></artwork>
+ending     = CR / LF / CRLF ]]></artwork>
         </figure>
       </section> <!-- Fetch File -->
 
