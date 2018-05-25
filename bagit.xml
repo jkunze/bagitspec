@@ -18,7 +18,8 @@
 <!ENTITY RFC6234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6234.xml">
 <!ENTITY RFC6920 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6920.xml">
 <!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
-<!-- RFC 2119 entities - for convenience --><!ENTITY must "MUST">
+<!-- RFC 2119 entities - for convenience -->
+<!ENTITY must "MUST">
 <!ENTITY must-not "MUST NOT">
 <!ENTITY required "REQUIRED">
 <!ENTITY shall "SHALL">
@@ -248,7 +249,7 @@ appear in all capitals as shown here.
     <!-- /Introduction -->
     <section title="Structure">
       <t>
-  A bag MUST consist of a base directory containing:
+  A bag &must; consist of a base directory containing:
 </t>
       <t>
         <list style="numbers">
