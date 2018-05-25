@@ -588,8 +588,17 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
           <t>
             For reasons of efficiency, a bag &may; be sent with a list of files to be
             fetched and added to the payload before it can meaningfully be checked
-            for completeness.  An &optional; tag file called the fetch file
-            contains such a list.
+            for completeness. 
+            The fetch file allows a bag to be transmitted with
+            "holes" in it, which can be practical for several reasons.  For example,
+            it obviates the need for the sender to stage a large serialized copy of
+            the content while the bag is transferred to the receiver.  Also, this
+            method allows a sender to construct a bag from components that are either
+            a subset of logically related components (e.g., the localized logical
+            object could be much larger than what is intended for export) or
+            assembled from logically distributed sources (e.g., the object components
+            for export are not stored locally under one filesystem tree).
+            An &optional; tag file called the fetch file contains such a list.
           </t>
 
           <t>
@@ -625,18 +634,6 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
             percent-encoded following <xref target="RFC3986"/>.
             There is no
             limitation on the length of any of the fields in the fetch file.
-          </t>
-
-          <t>
-            The fetch file allows a bag to be transmitted with
-            "holes" in it, which can be practical for several reasons.  For example,
-            it obviates the need for the sender to stage a large serialized copy of
-            the content while the bag is transferred to the receiver.  Also, this
-            method allows a sender to construct a bag from components that are either
-            a subset of logically related components (e.g., the localized logical
-            object could be much larger than what is intended for export) or
-            assembled from logically distributed sources (e.g., the object components
-            for export are not stored locally under one filesystem tree).
           </t>
 
         </section>
