@@ -860,9 +860,9 @@ highsmith-tahoe/
         <t>
           The size of files, as optionally reported in the fetch file,
           cannot be guaranteed to match the actual file size to be downloaded.
-          Implementers &should; take care to appropriately handle cases where
-          the actual file size does not match the file size reported in the
-          fetch file.  Implementers &should-not; use the file size in the
+          Implementers &should; take steps to monitor and abort transfer when the 
+          received file size exceeds the file size reported in the fetch file.
+          Implementers &should-not; use the file size in the
           fetch file for critical resource allocation, such as buffer
           sizing or storage requisitioning.
         </t>
