@@ -336,7 +336,7 @@ Tag-File-Character-Encoding: ENCODING </artwork>
           <t>
             A payload manifest file provides a complete listing of each payload file name along
             with a corresponding checksum to permit data integrity checking. A bag can have more 
-            than one payload manifest, with each using a different validation algorithm.
+            than one payload manifest, with each using a different checksum algorithm.
             Manifest entries &must; satisfy the following constraints:
           </t>
 
