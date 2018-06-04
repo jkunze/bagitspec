@@ -38,7 +38,7 @@
 <?rfc inline="yes"?>
 <?rfc symrefs="yes"?>
 <?rfc toc="yes"?>
-<rfc category="info" docName="draft-kunze-bagit-15" ipr="trust200902">
+<rfc category="info" docName="draft-kunze-bagit-16" ipr="trust200902">
   <front>
     <title abbrev="BagIt">
    The BagIt File Packaging Format (V&current-bagit-version;)
@@ -118,7 +118,7 @@
         <email>cadams@loc.gov</email>
       </address>
     </author>
-    <date day="22" month="May" year="2018"/>
+    <date day="4" month="June" year="2018"/>
     <abstract>
       <t>
 This document describes BagIt, a set of hierarchical file layout conventions for
