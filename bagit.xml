@@ -151,7 +151,9 @@ in two general areas:
     Strong integrity assurances. The format supports cryptographic-quality
     hash algorithms (see <xref target="bag-checksum-algorithms"/>) and allows
     for in-place upgrades to add additional manifests using stronger algorithms
-    without breaking backwards compatibility.
+    without breaking backwards compatibility. This integrity assurance is with 
+    respect to data corruption, not with respect to a malicious attack seeking 
+    to replace payload file contents.
   </t><t>
     Direct file access. Because BagIt specifies an actual filesystem hierarchy
     rather than a serialized representation of one, files can be accessed
@@ -869,6 +871,16 @@ highsmith-tahoe/
         </t>
       </section>
 
+      <section title="Attacks on payload file content">
+        <t>
+          The integrity assurance provided by manifests is with respect to data 
+          corruption, not with respect to a malicious attack seeking to replace 
+          payload file contents.
+        </t>
+      </section>
+
+
+      
       <!-- End Section: Special directory characters -->
     </section>
     <!-- End Section: Security considerations -->
