@@ -9,7 +9,6 @@
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC4234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4234.xml">
 <!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
-<!ENTITY RFC2978 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2978.xml">
 <!ENTITY RFC3174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3174.xml">
 <!ENTITY RFC3552 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3552.xml">
 <!ENTITY RFC3629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3629.xml">
@@ -296,7 +295,7 @@ Tag-File-Character-Encoding: ENCODING </artwork>
               <spanx style="emph">ENCODING</spanx> &should;
               be <spanx style="verb">UTF-8</spanx> but
               for backwards compatibility it &may; be any
-              other encoding registered in <xref target="RFC2978"/>.
+              other encoding registered in <xref target="cs-registry"/>.
 
               The bag declaration itself &must; be encoded in UTF-8, and &must-not; contain a
               byte-order mark (BOM) <xref target="RFC3629"/>.
@@ -1166,7 +1165,13 @@ This draft does not request any action from IANA.
           <date year="2016" month="9" day="14"/>
         </front>
       </reference>
-      &RFC2978; <!-- character sets -->
+      <reference anchor="cs-registry" target="https://www.iana.org/assignments/character-sets/character-sets.xhtml">
+        <front>
+          <title>Character Set Registry</title>
+          <author><organization>IANA</organization></author>
+          <date year="2013" month="12" day="20"/>
+        </front>
+      </reference>
       &RFC3174; <!-- SHA-1 -->
       &RFC3629; <!-- utf-8 -->
       &RFC3986; <!-- URLs -->
