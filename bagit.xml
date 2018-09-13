@@ -864,9 +864,9 @@ highsmith-tahoe/
         <t>
           The integrity assurance provided by manifests is designed to provide
           high levels of confidence against data corruption but is not designed
-          to be secure against active attacks.  Organizations which need to
-          secure bags against such threats will need to agree upon additional
-          measures such as digital signatures which are out
+          to be secure against active attacks.  Organizations that need to
+          secure bags against such threats &should; agree on additional
+          measures, such as digital signatures, that are out
           of scope for this specification.
         </t>
       </section>
