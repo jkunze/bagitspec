@@ -1,0 +1,5 @@
+# Activate this after installing xml2rfc with this configuration:
+# git config --local diff.xml2rfc.textconv "xml2rfc --quiet --out=/dev/stdout"
+#
+# To temporarily disable this formatting, use `git diff --no-textconv`
+bagit.xml diff=xml2rfc
