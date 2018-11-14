@@ -1,13 +1,9 @@
-<?xml version="1.0"?>
-<!--
-  See http://xml.resource.org/ for formatting tools to work with the RFC 7749
-  XML format
--->
+<?xml version="1.0" encoding="US-ASCII"?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
-<!ENTITY mdash "&#8212;">
+
 <!ENTITY RFC1321 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1321.xml">
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
-<!ENTITY RFC4234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4234.xml">
+<!ENTITY RFC5234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5234.xml">
 <!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
 <!ENTITY RFC3174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3174.xml">
 <!ENTITY RFC3552 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3552.xml">
@@ -17,30 +13,24 @@
 <!ENTITY RFC6234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6234.xml">
 <!ENTITY RFC6920 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6920.xml">
 <!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
-<!-- RFC 2119 entities - for convenience -->
-<!ENTITY must "MUST">
-<!ENTITY must-not "MUST NOT">
-<!ENTITY required "REQUIRED">
-<!ENTITY shall "SHALL">
-<!ENTITY shall-not "SHALL NOT">
-<!ENTITY should "SHOULD">
-<!ENTITY should-not "SHOULD NOT">
-<!ENTITY recommended "RECOMMENDED">
-<!ENTITY not-recommended "NOT RECOMMENDED">
-<!ENTITY may "MAY">
-<!ENTITY optional "OPTIONAL">
-<!-- The current bagit version, for convenience. --><!ENTITY current-bagit-version "1.0">
 ]>
+
+
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <?rfc strict="yes" ?>
-<?rfc comments="no"?>
 <?rfc inline="yes"?>
 <?rfc symrefs="yes"?>
+<?rfc sortrefs="yes"?>
 <?rfc toc="yes"?>
-<rfc category="info" docName="draft-kunze-bagit-17" ipr="trust200902">
+
+<rfc number="8493"
+     category="info" 
+     submissionType="independent"
+     consensus="yes"
+     ipr="trust200902">
   <front>
     <title abbrev="BagIt">
-   The BagIt File Packaging Format (V&current-bagit-version;)
+   The BagIt File Packaging Format (V1.0)
   </title>
     <author initials="J." surname="Kunze" fullname="John A. Kunze">
       <organization>
@@ -52,7 +42,7 @@
           <city>Oakland</city>
           <region>CA</region>
           <code>94612</code>
-          <country>US</country>
+          <country>United States of America</country>
         </postal>
         <email>jak@ucop.edu</email>
       </address>
@@ -67,7 +57,7 @@
           <city>Stanford</city>
           <region>CA</region>
           <code>94305</code>
-          <country>USA</country>
+          <country>United States of America</country>
         </postal>
         <email>justinlittman@stanford.edu</email>
       </address>
@@ -82,7 +72,7 @@
           <city>Washington</city>
           <region>DC</region>
           <code>20540</code>
-          <country>USA</country>
+          <country>United States of America</country>
         </postal>
         <email>emad@loc.gov</email>
       </address>
@@ -102,12 +92,12 @@
           <city>Washington</city>
           <region>DC</region>
           <code>20540</code>
-          <country>USA</country>
+          <country>United States of America</country>
         </postal>
         <email>cadams@loc.gov</email>
       </address>
     </author>
-    <date day="17" month="September" year="2018"/>
+    <date month="October" year="2018"/>
     <abstract>
       <t>
 This document describes BagIt, a set of hierarchical file layout conventions for
@@ -124,16 +114,16 @@ BagIt format is suitable for reliable storage and transfer.
         <t>
 BagIt is a set of hierarchical file layout conventions designed to support
 storage and transfer of arbitrary digital content.
-A bag consists of a directory containing the payload files and other accompanying
+A "bag" consists of a directory containing the payload files and other accompanying
 metadata files known as "tag" files. The "tags" are metadata files intended to
 facilitate and document the storage and transfer of the bag. Processing a bag
-does not require any understanding of the payload file contents and the payload
+does not require any understanding of the payload file contents, and the payload
 files can be accessed without processing the BagIt metadata.
 </t>
         <t>
 The name, BagIt, is inspired by the "enclose and deposit" method
 <xref target="ENCDEP"/>, sometimes referred to as "bag it and tag it".
-BagIt differs from serialized archive formats such as MIME, TAR, or ZIP
+BagIt differs from serialized archival formats such as MIME, TAR, or ZIP
 in two general areas:
 
 <list style="numbers"><t>
@@ -141,13 +131,13 @@ in two general areas:
     hash algorithms (see <xref target="bag-checksum-algorithms"/>) and allows
     for in-place upgrades to add additional manifests using stronger algorithms
     without breaking backwards compatibility. This provides high
-    levels of confidence against data corruption but is not designed
+    levels of confidence against data corruption, but it is not designed
     to be secure against active attacks.
   </t><t>
     Direct file access. Because BagIt specifies an actual filesystem hierarchy
     rather than a serialized representation of one, files can be accessed
     using standard operating system utilities, implementations do not need
-    to process a potentially large archive file to extract a subset of data,
+    to process a potentially large archival file to extract a subset of data,
     and the format imposes no size limits for either individual files or a bag.
   </t></list>
 </t>
@@ -156,7 +146,7 @@ BagIt is widely used for preserving digital assets originating from different
 domains.  Organizations involved in digital preservation with BagIt include
 the Library of Congress, Dryad Data Repository, NSF DataONE, and the
 Rockefeller Archive Center.  Software implementations are available for many
-languages including Python, Ruby, Java, Perl, and PHP.  It is also used in
+languages, including Python, Ruby, Java, Perl, and PHP.  It is also used in
 the libraries of many universities, such as Cornell, Purdue, Stanford,
 Ghent University, New York University, and the University of California.
 </t>
@@ -164,11 +154,11 @@ Ghent University, New York University, and the University of California.
       <!-- /Purpose -->
       <section title="Requirements">
         <t>
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-"SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL"
-in this document are to be interpreted as described in BCP 14
-<xref target="RFC2119"/> <xref target="RFC8174"/> when, and only when, they
-appear in all capitals as shown here.
+    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+    NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
+    "MAY", and "OPTIONAL" in this document are to be interpreted as
+    described in BCP&nbsp;14 <xref target="RFC2119"/> <xref target="RFC8174"/> 
+    when, and only when, they appear in all capitals, as shown here.
 </t>
         <t>
   Implementers are strongly encouraged to review the interoperability
@@ -182,53 +172,54 @@ appear in all capitals as shown here.
 </t>
         <t>
           <list style="hanging">
-            <t hangText="bag">
+            <t hangText="bag:">
     A set of opaque files contained within the structure
     defined by this document.
   </t>
-            <t hangText="bag declaration">
+            <t hangText="bag declaration:">
     The file required to be in all bags conforming to this document.
     Contains values necessary to process the rest of a bag.
     See <xref target="sec-bag-decl"/>.
   </t>
-            <t hangText="bag checksum algorithm">
-    The name of a cryptographic checksum algorithm which has been normalized
-    for use in a manifest or tag manifest file name (e.g. "sha512")
+            <t hangText="bag checksum algorithm:">
+    The name of a cryptographic checksum algorithm that has been normalized
+    for use in a manifest or tag manifest file name (e.g., "sha512")
     as described in <xref target="bag-checksum-algorithms"/>.
   </t>
-            <t hangText="manifest">
-    A tag file thats maps filepaths to checksums. A manifest can be a payload
-    manifest <xref target="sec-payload-manifest"/> or a tag manifest <xref target="sec-tag-manifest"/>.
+            <t hangText="manifest:">
+    A tag file that maps filepaths to checksums. A manifest can be a payload
+    manifest (see <xref target="sec-payload-manifest"/>) or a 
+    tag manifest (see <xref target="sec-tag-manifest"/>).
   </t>
-            <t hangText="payload">
+            <t hangText="payload:">
     The data encapsulated by the bag as a set of named files, which may be
-    organized in sub-directories. The contents of the payload files
+    organized in subdirectories. The contents of the payload files
     are opaque to this document, and, with respect to BagIt processing,
     are always considered as sequences of uninterpreted octets.
     See <xref target="sec-payload-dir"/>.
   </t>
-            <t hangText="tag directory">
+            <t hangText="tag directory:">
     A directory that contains one or more tag files.
   </t>
-            <t hangText="tag file">
-    A file which contains metadata about the bag or its payload.
+            <t hangText="tag file:">
+    A file that contains metadata about the bag or its payload.
     This document defines the standard
     BagIt tag files:
-    the bag declaration in "bagit.txt" <xref target="sec-bag-decl"/>,
-    payload manifests <xref target="sec-payload-manifest"/>,
-    tag manifests <xref target="sec-tag-manifest"/>,
-    bag metadata in "bag-info.txt" <xref target="sec-bag-info"/>,
-    and remote payload in "fetch.txt" <xref target="sec-fetch-file"/>.
+    the bag declaration in "bagit.txt" (see <xref target="sec-bag-decl"/>),
+    payload manifests (see <xref target="sec-payload-manifest"/>),
+    tag manifests (see <xref target="sec-tag-manifest"/>),
+    bag metadata in "bag-info.txt" (see <xref target="sec-bag-info"/>),
+    and remote payload in "fetch.txt" (see <xref target="sec-fetch-file"/>).
 
     This document also allows other arbitrary tag files as described in
     <xref target="sec-other-tag-files"/>.
   </t>
-            <t hangText="complete">
-    A bag which contains every element required by this document,
-    every payload file listed in a manifest, and any optional files which are
+            <t hangText="complete:">
+    A bag that contains every element required by this document,
+    every payload file listed in a manifest, and any optional files that are
     listed in a tag manifest. See <xref target="sec-complete-valid"/>.
   </t>
-            <t hangText="valid">
+            <t hangText="valid:">
     A complete bag where every checksum in every manifest has been
     successfully verified against the corresponding file.
   </t>
@@ -240,28 +231,30 @@ appear in all capitals as shown here.
     <!-- /Introduction -->
     <section title="Structure">
       <t>
-  A bag &must; consist of a base directory containing:
+  A bag MUST consist of a base directory containing the following:
 </t>
       <t>
         <list style="numbers">
-          <t>a set of required and optional tag files <xref target="sec-optional-elements"/></t>
-          <t>a sub-directory named "data", called the payload directory. <xref target="sec-payload-dir"/></t>
-          <t>a set of optional tag directories</t>
+          <t>a set of required and optional tag files (see <xref target="sec-optional-elements"/>);</t>
+          <t>a subdirectory named "data", called the payload directory (see
+	  <xref target="sec-payload-dir"/>); and</t>
+          <t>a set of optional tag directories.</t>
         </list>
       </t>
       <t>
 The tag files in the base directory consist of one or more files named
 "manifest-<spanx style="emph">algorithm</spanx>.txt"
-(see <xref target="sec-payload-manifest"/> and
-<xref target="bag-checksum-algorithms"/>),
+(see Sections <xref target="sec-payload-manifest" format="counter"/> and
+<xref target="bag-checksum-algorithms" format="counter"/>),
 a file named "bagit.txt" (see <xref target="sec-bag-decl"/>),
 and zero or more additional tag files (see
 <xref target="sec-optional-elements"/>). The tag files and directories are
-in arbitrary file hierarchies and &may; have
+in arbitrary file hierarchies and MAY have
 any name that is not reserved for a file or directory in this document.
 </t>
+
       <t>
-The base directory can have any name.
+The base directory can have any name, as illustrated by the figure below.
 </t>
       <figure>
         <artwork>
@@ -284,7 +277,7 @@ The base directory can have any name.
       <section title="Required Elements" anchor="sec-required-elements">
         <section title="Bag Declaration: bagit.txt" anchor="sec-bag-decl">
           <t>
-            The "bagit.txt" tag file &must; consist of exactly two lines in this order:
+            The "bagit.txt" tag file MUST consist of exactly two lines in this order:
           </t>
           <figure>
             <artwork>
@@ -294,32 +287,32 @@ Tag-File-Character-Encoding: ENCODING </artwork>
               <spanx style="emph">M.N</spanx> identifies the BagIt major (M) and minor (N) version numbers.
               <spanx style="emph">ENCODING</spanx> identifies the character set encoding used by the remaining tag files.
 
-              <spanx style="emph">ENCODING</spanx> &should;
-              be <spanx style="verb">UTF-8</spanx> but
-              for backwards compatibility it &may; be any
+              <spanx style="emph">ENCODING</spanx> SHOULD
+              be <spanx style="verb">UTF-8</spanx>, but
+              for backwards compatibility it MAY be any
               other encoding registered in <xref target="cs-registry"/>.
 
-              The bag declaration itself &must; be encoded in UTF-8, and &must-not; contain a
-              byte-order mark (BOM) <xref target="RFC3629"/>.
+              The bag declaration itself MUST be encoded in UTF-8 and MUST NOT contain a
+              Byte Order Mark (BOM) <xref target="RFC3629"/>.
             </postamble>
           </figure>
           <t>
-            The number for this version of BagIt is "&current-bagit-version;".
+            The number for this version of BagIt is "1.0".
           </t>
         </section>
         <!-- /Bag Declaration -->
         <section title="Payload Directory: data/" anchor="sec-payload-dir">
           <t>
-            The base directory &must; contain a sub-directory named "data".
+            The base directory MUST contain a subdirectory named "data".
           </t>
           <t>
             The payload directory contains the arbitrary digital content within the bag.
             The files under the payload directory are called payload files, or the payload.
             Each payload file is treated as an opaque octet stream when verifying file
             correctness.
-            Payload files &may; be organized in arbitrary sub-directory structures
-            within the payload directory, however for the purpose of this document
-            such sub-directory structures and filenames have no given meaning.
+            Payload files MAY be organized in arbitrary subdirectory structures
+            within the payload directory; however, for the purpose of this document,
+            such subdirectory structures and filenames have no given meaning.
           </t>
         </section>
         <!-- /Payload Directory -->
@@ -328,20 +321,20 @@ Tag-File-Character-Encoding: ENCODING </artwork>
             A payload manifest file provides a complete listing of each payload file name along
             with a corresponding checksum to permit data integrity checking. A bag can have more 
             than one payload manifest, with each using a different checksum algorithm.
-            Manifest entries &must; satisfy the following constraints:
+            Manifest entries MUST satisfy the following constraints:
           </t>
 
           <t>
             <list style="symbols">
               <t>
-                Every bag &must; contain at least one payload manifest file and &may; contain
+                Every bag MUST contain at least one payload manifest file and MAY contain
                 more than one.
               </t>
               <t>
-                Every payload manifest &must; list every payload file name exactly once.
+                Every payload manifest MUST list every payload file name exactly once.
               </t>
               <t>
-                A payload manifest file &must; have a name of the form
+                A payload manifest file MUST have a name of the form
                 "manifest-<spanx style="emph">algorithm</spanx>.txt", where
                 <spanx style="emph">algorithm</spanx>
                 is a string specifying the checksum algorithm used by that
@@ -351,45 +344,46 @@ Tag-File-Character-Encoding: ENCODING </artwork>
             </list>
           </t>
 
+<t>Example payload manifest filenames:</t>
           <figure>
-            <preamble>Example payload manifest filenames</preamble>
             <artwork>
 manifest-sha256.txt
-manifest-sha512.txt </artwork>
+manifest-sha512.txt 
+</artwork>
           </figure>
           <t>
-            Each line of a payload manifest file &must; be of the form:
+            Each line of a payload manifest file MUST be of the form
           </t>
           <figure>
             <artwork>checksum filepath</artwork>
-            <postamble>
-    where <spanx style="emph">filepath</spanx> is the pathname of a file
-    relative to the base directory, and <spanx style="emph">checksum</spanx> is
-    a hex-encoded checksum calculated according to
-    <spanx style="emph">algorithm</spanx> over every octet in the file.
-  </postamble>
           </figure>
+<t>where <spanx style="emph">filepath</spanx> is the pathname of a file
+relative to the base directory, and <spanx style="emph">checksum</spanx> is a
+hex-encoded checksum calculated by applying <spanx
+style="emph">algorithm</spanx> over the file.
+</t>
+
           <t>
             <list style="symbols">
-              <t>The hex-encoded checksum &may; use uppercase and/or lowercase letters.</t>
-              <t>The slash character ('/') &must; be used as a path separator
+              <t>The hex-encoded checksum MAY use uppercase and/or lowercase letters.</t>
+              <t>The slash character ('/') MUST be used as a path separator
                 in <spanx style="emph">filepath</spanx>.</t>
               <t>One or more linear whitespace characters (spaces or tabs)
-                &must; separate <spanx style="emph">checksum</spanx> from
+                MUST separate <spanx style="emph">checksum</spanx> from
                 <spanx style="emph">filepath</spanx>.</t>
               <t>There is no limitation on the length of a pathname.</t>
-              <t>The payload manifest &must-not; reference files outside the payload directory.</t>
+              <t>The payload manifest MUST NOT reference files outside the payload directory.</t>
               <t>
-                If a <spanx style="emph">filepath</spanx> includes a line feed
-                (LF), a carriage return (CR),
-                carriage return plus line feed (CRLF) or
-                percent sign (%), those characters (and only those) &must; be
+                If a <spanx style="emph">filepath</spanx> includes a Line Feed
+                (LF), a Carriage Return (CR),
+                a Carriage-Return Line Feed (CRLF), or a 
+                percent sign (%), those characters (and only those) MUST be
                 percent-encoded following <xref target="RFC3986"/>.
               </t>
             </list>
           </t>
           <t>
-A manifest &must-not; reference directories. Bag creators who wish to create
+A manifest MUST NOT reference directories. Bag creators who wish to create
 an otherwise empty directory have typically done so by creating an empty
 placeholder file with a name such as ".keep".
 </t>
@@ -405,33 +399,33 @@ placeholder file with a name such as ".keep".
             checksum algorithm.
           </t>
           <t>
-            A bag &may; contain one or more tag manifests, in which case each tag manifest &should; list the same set of tag files.
+            A bag MAY contain one or more tag manifests, in which case each tag manifest SHOULD list the same set of tag files.
           </t>
           <t>
-            Each tag manifest &must; list every payload manifest.
-            Each tag manifest &must-not; list any tag manifests,
-            but &should; list the remaining tag files present in the bag.
+            Each tag manifest MUST list every payload manifest.
+            Each tag manifest MUST NOT list any tag manifests
+            but SHOULD list the remaining tag files present in the bag.
           </t>
           <t>
-            A tag manifest file &must; have a name of the form
+            A tag manifest file MUST have a name of the form
             "tagmanifest-<spanx style="emph">algorithm</spanx>.txt",
             where <spanx style="emph">algorithm</spanx> is a string following
             the format described in <xref target="bag-checksum-algorithms"/>
-            specifying the bag checksum algorithm used in that manifest.
+            that specifies the bag checksum algorithm used in that manifest.
           </t>
           <t>
-            Tag manifests &should; use the same algorithms as the payload manifests that are present in the bag.
+            Tag manifests SHOULD use the same algorithms as the payload manifests that are present in the bag.
           </t>
+<t>Example tag manifest filenames:</t>
           <figure>
-            <preamble>Example tag manifest filenames:</preamble>
             <artwork>
 tagmanifest-sha256.txt
 tagmanifest-sha512.txt </artwork>
           </figure>
           <t>
-A tag manifest file has the same form as the payload file manifest
-file described in <xref target="sec-payload-manifest"/>,
-but &must-not; list any payload files.
+A tag manifest file has the same form as the payload manifest file 
+described in <xref target="sec-payload-manifest"/>
+but MUST NOT list any payload files.
 As a result, no <spanx style="emph">filepath</spanx> listed in a tag manifest begins "data/".
 </t>
         </section>
@@ -441,121 +435,121 @@ As a result, no <spanx style="emph">filepath</spanx> listed in a tag manifest be
             The "bag-info.txt" file is a tag file that contains metadata
             elements describing the bag and the payload. The metadata elements
             contained in the "bag-info.txt" file are intended primarily for
-            human use. All metadata elements are &optional; and &may; be repeated.
+            human use. All metadata elements are OPTIONAL and MAY be repeated.
             Because "bag-info.txt" is intended for human reading
-            and editing, ordering &may; be significant and the ordering of
-            metadata elements &must; be preserved.
+            and editing, ordering MAY be significant and the ordering of
+            metadata elements MUST be preserved.
           </t>
           <t>
-            A metadata element &must; consist of a label, a colon ":", a single
-            linear whitespace character (space or tab), and a value, terminated with a line feed (CR), carriage return (LF) or
-            carriage return plus line feed (CRLF).
+            A metadata element MUST consist of a label, a colon ":", a single
+            linear whitespace character (space or tab), and a value that is
+	    terminated with an LF, a CR, or a CRLF.
           </t>
           <t>
-            The label &must-not; contain colon (:), line feeds (LF) or carriage returns (CR).
-            The label &may; contain linear whitespace characters, but &must-not; start or
+            The label MUST NOT contain a colon (:), LF, or CR.
+            The label MAY contain linear whitespace characters but MUST NOT start or
             end with whitespace.
           </t>
           <t>
-            It is &recommended; that lines not exceed 79 characters in length. Long values &may; be
-            continued onto the next line by inserting a line feed (LF), a carriage
-            return (CR), or carriage return plus line feed (CRLF) and indenting
-            the next line with one or more linear white space (spaces or tabs).
-            Except for linebreaks such padding does not form part of the value.
+            It is RECOMMENDED that lines not exceed 79 characters in length. Long values MAY be
+            continued onto the next line by inserting a LF, CR, or CRLF, and then indenting
+            the next line with one or more linear white space characters (spaces or tabs).
+            Except for linebreaks, such padding does not form part of the value.
           </t>
           <t>
             Implementations wishing to support previous BagIt versions
-            &must; accept multiple linear whitespace before and after the
+            MUST accept multiple linear whitespace characters before and after the
             colon when the bag version is earlier than 1.0; such whitespace
             does not form part of the label or value.
           </t>
           <t>
             The following are reserved metadata elements. The use of these reserved
-            metadata elements are &optional; but encouraged. Reserved metadata
-            element names are case-insensitive. Except where indicated otherwise,
-            these metadata element names &may; be repeated to capture multiple values.
+            metadata elements is OPTIONAL but encouraged. Reserved metadata
+            element names are case insensitive. Except where indicated otherwise,
+            these metadata element names MAY be repeated to capture multiple values.
           </t>
 
           <t>
           <list style="hanging">
-          <t hangText="Source-Organization">
+          <t hangText="Source-Organization:">
               Organization transferring the content.
           </t>
-          <t hangText="Organization-Address">
+          <t hangText="Organization-Address:">
               Mailing address of the source organization.
           </t>
-          <t hangText="Contact-Name">
+          <t hangText="Contact-Name:">
               Person at the source organization who is responsible for the content
               transfer.
           </t>
-          <t hangText="Contact-Phone">
+          <t hangText="Contact-Phone:">
               International format telephone number of person or position responsible.
           </t>
-          <t hangText="Contact-Email">
+          <t hangText="Contact-Email:">
               Fully qualified email address of person or position responsible.
           </t>
-          <t hangText="External-Description">
+          <t hangText="External-Description:">
               A brief explanation of the contents and provenance.
           </t>
-          <t hangText="Bagging-Date">
+          <t hangText="Bagging-Date:">
               Date (YYYY-MM-DD) that the content was prepared for transfer.
-              This metadata element &should-not; be repeated.
+              This metadata element SHOULD NOT be repeated.
           </t>
-          <t hangText="External-Identifier">
+          <t hangText="External-Identifier:">
               A sender-supplied identifier for the bag.
           </t>
-          <t hangText="Bag-Size">
-              Size or approximate size of the bag being transferred, followed
-              by an abbreviation such as MB (megabytes), GB, or TB; for example,
+          <t hangText="Bag-Size:">
+              The size or approximate size of the bag being transferred, followed
+              by an abbreviation such as MB (megabytes), GB (gigabytes), or
+	      TB (terabytes): for example,
               42600 MB, 42.6 GB, or .043 TB.  Compared to Payload-Oxum (described
               next), Bag-Size is intended for human consumption.
-              This metadata element &should-not; be repeated.
+              This metadata element SHOULD NOT be repeated.
           </t>
-          <t hangText="Payload-Oxum">
-              The "octetstream sum" of the payload, intended for the
+          <t hangText="Payload-Oxum:">
+              The "octetstream sum" of the payload, which is intended for the
               purpose of quickly detecting incomplete bags before performing checksum
-              validation. This is strictly an optimization and implementations &must; perform
+              validation. This is strictly an optimization, and implementations MUST perform
               the standard checksum validation process before proclaiming a bag to be valid.
-              This element &must-not; be present more than once and, if present, &must;
+              This element MUST NOT be present more than once and, if present, MUST
               be in the form "<spanx style="emph">OctetCount</spanx>.<spanx style="emph">StreamCount</spanx>",
               where <spanx style="emph">OctetCount</spanx> is the total number of
               octets (8-bit bytes) across all payload file content and
               <spanx style="emph">StreamCount</spanx> is the total number of
               payload files.
-              This metadata element &must-not; be repeated.
+              This metadata element MUST NOT be repeated.
           </t>
-          <t hangText="Bag-Group-Identifier">
+          <t hangText="Bag-Group-Identifier:">
               A sender-supplied identifier for the set, if any, of bags
               to which it logically belongs.
-              This identifier &should; be unique across the sender's content, and if
-              recognizable as belonging to a globally unique scheme, the receiver
-              &should; make an effort to honor reference to it.
-              This metadata element &should-not; be repeated.
+              This identifier SHOULD be unique across the sender's content,
+	      and if it is recognizable as belonging to a globally unique scheme, the receiver
+              SHOULD make an effort to honor the reference to it.
+              This metadata element SHOULD NOT be repeated.
           </t>
-          <t hangText="Bag-Count">
+          <t hangText="Bag-Count:">
               Two numbers separated by "of", in particular, "N of T",
               where T is the total number of bags in a group of bags and N is the
-              ordinal number within the group; if T is not known, specify it as "?"
-              (question mark).  Examples:  1 of 2, 4 of 4, 3 of ?, 89 of 145.
-              This metadata element &should-not; be repeated.
-              If this metadata element is present, it is &recommended; to also
+              ordinal number within the group. If T is not known, specify it as "?"
+              (question mark): for example, 1 of 2, 4 of 4, 3 of ?, 89 of 145.
+              This metadata element SHOULD NOT be repeated.
+              If this metadata element is present, it is RECOMMENDED to also
               include the Bag-Group-Identifier element.
           </t>
-          <t hangText="Internal-Sender-Identifier">
+          <t hangText="Internal-Sender-Identifier:">
               An alternate sender-specific identifier for the content
               and/or bag.
           </t>
-          <t hangText="Internal-Sender-Description">
+          <t hangText="Internal-Sender-Description:">
               A sender-local explanation of the contents and provenance.
           </t>
           </list>
           </t>
           <t>
           In addition to these metadata elements, other arbitrary metadata
-          elements &may; also be present.
+          elements MAY also be present.
           </t>
           <figure>
-            <preamble>An example "bag-info.txt" file</preamble>
+            <preamble>An example of "bag-info.txt" file is as follows:</preamble>
             <artwork>
 Source-Organization: FOO University
 Organization-Address: 1 Main St., Cupertino, California, 11111
@@ -578,7 +572,7 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
         <section title="Fetch File: fetch.txt" anchor="sec-fetch-file">
 
           <t>
-            For reasons of efficiency, a bag &may; be sent with a list of files to be
+            For reasons of efficiency, a bag MAY be sent with a list of files to be
             fetched and added to the payload before it can meaningfully be checked
             for completeness. 
             The fetch file allows a bag to be transmitted with
@@ -590,22 +584,22 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
             object could be much larger than what is intended for export) or
             assembled from logically distributed sources (e.g., the object components
             for export are not stored locally under one filesystem tree).
-            An &optional; tag file called the fetch file contains such a list.
+            An OPTIONAL tag file, called the fetch file, contains such a list.
           </t>
 
           <t>
-            The fetch file &must; be named "fetch.txt". Every file listed in
-            the fetch file &must; be listed in every
-            payload manifest. A fetch file &must-not; list any tag files.
+            The fetch file MUST be named "fetch.txt". Every file listed in
+            the fetch file MUST be listed in every
+            payload manifest. A fetch file MUST NOT list any tag files.
           </t>
           <t>
-            Each line of a fetch file &must; be of the form:
+            Each line of a fetch file MUST be of the form
           </t>
           <figure>
             <artwork>url length filepath</artwork>
             <postamble>
               where <spanx style="emph">url</spanx> identifies the file to be
-              fetched and &must; be an absolute URI as defined in
+              fetched and MUST be an absolute URI as defined in
               <xref target="RFC3986"/>, <spanx style="emph">length</spanx> is
               the number of octets in the file (or "-", to leave it unspecified),
               and <spanx style="emph">filepath</spanx> identifies the
@@ -614,16 +608,14 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
           </figure>
 
           <t>
-            The slash character ('/') &must; be used as a path separator in
+            The slash character ('/') MUST be used as a path separator in
             <spanx style="emph">filepath</spanx>. One or more linear whitespace
-            characters (spaces or tabs) &must; separate these
+            characters (spaces or tabs) MUST separate these
             three values, and any such characters in the <spanx style="emph">url</spanx>
-            &must; be percent-encoded <xref target="RFC3986"/>.
-            If <spanx style="emph">filename</spanx> includes a line feed
-            (LF), a carriage return (CR),
-            carriage return plus line feed (CRLF) or
-            percent sign (%), those characters (and only those) &must; be
-            percent-encoded following <xref target="RFC3986"/>.
+            MUST be percent-encoded <xref target="RFC3986"/>.
+            If <spanx style="emph">filename</spanx> includes an LF, a CR, 
+	    a CRLF, or a percent sign (%), those characters (and only those) MUST be
+            percent-encoded as described in <xref target="RFC3986"/>.
             There is no
             limitation on the length of any of the fields in the fetch file.
           </t>
@@ -632,11 +624,11 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
         <!-- /Fetch File -->
         <section title="Other Tag Files" anchor="sec-other-tag-files">
           <t>
-            A bag &may; contain other tag files that are not defined by this
+            A bag MAY contain other tag files that are not defined by this
             document.
 
-            Implementations &must; perform standard checksum validation on any tag file
-            which is listed in a tag manifest but &must; otherwise ignore their contents.
+            Implementations MUST perform standard checksum validation on any tag file
+            that is listed in a tag manifest but MUST otherwise ignore their contents.
           </t>
         </section>
         <!-- /Other Tag Files -->
@@ -644,51 +636,51 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
       <!-- /Optional Elements -->
       <section title="Text Tag File Format" anchor="sec-tag-files">
         <t>
-          All tag files specifically described in this document &must; adhere to
-          the text tag file format described below. Other tag files &may; adhere to
+          All tag files specifically described in this document MUST adhere to
+          the text tag file format described below. Other tag files MAY adhere to
           the text tag file format described below.
         </t>
+
         <t>
-          Text tag files are line-oriented, and each line &must; be terminated
-          by a line feed (LF), a carriage return (CR), or carriage return plus
-          newline (CRLF). It is &recommended; that the last line in a tag
-          file also ends with LF, CR, or CRLF.
-          Text tag file names &must; end in the extension ".txt".
+          Text tag files are line oriented, and each line MUST be terminated
+          by an LF, a CR, or a CRLF. It is RECOMMENDED that the last line in a tag
+          file also end with LF, CR, or CRLF.
+          Text tag file names MUST end in the extension ".txt".
         </t>
         <t>
-In all text tag files except for the bag declaration file, text &must; use
+In all text tag files except for the bag declaration file, text MUST use
 the character encoding specified in the "bagit.txt" bag declaration
-file. Text tag files except for the bag declaration file &may; include a
-byte-order mark (BOM) only if the specified encoding requires it for
+file. Text tag files except for the bag declaration file MAY include a
+Byte Order Mark (BOM) only if the specified encoding requires it for
 proper decoding. In accordance with <xref target="RFC3629"/>, when "bagit.txt"
-specifies UTF-8 the tag files &must-not; begin with a byte-order mark (BOM).
-See <xref target="sec-bag-decl"/>
+specifies UTF-8, the tag files MUST NOT begin with a BOM.
+See <xref target="sec-bag-decl"/>.
 </t>
       <t>
-The use of UTF-8 for text tag files is strongly &recommended;. A future version
+The use of UTF-8 for text tag files is strongly RECOMMENDED. A future version
 of BagIt may disallow encodings other than UTF-8.
 </t>
       </section>
       <!-- /Tags Files -->
       <section title="Bag Checksum Algorithms" anchor="bag-checksum-algorithms">
         <t>
-The payload manifest and tag manifests permit validating the integrity of the payload
+The payload manifest and tag manifest permit validating the integrity of the payload
 and tag files in a bag produced by the checksum algorithms.
-Checksum values &must; be encoded so as to conform to the manifest format
+Checksum values MUST be encoded so as to conform to the manifest format
 specified in <xref target="sec-payload-manifest"/>. However, the internal details
 of a checksum are outside the scope of this document.
 </t>
 <t>
-  To avoid future ambiguity, the checksum algorithm &should; be registered
+  To avoid future ambiguity, the checksum algorithm SHOULD be registered
   in IANA's "Named Information Hash Algorithm Registry" <xref target="ni-registry" />
-  according to <xref target="RFC6920"/>, but &may; for backwards compatibility also be
+  according to <xref target="RFC6920"/> but MAY, for backwards compatibility, also be
   MD5 <xref target="RFC1321"/> or SHA-1 <xref target="RFC3174"/>.
 </t>
         <t>
-The name of the checksum algorithm &must; be normalized for use in the
+The name of the checksum algorithm MUST be normalized for use in the
 manifest's filename by lowercasing the common name of the algorithm and
 removing all non-alphanumeric characters. Following is a partial list
-mapping common algorithm names to normalized names:
+that maps common algorithm names to normalized names:
           <list style="symbols">
             <t>MD5: md5</t>
             <t>SHA-1: sha1</t>
@@ -697,11 +689,11 @@ mapping common algorithm names to normalized names:
 
 </list></t>
         <t>
-  Starting with BagIt 1.0, bag creation and validation tools &must; support the
-  SHA-256 and SHA-512 algorithms <xref target="RFC6234"/> and &should; enable
+  Starting with BagIt 1.0, bag creation and validation tools MUST support the
+  SHA-256 and SHA-512 algorithms <xref target="RFC6234"/> and SHOULD enable
   SHA-512 by default when creating new bags.
 
-  For backwards compatibility implementers &should; support
+  For backwards compatibility, implementers SHOULD support
   MD5 <xref target="RFC1321"/> and SHA-1 <xref target="RFC3174"/>.
 
   Implementers are encouraged to simplify the process of adding additional
@@ -712,29 +704,29 @@ mapping common algorithm names to normalized names:
       <!-- /Bag Checksum Algorithms -->
     </section>
     <!-- /Bag Structure -->
-    <section title="Complete and Valid bags" anchor="sec-complete-valid">
+    <section title="Complete and Valid Bags" anchor="sec-complete-valid">
       <t>
-A <spanx style="emph">complete</spanx> bag &must; meet the following
+A <spanx style="emph">complete</spanx> bag MUST meet the following
 requirements:
 </t>
       <t>
         <list style="numbers">
-          <t>Every required element &must; be present (<xref target="sec-required-elements"/>).</t>
-          <t>Every file listed in every tag manifest &must; be present.</t>
-          <t>Every file listed in every payload manifest &must; be present.</t>
-          <t>For BagIt 1.0, every payload file &must; be listed in every payload manifest.
+          <t>Every required element MUST be present (see <xref target="sec-required-elements"/>).</t>
+          <t>Every file listed in every tag manifest MUST be present.</t>
+          <t>Every file listed in every payload manifest MUST be present.</t>
+          <t>For BagIt 1.0, every payload file MUST be listed in every payload manifest.
             Note that older versions of BagIt allowed payload files to be
             listed in just one of the manifests.
           </t>
-          <t>Every element present &must; conform to BagIt &current-bagit-version;.</t>
+          <t>Every element present MUST conform to BagIt 1.0.</t>
         </list>
       </t>
       <t>
-A <spanx style="emph">valid</spanx> bag &must; meet the following requirements:
+A <spanx style="emph">valid</spanx> bag MUST meet the following requirements:
 </t>
       <t>
         <list style="numbers">
-          <t>The bag &must; be <spanx style="emph">complete</spanx>.</t>
+          <t>The bag MUST be <spanx style="emph">complete</spanx>.</t>
           <t>
     Every checksum in every payload manifest and tag manifest has been
     successfully verified against the contents of the corresponding file.
@@ -744,12 +736,12 @@ A <spanx style="emph">valid</spanx> bag &must; meet the following requirements:
     </section>
     <!-- Completeness and validity -->
     <section title="Examples">
-      <section title="Example of a basic bag">
+      <section title="Example of a Basic Bag">
         <t>
           This is the layout of a basic bag containing an image and a companion
-          OCR file. Lines of file content are shown with added parentheses to
+          Optical Character Recognition (OCR) file. Lines of file content are shown with added parentheses to
           indicate each complete line.
-          For brevity this example uses MD5 rather than the recommended SHA-512.
+          For brevity, this example uses MD5 rather than the recommended SHA-512.
         </t>
 
         <figure>
@@ -774,13 +766,13 @@ myfirstbag/
      .... </artwork>
         </figure>
       </section>
-      <section title="Example bag using fetch.txt">
+      <section title="Example Bag Using fetch.txt">
         <t>
-          This is the layout of a bag which expects the receiver to download the
+          This is the layout of a bag that expects the receiver to download the
           files listed in the payload manifests prior to validation. Lines of
           file content are shown with added parentheses to indicate each
           complete line.
-          For brevity this example uses MD5 rather than the recommended SHA-512.
+          For brevity, this example uses MD5 rather than the recommended SHA-512.
         </t>
 
         <figure>
@@ -806,35 +798,35 @@ highsmith-tahoe/
     </section>
     <!-- /Examples -->
     <section title="Security Considerations" anchor="sec-security">
-      <section title="Special directory characters">
+      <section title="Special Directory Characters">
         <t>
           The paths specified in the payload manifests, tag manifests, and
-          fetch files do not prohibit special directory characters which have
-          special meaning on some operating systems. Implementers &must; ensure
+          fetch files do not prohibit special directory characters that have
+          special meaning on some operating systems. Implementers MUST ensure
           that files outside the bag directory structure are not accessed when
           reading or writing files based on paths specified in a bag.
         </t>
         <t>
-          All implementations &should; have a test suite to guard against
+          All implementations SHOULD have a test suite to guard against
           special directory characters.
         </t>
         <t>
           For example, a maliciously crafted "tagmanifest-sha512.txt" file might
-          contain entries which begin with a path character such as "/", "..",
+          contain entries that begin with a path character such as "/", "..",
           or a "~username" home directory reference in an attempt to cause a
           naive implementation to leak or overwrite targeted files on a POSIX
           operating system.
         </t>
         <t>
-          Windows implementations &should; test their implementations to ensure
-          that safety-checks prevent use of drive letters and the less commonly used
-          namespace sequences (e.g. "\\?\C:\&#x2026;") described in <xref target="MSFNAM"/>.
+          Windows implementations SHOULD test their implementations to ensure
+          that safety checks prevent use of drive letters and the less commonly used
+          namespace sequences (e.g., "\\?\C:\...") described in <xref target="MSFNAM"/>.
         </t>
         <t>
           To assist implementers, the Library
           of Congress conformance suite <xref target="LC-CONFORMANCE-SUITE" />
           has some tests for invalid bags
-          which are expected to fail on POSIX or Windows clients.
+          that are expected to fail on POSIX or Windows clients.
         </t>
       </section>
       <section title="Control of URLs in fetch.txt">
@@ -848,24 +840,24 @@ highsmith-tahoe/
         </t>
       </section>
 
-      <section title="File sizes in fetch.txt">
+      <section title="File Sizes in fetch.txt">
         <t>
           The size of files, as optionally reported in the fetch file,
           cannot be guaranteed to match the actual file size to be downloaded.
-          Implementers &should; take steps to monitor and abort transfer when the 
+          Implementers SHOULD take steps to monitor and abort transfer when the 
           received file size exceeds the file size reported in the fetch file.
-          Implementers &should-not; use the file size in the
+          Implementers SHOULD NOT use the file size in the
           fetch file for critical resource allocation, such as buffer
           sizing or storage requisitioning.
         </t>
       </section>
 
-      <section title="Attacks on payload file content">
+      <section title="Attacks on Payload File Content">
         <t>
           The integrity assurance provided by manifests is designed to provide
           high levels of confidence against data corruption but is not designed
           to be secure against active attacks.  Organizations that need to
-          secure bags against such threats &should; agree on additional
+          secure bags against such threats SHOULD agree on additional
           measures, such as digital signatures, that are out
           of scope for this specification.
         </t>
@@ -876,11 +868,11 @@ highsmith-tahoe/
       <!-- End Section: Special directory characters -->
     </section>
     <!-- End Section: Security considerations -->
-    <section title="Practical Considerations (non-normative)">
+    <section title="Practical Considerations (Non-normative)">
       <section title="Interoperability" anchor="sec-interoperability">
         <t>
           This section lists practical considerations for implementers and
-          users. None of the points below are required but they are recommended
+          users. None of the points below are required, but they are recommended
           for general-purpose usage.
         </t>
         
@@ -896,45 +888,47 @@ highsmith-tahoe/
           error handling.
         </t>
 
-        <section title="Filename normalization" anchor="filename-normalization">
+        <section title="Filename Normalization" anchor="filename-normalization">
           <t>
   This section provides background information on various challenges caused by
   differences in how operating systems, filesystems, and common tools handle
-  filenames followed by a list of recommendations for implementers in
+  filenames. This section is followed by a list of recommendations for implementers in
   <xref target="filename-normalization-recommendations"/>.
 </t>
-          <section title="Case sensitivity">
+
+          <section title="Case Sensitivity">
             <t>
-    There are two challenges for interoperability related to filename case:
+    There are three challenges for interoperability related to filename case:
     <list style="symbols"><t>
-        Filesystems such as FAT or EXFAT always convert filenames to uppercase:
-        "example.txt" will be stored as "EXAMPLE.TXT"
+        Filesystems such as File Allocation Table (FAT) or Extended File
+	Allocation Table (EXFAT) always convert filenames to uppercase:
+        "example.txt" will be stored as "EXAMPLE.TXT".
       </t><t>
-        Many Unix filesystems save filenames exactly as provided, allowing
-        multiple files which differ only in case: "example.txt" and
-        "Example.txt" are separate files
+        Many Unix filesystems save filenames exactly as provided, which allows
+        multiple files that differ only in case: "example.txt" and
+        "Example.txt" are separate files.
       </t><t>
-        NTFS and Apple's HFS Plus usually preserve case when storing files but are
-        case-insensitive when retrieving them. A file saved as "Example.txt"
+        New Technology File System (NTFS) and Apple's Hierarchical File System
+	(HFS) Plus usually preserve case when storing files but are
+        case insensitive when retrieving them. A file saved as "Example.txt"
         will be retrieved by that name but will also be retrieved as
         "EXAMPLE.TXT", "example.txt", etc.
       </t></list>
   </t>
           </section>
-          <section title="Unicode normalization">
+          <section title="Unicode Normalization">
             <t>
 The Unicode specification has common cases where different character sequences
-produce the same human-meaningful text. These are referred to as &#x201C;canonically
-equivalent&#x201D; and the Unicode specification defines different normalization
-forms &#x2014; see <xref target="UNICODE-TR15"/> for the full details and a brief
-example below:
-</t>
+produce the same human-meaningful text.
+These are referred to as "canonically equivalent" and the Unicode
+specification defines different normalization forms - see <xref
+target="UNICODE-TR15"/> for the full details.</t>
             <figure>
               <preamble>
-    The common surname "N&#xFA;&#xF1;ez" normalized in different forms
+The example below shows the common surname "Nunez" normalized in different forms.
   </preamble>
               <artwork><![CDATA[
-Normalization Form D (Decomposition):
+Normalization Form D (Decomposition)
 
 Char      UTF8 Hex  Name
 ----------------------------------------------
@@ -946,13 +940,13 @@ n               6e  LATIN SMALL LETTER N
 e               65  LATIN SMALL LETTER E
 z               7a  LATIN SMALL LETTER Z
 
-Normalization Form C (Canonical Composition):
+Normalization Form C (Canonical Composition)
 
 Char      UTF8 Hex  Name
 ----------------------------------------------
 N               4e  LATIN CAPITAL LETTER N
-ú             c3ba  LATIN SMALL LETTER U WITH ACUTE
-ñ             c3b1  LATIN SMALL LETTER N WITH TILDE
+u             c3ba  LATIN SMALL LETTER U WITH ACUTE
+n             c3b1  LATIN SMALL LETTER N WITH TILDE
 e               65  LATIN SMALL LETTER E
 z               7a  LATIN SMALL LETTER Z ]]></artwork>
             </figure>
@@ -962,16 +956,16 @@ z               7a  LATIN SMALL LETTER Z ]]></artwork>
 
   <list style="symbols"><t>
       Apple's HFS Plus filesystem always normalizes filenames to a
-      fully-decomposed form based on the Unicode 2.0 specification (see <xref target="TN1150"/>).
+      fully decomposed form based on the Unicode 2.0 specification (see <xref target="TN1150"/>).
     </t><t>
       Windows treats filenames as opaque character sequences (see <xref target="MSFNAM"/>) and will store and return the encoded bytes exactly
       as provided.
     </t><t>
       Linux and other common Unix systems are generally similar to Windows in
-      storing and returning opaque byte streams but this behaviour is
-      technically filesystem-dependent.
+      storing and returning opaque byte streams, but this behavior is
+      technically dependent on the filesystem.
     </t><t>
-      Utilities used for file management, transfer, and archival may ignore this
+      Utilities used for file management, transfer, and archiving may ignore this
       issue, apply an arbitrary normalization form, or allow the user to control
       how normalization is applied.
     </t></list>
@@ -980,41 +974,41 @@ z               7a  LATIN SMALL LETTER Z ]]></artwork>
   In practice, this means that the encoded filename stored in a manifest may
   fail a simple file existence check because the filename's normalization was
   changed at some point after the manifest was written. This situation is very
-  confusing for users because the filenames are visually indistinguishable and
-  the &#x201C;missing&#x201D; file is obviously present in the payload directory.
+  confusing for users because the filenames are visually indistinguishable, and
+  the "missing" file is obviously present in the payload directory.
 </t>
           </section>
           <section title="Recommendations" anchor="filename-normalization-recommendations">
             <t>
               <list style="symbols">
                 <t>
-        Implementations &should; discourage the creation of bags containing
-        files which differ only in case.
+        Implementations SHOULD discourage the creation of bags containing
+        files that differ only in case.
       </t>
                 <t>
-        Implementations &should; prevent the creation of bags containing files
-        which differ only in normalization form.
+        Implementations SHOULD prevent the creation of bags containing files
+        that differ only in normalization form.
       </t>
                 <t>
-        BagIt implementations &should; tolerate differences in normalization
+        BagIt implementations SHOULD tolerate differences in normalization
         form by comparing both the list of filesystem and manifest names after
         applying the same normalization form to both.
       </t>
                 <t>
-        Implementations &should; issue a warning when multiple manifests are
-        present which differ only in case or normalization form.
+        Implementations SHOULD issue a warning when multiple manifests are
+        present that differ only in case or normalization form.
       </t>
               </list>
             </t>
           </section>
         </section>
-        <section title="Windows and Unix file naming" anchor="windows-and-unix-file-naming">
+        <section title="Windows and Unix File Naming" anchor="windows-and-unix-file-naming">
           <t>
             As specified above, only the Unix-based path separator ('/') may be
             used inside filenames listed in BagIt manifest and fetch.txt files.
             When bags are exchanged between Windows and Unix platforms,
-            the path separator &should; be translated as needed. Receivers
-            of bags on physical media &should; be prepared for filesystems created
+            the path separator SHOULD be translated as needed. Receivers
+            of bags on physical media SHOULD be prepared for filesystems created
             under either Windows or Unix. Besides the fundamental difference
             between path separators ('\' and '/'), generally, Windows
             filesystems have more limitations than Unix filesystems.
@@ -1042,34 +1036,34 @@ z               7a  LATIN SMALL LETTER Z ]]></artwork>
   See <xref target="MSFNAM"/> for more information and possible alternatives.
 </t>
         </section>
-        <section title="Legacy checksum tools" anchor="sec-legacy-checksum-tools">
+        <section title="Legacy Checksum Tools" anchor="sec-legacy-checksum-tools">
           <t>
 Some bags have been manually assembled using checksum utilities such as those
 contained in the GNU Coreutils package (md5sum, sha1sum, etc.), collectively
 referred to here as "md5sum". Implementers who desire wide support of legacy
-content should be aware of some known quirks of these tools:
+content should be aware of some known quirks of these tools.
 </t>
           <t>
-md5sum can be run in &#x201C;text mode&#x201D; which causes it to normalize line-endings
-on some operating systems. On Unix-like systems both modes will usually produce
-the same results but on systems like Windows they can produce different results
+md5sum can be run in "text mode", which causes it to normalize line endings 
+on some operating systems. On Unix-like systems, both modes will usually produce
+the same results; on systems like Windows, they can produce different results
 based on the file contents.
 
 The md5sum output format has two characters between the checksum and the
-filepath: the first is always a space and the second is an asterisk ("*") for
+filepath: the first is always a space, and the second is an asterisk ("*") for
 binary mode and a space for text mode.
 </t>
           <t>
-A final note about md5sum-generated manifests is that for a <spanx style="emph">filepath</spanx> containing
+A final note about md5sum-generated manifests is that, for a <spanx style="emph">filepath</spanx> containing
 a backslash ('\'), the manifest line will have a backslash inserted in front of
 the <spanx style="emph">checksum</spanx> and, under Windows, the backslashes inside
 <spanx style="emph">filepath</spanx> can be doubled.
 </t>
           <t>
-Implementers &may; wish to accept this format by ignoring a leading asterisk or
+Implementers MAY wish to accept this format by ignoring a leading asterisk or
 handling differences in line termination gracefully but, if so, implementations
-&must; warn the user that the bag in question will fail strict validation. In
-such cases it is &recommended; that tools provide an easy option to
+MUST warn the user that the bag in question will fail strict validation. In
+such cases, it is RECOMMENDED that tools provide an easy option to
 update the bag with valid manifests.
 </t>
         </section>
@@ -1077,13 +1071,13 @@ update the bag with valid manifests.
       <!-- /Interoperability -->
     </section>
     <!-- /Practical Considerations -->
-    <section title="Augmented Backus-Naur Form (non-normative)">
+    <section title="Augmented Backus-Naur Form (Non-normative)">
       <t>
 The Augmented Backus-Naur Form (ABNF) rules provided below are non-normative. If
 there is a discrepancy between requirements in the normative sections and
 the ABNF, the requirements in the normative sections prevail. Some
-definitions use the core rules (e.g. DIGIT, HEXDIG, etc) as defined in
-<xref target="RFC4234"/>
+definitions use the core rules (e.g., DIGIT, HEXDIG, etc) as defined in
+<xref target="RFC5234"/>.
 </t>
       <section title="Bag Declaration: bagit.txt">
         <figure>
@@ -1147,44 +1141,31 @@ ending     = CR / LF / CRLF ]]></artwork>
 
     </section>
     <!-- /ABNF -->
-    <section title="Contributors">
-      <t>
-Additional contributors to the authoring of BagIt are Andy Boyko, David Brunton, Rosie Storey,
-Ed Summers, Brian Vargas, and Kate Zwaard.
-</t>
-    </section>
-    <section title="Acknowledgements">
-      <t>
-BagIt benefitted from the thoughtful assistance of
-Stephen Abrams, Mike Ashenfelder, Dan Chudnov, Dave Crocker, Scott Fisher, Brad Hards, Erik Hetzner,
-Keith Johnson, Leslie Johnston, David Loy, Mark Phillips, Tracy Seneca, Stian Soiland-Reyes,
-Brian Tingle, Adam Turoff, and Jim Tuttle.
-</t>
-    </section>
       <section title="IANA Considerations">
         <t>
-This draft does not request any action from IANA.
+This document has no IANA actions.
 </t>
       </section>
   </middle>
   <back>
+
     <references title="Normative References">
       &RFC1321; <!-- MD5 -->
       &RFC2119; <!-- Requirements -->
       &RFC6920; <!-- Named Information Hash Algorithm Registry -->
 
-      <reference anchor="ni-registry" target="https://www.iana.org/assignments/named-information/named-information.xhtml">
+      <reference anchor="ni-registry" target="https://www.iana.org/assignments/named-information">
         <front>
-          <title>Named Information Hash Algorithm Registry</title>
+          <title>Named Information Hash Algorithm</title>
           <author><organization>IANA</organization></author>
-          <date year="2016" month="9" day="14"/>
+          <date/>
         </front>
       </reference>
-      <reference anchor="cs-registry" target="https://www.iana.org/assignments/character-sets/character-sets.xhtml">
+      <reference anchor="cs-registry" target="https://www.iana.org/assignments/character-sets">
         <front>
-          <title>Character Set Registry</title>
+          <title>Character Set</title>
           <author><organization>IANA</organization></author>
-          <date year="2013" month="12" day="20"/>
+          <date/>
         </front>
       </reference>
       &RFC3174; <!-- SHA-1 -->
@@ -1194,30 +1175,39 @@ This draft does not request any action from IANA.
       &RFC8174;
     </references>
     <references title="Informative References">
-      <reference anchor="ENCDEP" target="http://www.iwaw.net/05/papers/iwaw05-tabata.pdf">
+
+      <reference anchor="ENCDEP"
+	 target="https://web.archive.org/web/20060508015635/http://www.iwaw.net/05/papers/iwaw05-tabata.pdf">
         <front>
           <title>A Collaboration Model between Archival Systems to Enhance the Reliability of Preservation by an Enclose-and-Deposit Method</title>
           <author initials="K." surname="Tabata" fullname="Koichi Tabata"/>
+	  <author initials="T." surname="Okada" fullname="Takeshi Okada"/>
+	  <author initials="M." surname="Nagamori" fullname="Mitsuharu Nagamori"/>
+	  <author initials="T." surname="Sakaguchi" fullname="Tetsuo Sakaguchi"/>
+	  <author initials="S." surname="Sugimoto" fullname="Shigeo Sugimoto"/>
           <date year="2005"/>
         </front>
         <format type="PDF" target="http://www.iwaw.net/05/papers/iwaw05-tabata.pdf"/>
       </reference>
+
       <reference anchor="MSFNAM" target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx">
         <front>
-          <title>Naming a File</title>
+          <title>Naming Files, Paths, and Namespaces</title>
           <author><organization>Microsoft, Inc.</organization></author>
-          <date month="" year="2008"/>
+          <date month="May" year="2018"/>
         </front>
         <format type="HTML" target="http://msdn2.microsoft.com/en-us/library/aa365247.aspx"/>
       </reference>
 
-      &RFC4234; <!-- ABNF -->
+      &RFC5234; <!-- ABNF -->
+
       <reference anchor="UNICODE-TR15" target="http://www.unicode.org/reports/tr15/">
         <front>
-          <title>Unicode&#xAE; Standard Annex #15: Unicode Normalization Forms</title>
+          <title>Unicode Standard Annex #15: Unicode Normalization Forms</title>
           <author><organization>Unicode Consortium</organization></author>
-          <date year="2016" month="2" day="24"/>
+          <date year="2018" month="May"/>
         </front>
+	<seriesInfo name="Technical Report," value="Unicode 11.0.0"/>
         <format type="HTML" target="http://www.unicode.org/reports/tr15/"/>
       </reference>
 
@@ -1225,17 +1215,32 @@ This draft does not request any action from IANA.
         <front>
           <title>Technical Note TN1150: HFS Plus Volume Format</title>
           <author><organization>Apple Inc.</organization></author>
-          <date year="2004" month="3" day="5"/>
+          <date year="2004" month="March"/>
         </front>
       </reference>
 
       <reference anchor="LC-CONFORMANCE-SUITE" target="https://github.com/LibraryOfCongress/bagit-conformance-suite/">
         <front>
-          <title>BagIt Conformance Suite</title>
+          <title>Test cases for validating Bagit Implementations</title>
           <author><organization>The Library of Congress</organization></author>
-          <date year="2016-"/>
+          <date month="November" year="2017"/>
         </front>
+        <seriesInfo name="commit" value="43bcbdf"/>
       </reference>
     </references>
+
+    <section title="Acknowledgements" numbered="no">
+     <t>BagIt benefitted from the thoughtful assistance of Stephen Abrams,
+     Mike Ashenfelder, Dan Chudnov, Dave Crocker, Scott Fisher, Brad Hards,
+     Erik Hetzner, Keith Johnson, Leslie Johnston, David Loy, Mark Phillips,
+     Tracy Seneca, Stian Soiland-Reyes, Brian Tingle, Adam Turoff, and Jim
+     Tuttle.
+      </t>
+    </section>
+    <section title="Contributors" numbered="no">
+      <t>Additional contributors to the authoring of BagIt are Andy Boyko,
+      David Brunton, Rosie Storey, Ed Summers, Brian Vargas, and Kate
+      Zwaard.</t>
+    </section>
   </back>
 </rfc>
